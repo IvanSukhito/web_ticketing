@@ -42,33 +42,37 @@ class AcaraController extends Controller
         ]);
 
 
-
         if ($request->hasFile('files')) {
             $photos = [];
             foreach ($request->file('files') as $file) {
-                $photos =  $file->store('acaras', 'public');
+                $photos[] = $file->store('acaras', 'public');
             }
             $request->merge([
                 'photos' => $photos
             ]);
         }
-        if (!$request->has('waktu')) {
-            // If waktu doesn't exist, set a default value or handle the absence of waktu according to your logic
-            $request->merge([
-                'waktu' => now() // Set default value to current time, you can change it according to your requirements
-            ]);
-        }
+
+
+        // if (!$request->has('waktu')) {
+        //     // If waktu doesn't exist, set a default value or handle the absence of waktu according to your logic
+        //     $request->merge([
+        //         'waktu' => now() // Set default value to current time, you can change it according to your requirements
+        //     ]);
+        // }
 
         //create acara 
-        $acara = Acara::create([
-            'name' => $request->name,
-            'slug' => $slug,
-            'description' => $request->description,
-            'namaPelaksana' => $request->namaPelaksana,
-            'lokasi' => $request->lokasi,
-            'waktu' => $request->waktu,
-            'jenis_acara' => $request->jenis_acara,
-        ]);
+        // $acara = Acara::create([
+        //     'name' => $request->name,
+        //     'slug' => $slug,
+        //     'description' => $request->description,
+        //     'namaPelaksana' => $request->namaPelaksana,
+        //     'lokasi' => $request->lokasi,
+        //     'waktu' => $request->waktu,
+        //     'jenis_acara' => $request->jenis_acara,
+        //     'photos' => json_encode($photos),
+        // ]);
+
+        Acara::create($request->except('files'));
 
 
         //return to index

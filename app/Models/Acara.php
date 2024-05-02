@@ -11,8 +11,8 @@ class Acara extends Model
     protected $fillable = [
         'name',
         'slug',
-        'deskripsi',
-        'gambar',
+        'description',
+        'photos',
         'namaPelaksana',
         'lokasi',
         'waktu',

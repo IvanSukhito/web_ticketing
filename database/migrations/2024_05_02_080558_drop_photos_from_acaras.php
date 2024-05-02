@@ -12,9 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('acaras', function (Blueprint $table) {
-            $table->text('description')->nullable()->after('slug');
-            $table->json('photos')->nullable()->after('description');
-            $table->dropColumn('deskripsi');
+            $table->dropColumn('photos');
         });
     }
 
@@ -24,8 +22,7 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('acaras', function (Blueprint $table) {
-            $table->dropColumn("description");
-            $table->dropColumn("photos");
+            //
         });
     }
 };
