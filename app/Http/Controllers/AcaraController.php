@@ -76,6 +76,47 @@ class AcaraController extends Controller
 
 
         //return to index
-        return redirect('/admin/acara')->with('success', 'Acara berhasil di buat ');
+        return redirect()->route('acara.index')->with('success', 'Acara berhasil di buat ');
+    }
+    public function edit(Acara $acara)
+    {
+        $acaras = Acara::all();
+        return view('admin.acara.edit', [
+            'acara' => $acara,
+        ]);
+    }
+
+    public function update(Request $request, string $id)
+    {
+        $request->validate([
+            'name' => 'required',
+            'description' => 'required',
+            'jenis_acara' => 'required',
+            // Sesuaikan aturan validasi sesuai kebutuhan Anda
+        ]);
+        $slug = $request->slug ?? Str::slug($request->name);
+
+        $request->merge([
+            'slug' => Str::slug($request->name),
+
+        ]);
+
+        if ($request->hasFile('files')) {
+            $photos = [];
+            foreach ($request->file('files') as $file) {
+                $photos[] = $file->store('acaras', 'public');
+            }
+            $request->merge([
+                'photos' => $photos
+            ]);
+        }
+        //update Acara
+        Acara::find($id)->update($request->except('files'));
+        return redirect()->route('acara.index')->with('success', 'Acara berhasil di Edit');
+    }
+    public function destroy(Acara $acara)
+    {
+        $acara->delete();
+        return redirect()->route('acara.index')->with('success', 'Acara berhasil di hapus');
     }
 }

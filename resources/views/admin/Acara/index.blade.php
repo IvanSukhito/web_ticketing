@@ -19,7 +19,8 @@
                                         Name </th>
                                     <th
                                         class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                        Deskripsi</th>
+                                        Nama Pelaksana</th>
+
                                     <th
                                         class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
                                         Lokasi</th>
@@ -43,8 +44,14 @@
                                         <td>{{ $acara->waktu->format('d M Y') }}</td>
                                         <td>{{ $acara->jenis_acara }}</td>
                                         <td>
-                                            <a href="/acara/{{ $acara->id }}/edit"class="btn btn-warning">Edit</a>
-                                            <form action="/acara/{{ $acara->id }}"method="POST">
+                                            <a
+                                                href="{{ route('acara.edit', [
+                                                    'acara' => $acara->id,
+                                                ]) }}"class="btn btn-warning">Edit</a>
+                                            <form onsubmit="return confirm('Hapus Acara {{ $acara->name }}?')"
+                                                action="{{ route('acara.destroy', [
+                                                    'acara' => $acara->id,
+                                                ]) }}"method="POST">
                                                 @method('DELETE')
                                                 @csrf
                                                 <input type="submit" class="btn btn-danger" value="Delete">

@@ -5,7 +5,7 @@
         <div class="col-12">
             <div class="card mb-4">
                 <div class="card-header pb-0">
-                    <h6>Add Acara</h6>
+                    <h6>Edit Acara</h6>
                 </div>
                 <div class="card-body px-2 pt-0 pb-2">
                     @if ($errors->any())
@@ -17,37 +17,47 @@
                             </ul>
                         </div>
                     @endif
-                    <form action = "{{ route('acara.store') }}" method="POST" enctype="multipart/form-data">
+                    <form
+                        action = "{{ route('acara.update', [
+                            'acara' => $acara->id,
+                        ]) }}"
+                        method="POST" enctype="multipart/form-data">
                         @csrf
+                        @method('PUT')
                         <div class="form-group">
                             <label for="name">Nama Acara</label>
                             <input name ="name"type="text" class="form-control" id="exampleInputEmail1"
-                                aria-describedby="emailHelp" placeholder="Nama Acara">
+                                aria-describedby="emailHelp" placeholder="Nama Acara"
+                                value="{{ isset($acara) ? $acara->name : old('name') }}">
                         </div>
                         <div class="form-group">
                             <label for="description">Description</label>
                             <textarea name="description" type="text" id="description" class="form-control" aria-describedby="emailHelp"
-                                placeholder="Deskripsi"> </textarea>
+                                placeholder="Deskripsi">{{ isset($acara) ? $acara->description : old('description') }}" </textarea>
                         </div>
                         <div class="form-group">
                             <label for="pelaksana">Nama Pelaksana</label>
                             <input name ="namaPelaksana" type="text" class="form-control" id="pelaksana"
-                                aria-describedby="emailHelp" placeholder="Nama Pelaksana">
+                                aria-describedby="emailHelp"
+                                placeholder="Nama Pelaksana"value="{{ isset($acara) ? $acara->namaPelaksana : old('namaPelaksana') }}">
                         </div>
                         <div class="form-group">
                             <label for="exampleInputEmail1">Lokasi</label>
                             <input name ="lokasi" type="text" class="form-control" id="exampleInputEmail1"
-                                aria-describedby="emailHelp" placeholder="Lokasi Acara">
+                                aria-describedby="emailHelp"
+                                placeholder="Lokasi Acara"value="{{ isset($acara) ? $acara->lokasi : old('lokasi') }}">
                         </div>
                         <div class="form-group">
                             <label for="exampleInputEmail1">Waktu</label>
                             <input name ="waktu" type="datetime-local" class="form-control" id="exampleInputEmail1"
-                                aria-describedby="emailHelp" placeholder="Tanggal Mulai Acara">
+                                aria-describedby="emailHelp"
+                                placeholder="Tanggal Mulai Acara"value="{{ isset($acara) ? $acara->waktu : old('waktu') }}">
                         </div>
                         <div class="form-group">
                             <label for="jenis_acara">Jenis Acara</label>
                             <input name ="jenis_acara" type="text" class="form-control" id="jenis_acara"
-                                aria-describedby="emailHelp" placeholder="Jenis Acara">
+                                aria-describedby="emailHelp"
+                                placeholder="Jenis Acara"value="{{ isset($acara) ? $acara->jenis_acara : old('jenisAcara') }}">
                         </div>
                         <div class="form-group">
                             <label for="p">Picture</label>
