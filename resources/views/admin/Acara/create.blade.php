@@ -17,7 +17,7 @@
                             </ul>
                         </div>
                     @endif
-                    <form action = "{{ route('admin.acara.create') }}" method="POST" enctype="multipart/form-data">
+                    <form action = "{{ route('admin.acara.store') }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="form-group">
                             <label for="name">Nama Acara</label>
