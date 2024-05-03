@@ -33,7 +33,7 @@
                         <div class="form-group">
                             <label for="description">Description</label>
                             <textarea name="description" type="text" id="description" class="form-control" aria-describedby="emailHelp"
-                                placeholder="Deskripsi">{{ isset($acara) ? $acara->description : old('description') }}" </textarea>
+                                placeholder="Deskripsi">{{ isset($acara) ? $acara->description : old('description') }} </textarea>
                         </div>
                         <div class="form-group">
                             <label for="pelaksana">Nama Pelaksana</label>
