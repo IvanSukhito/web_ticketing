@@ -5,22 +5,25 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Str;
 use App\Http\Controllers\Controller;
 use App\Models\Acara;
+use App\Models\Category;
 use Illuminate\Http\Request;
 
 class AcaraController extends Controller
 {
     public function index()
     {
-        $acaras = Acara::paginate(10);
+        $acaras = Acara::paginate(30);
         return view('admin.acara.index', [
             'acaras' => $acaras
         ]);
     }
     public function create()
     {
+        $categories = Category::all();
         $acaras = Acara::all();
         return view('admin.acara.create', [
-            'acaras' => $acaras
+            'acaras' => $acaras,
+            'categories' => $categories,
         ]);
     }
 
@@ -28,12 +31,7 @@ class AcaraController extends Controller
     {
 
         // dd($request->all());
-        $request->validate([
-            'name' => 'required',
-            'description' => 'required',
-            'jenis_acara' => 'required',
-            // Sesuaikan aturan validasi sesuai kebutuhan Anda
-        ]);
+
         $slug = $request->slug ?? Str::slug($request->name);
 
         $request->merge([
@@ -53,24 +51,6 @@ class AcaraController extends Controller
         }
 
 
-        // if (!$request->has('waktu')) {
-        //     // If waktu doesn't exist, set a default value or handle the absence of waktu according to your logic
-        //     $request->merge([
-        //         'waktu' => now() // Set default value to current time, you can change it according to your requirements
-        //     ]);
-        // }
-
-        //create acara 
-        // $acara = Acara::create([
-        //     'name' => $request->name,
-        //     'slug' => $slug,
-        //     'description' => $request->description,
-        //     'namaPelaksana' => $request->namaPelaksana,
-        //     'lokasi' => $request->lokasi,
-        //     'waktu' => $request->waktu,
-        //     'jenis_acara' => $request->jenis_acara,
-        //     'photos' => json_encode($photos),
-        // ]);
 
         Acara::create($request->except('files'));
 
@@ -80,9 +60,11 @@ class AcaraController extends Controller
     }
     public function edit(Acara $acara)
     {
+        $categories = Category::all();
         $acaras = Acara::all();
         return view('admin.acara.edit', [
             'acara' => $acara,
+            'categories' => $categories,
         ]);
     }
 
@@ -91,7 +73,7 @@ class AcaraController extends Controller
         $request->validate([
             'name' => 'required',
             'description' => 'required',
-            'jenis_acara' => 'required',
+
             // Sesuaikan aturan validasi sesuai kebutuhan Anda
         ]);
         $slug = $request->slug ?? Str::slug($request->name);

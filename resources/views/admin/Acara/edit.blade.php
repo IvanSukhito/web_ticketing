@@ -54,10 +54,13 @@
                                 placeholder="Tanggal Mulai Acara"value="{{ isset($acara) ? $acara->waktu : old('waktu') }}">
                         </div>
                         <div class="form-group">
-                            <label for="jenis_acara">Jenis Acara</label>
-                            <input name ="jenis_acara" type="text" class="form-control" id="jenis_acara"
-                                aria-describedby="emailHelp"
-                                placeholder="Jenis Acara"value="{{ isset($acara) ? $acara->jenis_acara : old('jenisAcara') }}">
+                            <label for="exampleInputEmail1">Pilih Kategori</label>
+                            <select class="form-control" name="category_id">
+                                <option value="">Pilih Kategori Acara</option>
+                                @foreach ($categories as $category)
+                                    <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                @endforeach
+                            </select>
                         </div>
                         <div class="form-group">
                             <label for="p">Picture</label>

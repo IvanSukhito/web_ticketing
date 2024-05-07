@@ -45,9 +45,13 @@
                                 aria-describedby="emailHelp" placeholder="Tanggal Mulai Acara">
                         </div>
                         <div class="form-group">
-                            <label for="jenis_acara">Jenis Acara</label>
-                            <input name ="jenis_acara" type="text" class="form-control" id="jenis_acara"
-                                aria-describedby="emailHelp" placeholder="Jenis Acara">
+                            <label for="exampleInputEmail1">Pilih Kategori</label>
+                            <select class="form-control" name="category_id">
+                                <option value="{{ $category->id }}">Pilih Kategori Acara</option>
+                                @foreach ($categories as $category)
+                                    <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                @endforeach
+                            </select>
                         </div>
                         <div class="form-group">
                             <label for="p">Picture</label>

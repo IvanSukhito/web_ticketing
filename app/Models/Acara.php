@@ -16,7 +16,7 @@ class Acara extends Model
         'namaPelaksana',
         'lokasi',
         'waktu',
-        'jenis_acara',
+        'category_id',
     ];
 
     protected $casts = [
@@ -33,5 +33,9 @@ class Acara extends Model
     {
         //NYARI DATA PRICE  PERTAMA KALO GADA DI ISI DENGAN 0 
         return $this->tickets()->orderBy('harga')->first()->harga ?? 0;
+    }
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
     }
 }

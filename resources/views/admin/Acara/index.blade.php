@@ -29,7 +29,7 @@
                                         Waktu</th>
                                     <th
                                         class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                        Jenis Acara</th>
+                                        Kategori</th>
                                     <th class="text-secondary opacity-7">Action</th>
                                 </tr>
                             </thead>
@@ -42,7 +42,7 @@
                                         <td>{{ $acara->namaPelaksana }}</td>
                                         <td>{{ $acara->lokasi }}</td>
                                         <td>{{ $acara->waktu->format('d M Y') }}</td>
-                                        <td>{{ $acara->jenis_acara }}</td>
+                                        <td>{{ $acara->category->name ?? '-' }}</td>
                                         <td>
                                             {{-- EDIT --}}
                                             <a
