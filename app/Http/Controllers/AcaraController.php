@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Acara;
 use App\Models\Category;
 use Illuminate\Http\Request;
+use App\Notifications\userNotification;
 
 class AcaraController extends Controller
 {
@@ -55,8 +56,9 @@ class AcaraController extends Controller
 
 
 
-        Acara::create($request->except('files'));
-
+        $acara = Acara::create($request->except('files'));
+        $users = User::all(); 
+        Notification::send($users, new userNotification($acara));
 
         //return to index
         return redirect()->route('acara.index')->with('success', 'Acara berhasil di buat ');

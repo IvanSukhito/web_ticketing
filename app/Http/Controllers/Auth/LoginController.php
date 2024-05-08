@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use \Illuminate\Http\Request;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Auth;
 
 class LoginController extends Controller
 {
@@ -25,7 +27,7 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/admin/dashboard/';
+    //protected $redirectTo = '/admin/dashboard/';
 
     /**
      * Create a new controller instance.
@@ -36,4 +38,23 @@ class LoginController extends Controller
     {
         $this->middleware('guest')->except('logout');
     }
+    public function authenticated(Request $request, $user)
+    {
+    if ($user->role == 'admin') {
+
+        return redirect()->route('dashboard');
+
+    } elseif ($user->role == 'user') {
+
+        return redirect()->route('home');
+
+    } else {
+
+        Auth::logout();
+        // flash('Anda tidak punya role')->error();
+        return redirect()->route('login')->with('flash','Anda Tidak Punya Role');
+        
+    }
+    }
+
 }

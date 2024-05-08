@@ -24,9 +24,6 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/admin/dashboard', [App\Http\Controllers\DashboardController::class, 'index'])->name('dashboard');
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
 // //ROUTE ACARA 
 // Route::get('/admin/acara', [AcaraController::class, 'index'])->name('acara');
 // //ROUTE KE FORM ACARA CREATE
@@ -35,9 +32,25 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 // Route::post('/admin/acara', [AcaraController::class, 'store'])->name('admin.acara.create');
 
 //ROUTE RESOURCE ACARA
-Route::resource('admin/acara', AcaraController::class);
 
-//ROUTE KE TIKET DARI ACARA ID
-Route::resource('admin/acara.tickets', TicketController::class)->names('admin.acara.tickets');
+Route::prefix('admin')->middleware(['auth','auth.admin'])->group(function(){
+    //route admin
+    Route::get('/admin/dashboard', [App\Http\Controllers\DashboardController::class, 'index'])->name('dashboard');
+    Route::resource('admin/acara', AcaraController::class);
 
-Route::resource('admin/kategori', CategoryController::class);
+    //ROUTE KE TIKET DARI ACARA ID
+    Route::resource('admin/acara.tickets', TicketController::class)->names('admin.acara.tickets');
+    
+    Route::resource('admin/kategori', CategoryController::class);
+    
+   
+});
+Route::prefix('user')->middleware(['auth','auth.user'])->group(function(){
+    //route user
+    
+    Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+});
+Route::get('logout', function () {
+    Auth::logout();
+});
