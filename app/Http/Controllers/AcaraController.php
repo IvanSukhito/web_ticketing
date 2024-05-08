@@ -19,8 +19,11 @@ class AcaraController extends Controller
     }
     public function create()
     {
-        $categories = Category::all();
+        $categories = Category::all() ?? null;
+    
+        //dd($categories);
         $acaras = Acara::all();
+      
         return view('admin.acara.create', [
             'acaras' => $acaras,
             'categories' => $categories,

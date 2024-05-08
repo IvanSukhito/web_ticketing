@@ -1,6 +1,7 @@
 @extends('layouts.master')
 
 @section('content')
+
     <div class="row">
         <div class="col-12">
             <div class="card mb-4">
@@ -46,8 +47,8 @@
                         </div>
                         <div class="form-group">
                             <label for="exampleInputEmail1">Pilih Kategori</label>
-                            <select class="form-control" name="category_id">
-                                <option value="{{ $category->id }}">Pilih Kategori Acara</option>
+                            <select id="category" class="form-control" name="category_id">
+                                <option value="0">Pilih Kategori Acara</option>
                                 @foreach ($categories as $category)
                                     <option value="{{ $category->id }}">{{ $category->name }}</option>
                                 @endforeach
@@ -67,3 +68,13 @@
         </div>
     </div>
 @endsection
+@section('script-bottom')
+    @parent
+    <script type="text/javascript">
+     $(document).ready(function() {
+$("#category").select2();
+});
+</script>
+@stop
+   
+
