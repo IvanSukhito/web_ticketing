@@ -22,17 +22,30 @@ class CategoryController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(Category $categories)
     {
-        //
+        return view('admin.Kategori.create', [
+            'categories' => $categories,
+        ]);
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(Request $request, Category $categories)
     {
-        //
+        if ($request->hasFile('files')) {
+            $photos = [];
+            foreach ($request->file('files') as $file) {
+                $photos[] = $file->store('acaras', 'public');
+            }
+            $request->merge([
+                'photos' => $photos
+            ]);
+        }
+        Category::create($request->except('files'));
+
+        return redirect()->route('kategori.index', $categories->id)->with('success', 'Kategori Berhasil Di tambahkan');
     }
 
     /**
@@ -62,8 +75,13 @@ class CategoryController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Category $category)
     {
-        //
+        // Menghapus kategori
+        $category->delete();
+
+        // Redirect ke index kategori dengan pesan sukses
+        // dd($category);
+        return redirect()->route('kategori.index')->with('success', 'Kategori berhasil dihapus.');
     }
 }

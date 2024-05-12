@@ -21,10 +21,10 @@ class AcaraController extends Controller
     public function create()
     {
         $categories = Category::all() ?? null;
-    
+
         //dd($categories);
         $acaras = Acara::all();
-      
+
         return view('admin.acara.create', [
             'acaras' => $acaras,
             'categories' => $categories,
@@ -57,7 +57,7 @@ class AcaraController extends Controller
 
 
         $acara = Acara::create($request->except('files'));
-        $users = User::all(); 
+        $users = User::all();
         Notification::send($users, new userNotification($acara));
 
         //return to index
@@ -104,6 +104,7 @@ class AcaraController extends Controller
     public function destroy(Acara $acara)
     {
         $acara->delete();
+        // dd($acara);
         return redirect()->route('acara.index')->with('success', 'Acara berhasil di hapus');
     }
 }

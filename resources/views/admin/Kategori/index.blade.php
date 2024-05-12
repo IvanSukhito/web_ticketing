@@ -6,7 +6,7 @@
             <div class="card mb-4">
                 <div class="card-header pb-0">
                     <h6>Acara</h6>
-                    <a href="{{ route('acara.create') }}" class="btn btn-primary float-end">Buat Acara</a>
+                    <a href="{{ route('kategori.create') }}" class="btn btn-primary float-end">Buat Acara</a>
                 </div>
                 <div class="card-body px-0 pt-0 pb-2">
                     <div class="table-responsive p-0">
@@ -32,11 +32,11 @@
                                                     class="btn btn-warning me-2">Edit</a>
                                                 {{-- Delete Form --}}
                                                 <form onsubmit="return confirm('Hapus Acara {{ $category->name }}?')"
-                                                    action="{{ route('acara.destroy', ['acara' => $category->id]) }}"
-                                                    method="POST">
+                                                    action="{{ route('kategori.destroy', $category->id) }}" method="POST">
                                                     @method('DELETE')
                                                     @csrf
                                                     <button type="submit" class="btn btn-danger">Delete</button>
+
                                                 </form>
                                             </div>
                                         </td>

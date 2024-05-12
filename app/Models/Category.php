@@ -16,10 +16,7 @@ class Category extends Model
     {
         return $this->hasMany(Acara::class);
     }
-    public function category()
-    {
-        return $this->belongsTo(Category::class);
-    }
+
     public function scopeSortByMostAcaras($query)
     {
         return $query->withCount('acaras')->orderBy('acaras_count', 'desc');
