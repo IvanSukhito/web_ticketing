@@ -31,13 +31,14 @@
                                                 <a href="{{ route('acara.edit', ['acara' => $category->id]) }}"
                                                     class="btn btn-warning me-2">Edit</a>
                                                 {{-- Delete Form --}}
-                                                <form onsubmit="return confirm('Hapus Acara {{ $category->name }}?')"
+                                                <form onsubmit="return confirm('Hapus Kategori {{ $category->name }}?')"
                                                     action="{{ route('kategori.destroy', $category->id) }}" method="POST">
                                                     @method('DELETE')
                                                     @csrf
                                                     <button type="submit" class="btn btn-danger">Delete</button>
 
                                                 </form>
+
                                             </div>
                                         </td>
                                     </tr>

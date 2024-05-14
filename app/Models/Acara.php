@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Storage;
 
 class Acara extends Model
 {
@@ -37,5 +38,29 @@ class Acara extends Model
     public function category()
     {
         return $this->belongsTo(Category::class);
+    }
+    public function getThumbnailAttribute()
+    {
+        $photos = $this->photos;
+        if ($photos && !empty($photos)) {
+            return Storage::url($photos[0]);
+        }
+
+        return asset('img/images.jpg');
+    }
+    public function scopeWithCategory($query, $category)
+    {
+        return $query->where('category_id', $category);
+    }
+    public function scopeUpcoming($query)
+    {
+        return $query->orderBy('waktu', 'asc')->where('waktu', '>=', now());
+    }
+    public function scopeFetch($query, $slug)
+    {
+        return $query->with(['category', 'tickets'])
+            ->withCount('tickets')
+            ->where('slug', $slug)
+            ->firstOrFail();
     }
 }

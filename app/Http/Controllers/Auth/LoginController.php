@@ -40,21 +40,17 @@ class LoginController extends Controller
     }
     public function authenticated(Request $request, $user)
     {
-    if ($user->role == 'admin') {
+        if ($user->role == 'admin') {
 
-        return redirect()->route('dashboard');
+            return redirect()->route('dashboard');
+        } elseif ($user->role == 'user') {
 
-    } elseif ($user->role == 'user') {
+            return redirect()->route('home');
+        } else {
 
-        return redirect()->route('home');
-
-    } else {
-
-        Auth::logout();
-        // flash('Anda tidak punya role')->error();
-        return redirect()->route('login')->with('flash','Anda Tidak Punya Role');
-        
+            Auth::logout();
+            // flash('Anda tidak punya role')->error();
+            return redirect()->route('login')->with('flash', 'Anda Tidak Punya Role');
+        }
     }
-    }
-
 }

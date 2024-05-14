@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Acara;
+use App\Models\Category;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -23,6 +25,29 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $acaras = $this->fetchAcaras();
+        $categories = $this->fetchCategories();
+        return view('frontend.index', compact('acaras', 'categories'));
+    }
+    public function fetchAcaras()
+    {
+        $category = request()->query('category');
+        $acaras = Acara::upcoming();
+        if (!request()->query('all_events')) {
+            $acaras->limit(6);
+        }
+        if ($category) {
+            $acaras->withCategory($category);
+        }
+
+        return $acaras->get();
+    }
+    private function fetchCategories()
+    {
+        $categories = Category::sortByMostEvents();
+        if (!request()->query('all_categories')) {
+            $categories->limit(4);
+        }
+        return $categories->get();
     }
 }

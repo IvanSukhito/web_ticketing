@@ -1,0 +1,122 @@
+body {
+    font-family: sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: #5e73ee;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header h1 {
+    font-size: 2em;
+}
+
+header nav {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+header nav a {
+    text-decoration: none;
+    margin-right: 20px;
+    color: black;
+}
+
+main {
+    padding: 10px;
+}
+
+.banner {
+    text-align: center;
+    margin-bottom: 20px;
+    width: 100%;
+}
+
+.banner h2 {
+    font-size: 2em;
+    margin-bottom: 10px;
+}
+
+.banner p {
+    font-size: 1.2em;
+}
+
+
+.other-events {
+    text-align: left;
+    margin-left: 1rem;
+}
+
+footer {
+    background-color: #f0f0f0;
+    padding: 10px;
+    text-align: center;
+}
+
+
+.banner-content {
+    display: flex;
+    align-items: center;
+}
+
+.description {
+    flex: 1;
+    padding-left: 10em;
+    padding-bottom: 4.7em;
+    text-align: justify;
+}
+
+.tiket {
+    width: 18%;
+    height: 20rem; 
+    margin-top: -10rem;   
+    margin-left: 2rem;   
+}
+
+.buy-button {
+    margin-right: 62rem;
+    margin-top: -10rem;
+    margin-bottom: 8rem;
+}
+
+.buy-button a {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    text-decoration: none;
+    border-radius: 20px;
+    transition: background-color 0.3s;
+}
+
+.buy-button a:hover {
+    background-color: #45a049;
+}
+
+.image-container {
+    display: flex;
+    flex-wrap: wrap; /* Memastikan gambar baru akan memulai baris baru */
+}
+
+.image-container .box {
+    width: calc(30% - 20px); /* Menentukan lebar gambar */
+    margin: 10px; /* Memberikan jarak antara gambar */
+
+    height: 15rem;
+    background-color: #ddd;
+    margin-left: 10px; /* Atur jarak antar kotak */
+    overflow: hidden; /* Mengatur agar gambar tidak keluar dari kotak */
+}
+
+.image-container .box img {
+    width: 100%; /* Mengatur agar gambar memenuhi kotak */
+    height: 100%; /* Mengatur agar gambar memenuhi kotak */
+    object-fit: cover; /* Mengatur agar gambar diatur sesuai proporsi tanpa merubah aspek rasio */
+}

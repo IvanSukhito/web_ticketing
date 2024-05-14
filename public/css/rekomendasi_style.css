@@ -1,0 +1,128 @@
+body {
+    font-family: sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: #5e73ee;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header h1 {
+    font-size: 2em;
+}
+
+header nav {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+header nav a {
+    text-decoration: none;
+    margin-right: 20px;
+    color: black;
+}
+
+
+/* Styling for search bar */
+.search-bar {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.search-bar input {
+    padding: 5px;
+    margin-right: 5px;
+    border-radius: 10px;
+    width: 50rem;
+}
+
+.search-bar button {
+    padding: 5px 10px;
+    background-color: #5e73ee;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+
+
+.container-boxes {
+    display: flex;
+}
+
+.box {
+    margin-top: 1rem;
+    width: 20%;
+    height: 20rem;
+    overflow: hidden; /* Mengatur overflow agar gambar tidak keluar dari kotak */
+    padding: 3rem;
+    position: relative;
+    
+}
+
+.box img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* make sure gambar mengisi kotak dengan proporsi yang benar */
+    
+}
+
+.box p {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    color: black;
+    padding-top: 2rem;
+    margin-top: 15rem;
+    margin-left: 4.2rem;
+
+}
+
+/* Responsif untuk perangkat kecil (mobile) */
+@media screen and (max-width: 576px) {
+    .box p {
+        font-size: 0.8em; /* Mengurangi ukuran font untuk layar yang lebih kecil */
+        margin-top: 10rem; /* Menyesuaikan jarak dari bawah */
+        margin-left: 0; /* Menghapus margin kiri */
+    }
+
+    .box img {
+        width: 80%; /* Mengurangi lebar gambar untuk perangkat mobile */
+        margin: 0 auto; /* Mengatur gambar menjadi di tengah */
+    }
+}
+
+/* Responsif untuk perangkat sedang (tablet) */
+@media screen and (min-width: 577px) and (max-width: 992px) {
+    .box p {
+        font-size: 1em; /* Ukuran font default */
+        margin-top: 12rem; /* Menyesuaikan jarak dari bawah */
+        margin-left: 2rem; /* Menyesuaikan margin kiri */
+    }
+}
+
+/* Responsif untuk perangkat besar (desktop) */
+@media screen and (min-width: 993px) {
+    .box p {
+        font-size: 1em; /* Ukuran font default */
+        margin-top: 15rem; /* Menyesuaikan jarak dari bawah */
+        margin-left: 4.2rem; /* Menyesuaikan margin kiri */
+    }
+}
+
+
+
+footer {
+    background-color: #f0f0f0;
+    padding: 10px;
+    text-align: center;
+}

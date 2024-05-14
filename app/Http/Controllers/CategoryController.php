@@ -75,10 +75,13 @@ class CategoryController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Category $category)
+    public function destroy($id)
     {
         // Menghapus kategori
+        $category = Category::find($id);
         $category->delete();
+
+
 
         // Redirect ke index kategori dengan pesan sukses
         // dd($category);
