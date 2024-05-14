@@ -18,6 +18,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+// Sebelum login
 Route::get('/', function () {
     return view('frontend.index');
 });

@@ -26,7 +26,7 @@
 <body>
     <header>
         <nav class="navbar">
-            <a href="#" class="logo">
+            <a href="{{ url('/') }}" class="logo">
                 <img src="/Assets/Logo.png" alt="Logo">
                 <h1>Ticoz</h1>
             </a>
@@ -35,7 +35,14 @@
                 <i data-feather="search" class="search-icon"></i>
                 <input type="text" placeholder="Search Event">
             </div>
-
+            @guest
+                    @if (Route::has('login'))            
+                            <a class="nav-link" href="{{ route('login') }}">{{ __('SignIn') }}</a>      
+                    @endif
+                    @if (Route::has('register')) 
+                            <a class="nav-link" href="{{ route('register') }}">{{ __('SignUp') }}</a>                                
+                    @endif
+            @else
             <div class="icon-nav">
                 <div class="icon-nav-list">
                     <a href="#"><i data-feather="bell"></i></a>
@@ -46,6 +53,7 @@
                     <h2>Casey</h2>
                 </div>
             </div>
+            @endif
         </nav>
         <div class="list">
             <div class="hastag">
