@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Support\Str;
 use App\Http\Controllers\Controller;
+use App\Http\Middleware\User;
 use App\Models\Acara;
 use App\Models\Category;
 use Illuminate\Http\Request;
@@ -57,8 +58,8 @@ class AcaraController extends Controller
 
 
         $acara = Acara::create($request->except('files'));
-        $users = User::all();
-        Notification::send($users, new userNotification($acara));
+        // $users = User::all();
+        // Notification::send($users, new userNotification($acara));
 
         //return to index
         return redirect()->route('acara.index')->with('success', 'Acara berhasil di buat ');

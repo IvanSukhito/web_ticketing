@@ -19,9 +19,9 @@ use Illuminate\Support\Facades\Route;
 */
 
 // Sebelum login
-Route::get('/', function () {
-    return view('frontend.index');
-});
+
+Route::get('/', [HomeController::class, 'index']);
+
 Route::get('/details/{slug}', [AcaraUserController::class, 'index'])->name('detail');
 
 
