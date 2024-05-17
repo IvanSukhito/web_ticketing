@@ -24,24 +24,34 @@
             <section class="banner">
                 <img src="{{ asset('img/festival.jpg') }}" alt="World Jazz Day" width="100%" height="350rem">
                 <div class="banner-content">
-                    <img src="{{ asset('img/tiket.jpeg') }}" class="tiket" alt="Tiket">
+                    <img src="{{ $acara->thumbnail }}" class="tiket" alt="Tiket">
 
                     <div class="description">
-                        <p>Jazz Fest adalah Acara yang diselenggarakan selama 7 hari hingga dan <br>
-                            menampilkan berbagai jenis musik jazz yang beragam, mulai dari jazz tradisional hingga jazz <br>
-                            kontemporer.
+                        <p>ini deskripsi : {{ $acara->description }}
                         </p>
                         <p>
-                            Lokasi : Jakarta
+                            Lokasi : {{ $acara->lokasi }}
                         </p>
                         <p>
-                            Tanggal: Senin, 25 Maret 2023
+                            Tanggal : {{ $acara->waktu->format('d M y') }}
                         </p>
                         <p>
-                            Jam: 09:00 - 12:00
+                            Jam {{ $acara->waktu->format('H:i A') }}
                         </p>
                         <p>
-                            <b>Rp. 250.000 </b>
+                            ini kategori : {{ $acara->category->name }}
+                        </p>
+                        <p>
+                            <b>
+
+                                @if ($acara->tickets->isNotEmpty())
+                                    <span>Mulai dari Rp
+                                        {{ number_format($acara->tickets->first()->harga) }}</span><!-- Mengambil harga tiket pertama jika ada -->
+                                @else
+                                    <span>Tidak ada tiket tersedia</span>
+                                @endif
+
+                            </b>
                         </p>
 
                     </div>

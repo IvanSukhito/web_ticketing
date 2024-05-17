@@ -19,6 +19,7 @@ class AcaraController extends Controller
             'acaras' => $acaras
         ]);
     }
+
     public function create()
     {
         $categories = Category::all() ?? null;
@@ -50,6 +51,7 @@ class AcaraController extends Controller
             foreach ($request->file('files') as $file) {
                 $photos[] = $file->store('acaras', 'public');
             }
+
             $request->merge([
                 'photos' => $photos
             ]);
@@ -98,6 +100,8 @@ class AcaraController extends Controller
                 'photos' => $photos
             ]);
         }
+
+
         //update Acara
         Acara::find($id)->update($request->except('files'));
         return redirect()->route('acara.index')->with('success', 'Acara berhasil di Edit');

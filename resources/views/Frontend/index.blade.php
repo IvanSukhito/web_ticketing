@@ -43,9 +43,10 @@
         {{-- card acara --}}
         @foreach ($acaras as $acara)
             <div class="container">
-                <a href="#">
+                <a href="{{ route('detail', $acara->slug) }}">
                     <div class="card-container">
                         <div class="card-image muichiro"></div>
+
                         <img src="{{ $acara->thumbnail }}" alt="{{ $acara->name }}">
                         <div class="card-detail">
                             <h3>{{ $acara->name }}</h3>

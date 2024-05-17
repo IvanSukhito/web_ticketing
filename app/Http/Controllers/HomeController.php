@@ -27,6 +27,7 @@ class HomeController extends Controller
     {
 
         $acaras = $this->fetchAcaras();
+
         // $categories = Category::all();
         return view('frontend.index', compact('acaras'));
     }
