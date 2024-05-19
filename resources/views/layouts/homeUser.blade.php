@@ -10,6 +10,8 @@
     @section('css')
         <link rel="stylesheet" href="{{ asset('css/frontend/style.css') }}">
         <link rel="stylesheet" href="{{ asset('css/frontend/swiper-bundle.min.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/frontend/details.css') }}">
+
 
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.googleapis.com">
