@@ -183,7 +183,7 @@ header {
     align-items: center;
     justify-content: space-between;
     gap: 50px;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
 }
 
 .card-info a {
@@ -191,7 +191,6 @@ header {
     justify-content: space-between;
     align-items: center;
     gap: 30px;
-    flex-direction: column;
     color: black;
     font-weight: 600;
 }
@@ -227,7 +226,7 @@ header {
 }
 
 .muichiro {
-    background-image: url('../Assets/Muichiro.jpg');
+    background-image: url('');
 }
 
 .card-container .card-detail {

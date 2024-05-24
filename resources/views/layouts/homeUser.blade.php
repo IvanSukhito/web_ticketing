@@ -11,7 +11,7 @@
         <link rel="stylesheet" href="{{ asset('css/frontend/style.css') }}">
         <link rel="stylesheet" href="{{ asset('css/frontend/swiper-bundle.min.css') }}">
         <link rel="stylesheet" href="{{ asset('css/frontend/details.css') }}">
-
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -29,7 +29,7 @@
     <header>
         <nav class="navbar">
             <a href="{{ url('/') }}" class="logo">
-                <img src="/Assets/Logo.png" alt="Logo">
+                <img src="{{ asset('img/logoti.png') }}" alt="Logo">
                 <h1>Ticoz</h1>
             </a>
 
@@ -37,24 +37,38 @@
                 <i data-feather="search" class="search-icon"></i>
                 <input type="text" placeholder="Search Event">
             </div>
+            
+            <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
             @guest
-                @if (Route::has('login'))
-                    <a class="nav-link" href="{{ route('login') }}">{{ __('SignIn') }}</a>
+            @if (Route::has('login'))
+                    <a class="btn btn-info" href="{{ route('login') }}">{{ __('SignIn') }}</a>
                 @endif
                 @if (Route::has('register'))
-                    <a class="nav-link" href="{{ route('register') }}">{{ __('SignUp') }}</a>
+                    <a class="btn btn-primary" href="{{ route('register') }}">{{ __('SignUp') }}</a>
                 @endif
-            @else
+            @else               
+            </div>
+
                 <div class="icon-nav">
                     <div class="icon-nav-list">
                         <a href="#"><i data-feather="bell"></i></a>
-                        <a href="#"><i class="fa-solid fa-clock-rotate-left"></i></a>
                     </div>
                     <div class="Profile">
-                        <img src="/Assets/Casey.jpg" alt="casey">
-                        <h2>Casey</h2>
+                        <img src="{{ asset('img/profile.png')}}" alt="casey">
+                      <!-- Example single danger button -->
+                            <div class="btn-group">
+                              <span class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Casey
+                            </span>
+                              <div class="dropdown-menu">
+                             
+                                <a class="dropdown-item" href="#">Edit Profile</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="{{ route('logout') }}">Logout</a>
+                              </div>
+                            </div>
                     </div>
-                </div>
+                   </div>
                 @endif
             </nav>
             <div class="list">
@@ -79,6 +93,9 @@
             <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
             <script src="{{ asset('js/frontend/swiper-bundle.min.js') }}"></script>
             <script src="{{ asset('js/frontend/script.js') }}"></script>
+            <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+            <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
         @show
     </body>
 

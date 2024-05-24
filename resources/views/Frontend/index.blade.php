@@ -4,7 +4,7 @@
     <section class="hero">
         <div class="card swiper mySwiper">
             <div class="swiper-wrapper">
-                <div class="swiper-slide"><img src="/Assets/background-image.png" alt="event"></div>
+                <div class="swiper-slide"><img src="{{ asset('img/slider/2.png') }}" alt="event"></div>
             </div>
             <div class="swiper-button-next"></div>
             <div class="swiper-button-prev"></div>
@@ -15,48 +15,52 @@
         <div class="card1">
             <div class="card-info">
                 <a href="#">
-                    <img src="/Assets/Muichiro.jpg" alt="card">
-                    <p>Muichiro</p>
+                    <img src="{{ asset('img/cat_film.png') }}" alt="card">
+                    <p>Film</p>
                 </a>
                 <a href="#">
-                    <img src="/Assets/Muichiro.jpg" alt="card">
-                    <p>Muichiro</p>
+                <img src="{{ asset('img/cat_game.png') }}" alt="card">
+                    <p>Game</p>
                 </a>
                 <a href="#">
-                    <img src="/Assets/Muichiro.jpg" alt="card">
-                    <p>Muichiro</p>
+                <img src="{{ asset('img/cat_art.png') }}" alt="card">
+                    <p>Art</p>
                 </a>
                 <a href="#">
-                    <img src="/Assets/Muichiro.jpg" alt="card">
-                    <p>Muichiro</p>
+                       <img src="{{ asset('img/cat_otomatif.png') }}" alt="card">
+                    <p>Otomatif</p>
                 </a>
                 <a href="#">
-                    <img src="/Assets/Muichiro.jpg" alt="card">
-                    <p>Muichiro</p>
+                       <img src="{{ asset('img/cat_teater.png') }}" alt="card">
+                    <p>Teater</p>
                 </a>
                 <a href="#">
-                    <img src="/Assets/Muichiro.jpg" alt="card">
-                    <p>Muichiro</p>
+                       <img src="{{ asset('img/cat_music.png') }}" alt="card">
+                    <p>Music</p>
                 </a>
+                <a href="#">
+                       <img src="{{ asset('img/cat_sport.png') }}" alt="card">
+                    <p>Sport</p>
+                </a>
+              
             </div>
         </div>
         {{-- card acara --}}
         @foreach ($acaras as $acara)
-            <div class="container">
-                <a href="{{ route('detail', $acara->slug) }}">
-                    <div class="card-container">
-                        <div class="card-image muichiro"></div>
-
-                        <img src="{{ $acara->thumbnail }}" alt="{{ $acara->name }}">
-                        <div class="card-detail">
-                            <h3>{{ $acara->name }}</h3>
+          
+            <a href="{{ route('detail', $acara->slug) }}">
+                 <!-- <img src="{{ $acara->thumbnail }}" alt="{{ $acara->name }}"> -->
+                <div class="card-container">
+                    <div class="card-image"><img src="{{ $acara->thumbnail }}" alt="{{ $acara->name }}" class="card-image"></div>
+                    <div class="card-detail">
+                    <h3>{{ $acara->name }}</h3>
                             <p>{{ $acara->description }}</p>
                             <span>Mulai dari Rp {{ number_format($acara->start_from) }}</span>
-                        </div>
                     </div>
-            </div>
+                </div>
+            </a>
         @endforeach
-
+       
 
 
     </section>

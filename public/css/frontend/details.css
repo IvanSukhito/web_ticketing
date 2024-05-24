@@ -183,7 +183,7 @@ header {
     align-items: center;
     justify-content: space-between;
     gap: 50px;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
 }
 
 .card-info a {
