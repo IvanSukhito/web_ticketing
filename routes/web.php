@@ -39,13 +39,21 @@ Auth::routes();
 
 Route::prefix('admin')->middleware(['auth', 'auth.admin'])->group(function () {
     //route admin
-    Route::get('/admin/dashboard', [App\Http\Controllers\DashboardController::class, 'index'])->name('dashboard');
+    Route::get('/admin/dashboard', [App\Http\Controllers\DashboardController::class, 'index'])->name('admin.dashboard');
     Route::resource('admin/acara', AcaraController::class);
 
     //ROUTE KE TIKET DARI ACARA ID
     Route::resource('admin/acara.tickets', TicketController::class)->names('admin.acara.tickets');
 
     Route::resource('admin/kategori', CategoryController::class);
+});
+Route::prefix('vendor')->middleware(['auth', 'auth.vendor'])->group(function () {
+    //route vendor
+    Route::get('/admin/dashboard', [App\Http\Controllers\DashboardController::class, 'index'])->name('vendor.dashboard');
+    Route::resource('admin/acara', AcaraController::class);
+
+    //ROUTE KE TIKET DARI ACARA ID
+    Route::resource('admin/acara.tickets', TicketController::class)->names('admin.acara.tickets');
 });
 Route::prefix('user')->middleware(['auth', 'auth.user'])->group(function () {
     //route user
