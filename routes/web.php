@@ -5,6 +5,7 @@ use App\Http\Controllers\AcaraUserController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\TicketController;
+use App\Http\Controllers\VendorController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -39,18 +40,18 @@ Auth::routes();
 
 Route::prefix('admin')->middleware(['auth', 'auth.admin'])->group(function () {
     //route admin
-    Route::get('/admin/dashboard', [App\Http\Controllers\DashboardController::class, 'index'])->name('admin.dashboard');
-    Route::resource('admin/acara', AcaraController::class);
+    Route::get('/dashboard', [App\Http\Controllers\DashboardController::class, 'index'])->name('dashboard');
+    Route::resource('/acara', AcaraController::class);
 
     //ROUTE KE TIKET DARI ACARA ID
-    Route::resource('admin/acara.tickets', TicketController::class)->names('admin.acara.tickets');
+    Route::resource('/acara.tickets', TicketController::class)->names('admin.acara.tickets');
 
-    Route::resource('admin/kategori', CategoryController::class);
+    Route::resource('/kategori', CategoryController::class);
 });
 Route::prefix('vendor')->middleware(['auth', 'auth.vendor'])->group(function () {
     //route vendor
-    Route::get('/admin/dashboard', [App\Http\Controllers\DashboardController::class, 'index'])->name('vendor.dashboard');
-    Route::resource('admin/acara', AcaraController::class);
+
+    Route::resource('/acara', VendorController::class);
 
     //ROUTE KE TIKET DARI ACARA ID
     Route::resource('admin/acara.tickets', TicketController::class)->names('admin.acara.tickets');
