@@ -25,15 +25,15 @@ class Acara extends Model
         'waktu' => 'datetime',
     ];
     //relasi ke tiket
-    public function tickets()
+    public function ticket()
     {
-        return $this->hasMany(Ticket::class);
+        return $this->hasOne(Ticket::class);
     }
     //AMBIL DATA TICKET PALING MURAH 
     public function getStartFromAttribute()
     {
         //NYARI DATA PRICE  PERTAMA KALO GADA DI ISI DENGAN 0 
-        return $this->tickets()->orderBy('harga')->first()->harga ?? 0;
+        return $this->ticket()->orderBy('harga')->first()->harga ?? 0;
     }
     public function category()
     {
