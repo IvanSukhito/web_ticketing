@@ -27,7 +27,7 @@
                         </div>
                         <div class="form-group">
                             <label for="p">Icon Kategori</label>
-                            <input name ="files[]" type="file" class="form-control" multiple id="p"
+                            <input name ="files[]" type="file" accept="image/png, image/gif, image/jpeg" class="form-control" multiple id="p"
                                 aria-describedby="emailHelp" placeholder="Enter Height">
                         </div>
 
