@@ -42,6 +42,10 @@
                        <img src="{{ asset('img/cat_sport.png') }}" alt="card">
                     <p>Sport</p>
                 </a>
+                <a href="#">
+                       <img src="{{ asset('img/cat_animejpg.jpg') }}" alt="card">
+                    <p>CosPlay</p>
+                </a>
               
             </div>
         </div>

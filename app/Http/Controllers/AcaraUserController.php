@@ -15,6 +15,7 @@ class AcaraUserController extends Controller
         $acara = Acara::fetch($slug);
         $categories = Category::all();
         $tickets = Ticket::all();
+        //dd($acara->tickets);
         return view('frontend.details', compact('acara', 'categories', 'tickets'));
     }
 }

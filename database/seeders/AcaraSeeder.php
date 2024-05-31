@@ -37,7 +37,7 @@ class AcaraSeeder extends Seeder
                 $Acara->tickets()->create([
                     'name' => $faker->sentence(3),
                     'harga' => $faker->numberBetween(100, 1000),
-                    'kuantitas' => $faker->numberBetween(10, 100),
+                    'kuantitas' => $faker->numberBetween(10, 10),
                     'max_buy' => $faker->numberBetween(1, 10),
                 ]);
             }

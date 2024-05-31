@@ -29,7 +29,7 @@
     <header>
         <nav class="navbar">
             <a href="{{ url('/') }}" class="logo">
-                <img src="{{ asset('img/logoti.png') }}" alt="Logo">
+                <img src="{{ asset('img/ticoz.png') }}" alt="Logo">
                 <h1>Ticoz</h1>
             </a>
 

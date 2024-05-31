@@ -369,3 +369,24 @@ header {
     object-fit: cover;
     display: block;
 }
+
+.detail-description-event {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.info-event {
+    display: flex;
+    align-items: center;
+    margin-right: 20px;
+    margin-bottom: 10px;
+}
+
+.icon-event {
+    margin-right: 10px;
+}
+
+.detail-info-event p, .detail-info-event span {
+    margin: 0;
+}
