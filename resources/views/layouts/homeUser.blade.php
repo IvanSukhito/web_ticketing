@@ -5,8 +5,9 @@
     @section('head')
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="csrf-token" content="{{ csrf_token() }}">
     @show
-    <title>Ticoz</title>
+    <title>{{ config('app.name', 'Laravel') }}</title>
     @section('css')
         <link rel="stylesheet" href="{{ asset('css/frontend/style.css') }}">
         <link rel="stylesheet" href="{{ asset('css/frontend/swiper-bundle.min.css') }}">
@@ -48,7 +49,7 @@
                 @endif
             @else               
             </div>
-
+            @if (Auth::check()) 
             <div class="icon-nav">
                     <div class="icon-nav-list">
                         <a href="#"><i data-feather="bell"></i></a>
@@ -58,7 +59,7 @@
                         <!-- Example single danger button -->
                         <div class="btn-group">
                             <span class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Casey
+                             {{ Auth::user()->name }}
                             </span>
                             <div class="dropdown-menu">
                                 <a class="dropdown-item" href="#">Edit Profile</a>
@@ -73,8 +74,8 @@
                             </div>
                         </div>
                     </div>
-</div>
-
+                </div>
+                @endif
                 @endif
             </nav>
             <div class="list">
