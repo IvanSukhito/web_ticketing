@@ -49,26 +49,32 @@
             @else               
             </div>
 
-                <div class="icon-nav">
-                    <div class="icon-nav-list">
-                        <a href="#"><i data-feather="bell"></i></a>
-                    </div>
-                    <div class="Profile">
-                        <img src="{{ asset('img/profile.png')}}" alt="casey">
-                      <!-- Example single danger button -->
-                            <div class="btn-group">
-                              <span class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Casey
-                            </span>
-                              <div class="dropdown-menu">
-                             
-                                <a class="dropdown-item" href="#">Edit Profile</a>
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="{{ route('logout') }}">Logout</a>
-                              </div>
-                            </div>
-                    </div>
-                   </div>
+            <div class="icon-nav">
+    <div class="icon-nav-list">
+        <a href="#"><i data-feather="bell"></i></a>
+    </div>
+    <div class="Profile">
+        <img src="{{ asset('img/profile.png')}}" alt="casey">
+        <!-- Example single danger button -->
+        <div class="btn-group">
+            <span class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Casey
+            </span>
+            <div class="dropdown-menu">
+                <a class="dropdown-item" href="#">Edit Profile</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="{{ route('logout') }}"
+                   onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                   Logout
+                </a>
+                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                    @csrf
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
                 @endif
             </nav>
             <div class="list">
