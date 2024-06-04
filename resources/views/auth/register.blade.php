@@ -3,23 +3,28 @@
 @section('content')
 <section class="hero">
         <img class= "background" src="{{ asset('img/auth/Background.png') }}" alt="background">
+        <form method="POST" action="{{ route('register') }}">
+        @csrf
         <div class="content">
             <h1>Sign Up</h1>
             <div class="input-1">
-                <h3>Name</h3>
-                <input type="text">
+            <label for="name" >{{ __('Nama') }}</label>
+            <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
+    
             </div>
             <div class="input-1">
-                <h3>Email Address</h3>
-                <input type="text">
+            <label for="email" >{{ __('Email Address') }}</label>
+            <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
+               
             </div>
             <div class="input-1">
-                <h3>Password</h3>
-                <input type="text">
+            <label for="password" >{{ __('Password') }}</label>
+            <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
+
             </div>
             <div class="input-1">
-                <h3>Confirm Password</h3>
-                <input type="text">
+            <label for="email" >{{ __('Confrim Password') }}</label>
+            <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">                            
             </div>
          
             <div class="cta">
@@ -36,8 +41,9 @@
                         
                     </div>
                 </div>
-                <p>Sudah memiliki akun Ticoz? <a href="Login.html" id="login">&nbsp;Masuk</a></p>
+                <p>Sudah memiliki akun Ticoz? <a href="{{ route('login') }}" id="login">&nbsp;Masuk</a></p>
             </div>
         </div>
+        </form>
     </section>
 @endsection
