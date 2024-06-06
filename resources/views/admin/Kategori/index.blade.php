@@ -28,7 +28,7 @@
                                             {{-- Action Buttons --}}
                                             <div class="d-flex">
                                                 {{-- Edit Button --}}
-                                                <a href="{{ route('acara.edit', ['acara' => $category->id]) }}"
+                                                <a href="{{ route('kategori.edit', 1) }}"
                                                     class="btn btn-warning me-2">Edit</a>
                                                 {{-- Delete Form --}}
                                                 <form onsubmit="return confirm('Hapus Kategori {{ $category->name }}?')"

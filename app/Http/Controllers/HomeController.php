@@ -27,9 +27,12 @@ class HomeController extends Controller
     {
 
         $acaras = $this->fetchAcaras();
-
+        $categories = Category::all();
         // $categories = Category::all();
-        return view('frontend.index', compact('acaras'));
+        return view('frontend.index', [
+            'acaras' => $acaras,
+            'categories' => $categories,
+        ]);
     }
     public function fetchAcaras()
     {
@@ -51,5 +54,27 @@ class HomeController extends Controller
             $categories->limit(4);
         }
         return $categories->get();
+    }
+
+    public function search(Request $request)
+    {
+        $keyword = $request->input('keyword');
+
+        $acaras = Acara::where('name', 'LIKE', '%' . $keyword . '%')->get();
+
+        return view('frontend.search', [
+            'acaras' => $acaras,
+            'keyowrd' => $keyword,
+        ]);
+    }
+    public function category(Category $category)
+    {
+        $acaras = Acara::where('category_id', $category->id)->with('category')->get();
+
+        return view('frontend.category', [
+            'category' => $category,
+            'acaras' => $acaras,
+
+        ]);
     }
 }

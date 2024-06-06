@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use App\Models\Category;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Validation\ValidationException;
 
 class CategoryController extends Controller
 {
@@ -32,20 +34,31 @@ class CategoryController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request, Category $categories)
+    public function store(Request $request)
     {
-        if ($request->hasFile('files')) {
-            $photos = [];
-            foreach ($request->file('files') as $file) {
-                $photos[] = $file->store('acaras', 'public');
-            }
-            $request->merge([
-                'photos' => $photos
-            ]);
-        }
-        Category::create($request->except('files'));
+        $validated = $request->validate([
+            'name' => 'required|string|max:255',
+            'icon' => 'required|image|mimes:png,jpg,svg',
+        ]);
+        DB::beginTransaction();
 
-        return redirect()->route('kategori.index', $categories->id)->with('success', 'Kategori Berhasil Di tambahkan');
+        try {
+            if ($request->hasFile('icon')) {
+                $iconPath = $request->file('icon')->store('category_icons', 'public');
+                $validated['icon'] = $iconPath;
+            }
+
+            $newCategory = Category::create($validated);
+
+            DB::commit();
+            return redirect()->route('kategori.index');
+        } catch (\Exception $e) {
+            DB::rollBack();
+            $error = ValidationException::withMessages([
+                'system_error' => ['System error!', $e->getMessage()],
+            ]);
+            throw $error;
+        }
     }
 
     /**
@@ -59,17 +72,41 @@ class CategoryController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Category $category)
     {
-        //
+        return view('admin.kategori.edit', [
+            'category' => $category,
+        ]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Category $category)
     {
-        //
+        $validated = $request->validate([
+            'name' => 'required|string|max:255',
+            'icon' => 'required|image|mimes:png,jpg,svg',
+        ]);
+        DB::beginTransaction();
+
+        try {
+            if ($request->hasFile('icon')) {
+                $iconPath = $request->file('icon')->store('category_icons', 'public');
+                $validated['icon'] = $iconPath;
+            }
+
+            $category->update($validated);
+
+            DB::commit();
+            return redirect()->route('kategori.index');
+        } catch (\Exception $e) {
+            DB::rollBack();
+            $error = ValidationException::withMessages([
+                'system_error' => ['System error!', $e->getMessage()],
+            ]);
+            throw $error;
+        }
     }
 
     /**

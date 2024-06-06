@@ -4,11 +4,13 @@ namespace App\Http\Controllers;
 
 use Illuminate\Support\Str;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\AcaraRequest;
 use App\Http\Middleware\User;
 use App\Models\Acara;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Notifications\userNotification;
+use Illuminate\Support\Facades\Auth;
 
 class AcaraController extends Controller
 {
@@ -33,11 +35,29 @@ class AcaraController extends Controller
         ]);
     }
 
-    public function store(Request $request)
+    public function store(AcaraRequest $request)
     {
 
         // dd($request->all());
 
+        $acaras = new Acara;
+        $acaras->name = $request->name;
+        $acaras->description = $request->description;
+        // $acaras->photos = $request->photos;
+        $acaras->namaPelaksana = $request->namaPelaksana;
+        $acaras->lokasi = $request->lokasi;
+        $acaras->waktu = $request->waktu;
+        $acaras->category_id = $request->category_id;
+
+        // $request->validate([
+        //     'name' => 'required|min:5',
+        //     'description' => 'required|string|max:255',
+        //     'photos' => 'required|image|mimes:png,jpg,jpeg',
+        //     'namaPelaksana' => 'required|string|max:50',
+        //     'lokasi' => 'required|string|max:255',
+        //     'waktu' => 'required|date',
+        //     'category_id' => 'required|integer'
+        // ]);
         $slug = $request->slug ?? Str::slug($request->name);
 
         $request->merge([

@@ -9,41 +9,41 @@
                     <h6>Add Acara</h6>
                 </div>
                 <div class="card-body px-2 pt-0 pb-2">
-                    @if ($errors->any())
-                        <div class ="alert alert-danger">
-                            <ul>
-                                @foreach ($errors->all() as $error)
-                                    <li>{{ $error }}</li>
-                                @endforeach
-                            </ul>
-                        </div>
-                    @endif
+
                     <form action = "{{ route('acara.store') }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="form-group">
                             <label for="name">Nama Acara</label>
-                            <input name ="name"type="text" class="form-control" id="exampleInputEmail1"
+                            <input name ="name"type="text" class="form-control" id="exampleInputEmail1" required
                                 aria-describedby="emailHelp" placeholder="Nama Acara">
+
                         </div>
                         <div class="form-group">
                             <label for="description">Description</label>
-                            <textarea name="description" type="text" id="description" class="form-control" aria-describedby="emailHelp"
+                            <textarea name="description" type="text" id="description" class="form-control" aria-describedby="emailHelp" required
+                                oninvalid="this.setCustomValidity('Masukkan Deskripsi Disini')" oninput="this.setCustomValidity('')"
                                 placeholder="Deskripsi"> </textarea>
+
                         </div>
                         <div class="form-group">
                             <label for="pelaksana">Nama Pelaksana</label>
-                            <input name ="namaPelaksana" type="text" class="form-control" id="pelaksana"
+                            <input name ="namaPelaksana" type="text" class="form-control" id="pelaksana" required
                                 aria-describedby="emailHelp" placeholder="Nama Pelaksana">
+
                         </div>
                         <div class="form-group">
                             <label for="exampleInputEmail1">Lokasi</label>
-                            <input name ="lokasi" type="text" class="form-control" id="exampleInputEmail1"
-                                aria-describedby="emailHelp" placeholder="Lokasi Acara">
+                            <input name ="lokasi" type="text" class="form-control" id="exampleInputEmail1"required
+                                oninvalid="this.setCustomValidity('Masukkan Lokasi Disini')"
+                                oninput="this.setCustomValidity('')" aria-describedby="emailHelp"
+                                placeholder="Lokasi Acara">
+
                         </div>
                         <div class="form-group">
                             <label for="exampleInputEmail1">Waktu</label>
-                            <input name ="waktu" type="datetime-local" class="form-control" id="exampleInputEmail1"
+                            <input name ="waktu" type="datetime-local" class="form-control" id="exampleInputEmail1"required
                                 aria-describedby="emailHelp" placeholder="Tanggal Mulai Acara">
+
                         </div>
                         <div class="form-group">
                             <label for="exampleInputEmail1">Pilih Kategori</label>
@@ -53,10 +53,11 @@
                                     <option value="{{ $category->id }}">{{ $category->name }}</option>
                                 @endforeach
                             </select>
+
                         </div>
                         <div class="form-group">
                             <label for="p">Picture</label>
-                            <input name ="files[]" type="file" class="form-control" multiple id="p"
+                            <input name ="files[]"multiple type="file" class="form-control" id="p" required
                                 aria-describedby="emailHelp" placeholder="Enter Height">
                         </div>
 
