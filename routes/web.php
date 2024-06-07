@@ -48,7 +48,7 @@ Route::prefix('admin')->middleware(['auth', 'auth.admin'])->group(function () {
     //ROUTE KE TIKET DARI ACARA ID
     Route::resource('/acara.tickets', TicketController::class)->names('admin.acara.tickets');
 
-    Route::resource('kategori', CategoryController::class);
+    Route::resource('kategori', CategoryController::class)->names('admin.kategori');
 });
 // Route::prefix('vendor')->middleware(['auth', 'auth.vendor'])->group(function () {
 //     //route vendor

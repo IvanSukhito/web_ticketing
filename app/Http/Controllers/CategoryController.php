@@ -72,18 +72,21 @@ class CategoryController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Category $category)
+    public function edit($category)
     {
-        return view('admin.kategori.edit', [
-            'category' => $category,
-        ]);
+        
+         $category = Category::findOrFail($category);
+         return view('admin.kategori.edit', [
+             'category' => $category,
+         ]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Category $category)
+    public function update(Request $request, $category)
     {
+       
         $validated = $request->validate([
             'name' => 'required|string|max:255',
             'icon' => 'required|image|mimes:png,jpg,svg',
@@ -95,11 +98,11 @@ class CategoryController extends Controller
                 $iconPath = $request->file('icon')->store('category_icons', 'public');
                 $validated['icon'] = $iconPath;
             }
-
-            $category->update($validated);
+            $updateCategory = Category::where('id', $category)->first();
+            $updateCategory->update($validated);
 
             DB::commit();
-            return redirect()->route('kategori.index');
+            return redirect()->route('admin.kategori.index');
         } catch (\Exception $e) {
             DB::rollBack();
             $error = ValidationException::withMessages([
