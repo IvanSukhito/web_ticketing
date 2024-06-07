@@ -34,8 +34,13 @@
                         </div>
                         <div class="form-group">
                             <label for="icon">Icon Kategori</label>
-                            <input name="icon" type="file" accept="image/png, image/gif, image/jpeg"
-                                class="form-control" id="icon" aria-describedby="emailHelp" placeholder="Enter Height">
+                            <input name="icon" type="file" accept="image/png, image/gif, image/jpeg" class="form-control" id="imageInput" aria-describedby="emailHelp" placeholder="Enter Height">
+                            <br>
+                              <!-- Old-->
+                              <img src="{{asset('storage/'.$category->icon)}}" class="icon icon-shape bg-gradient-primary shadow text-center border-radius-md" alt="no_image"> <b>Icon Old</b>
+                            <br><br>
+                            <!-- New -->
+                            <img id="uploadedImage" src="#" alt="Uploaded Image" style="display:none; max-width: 200px; max-height: 200px;" class="icon icon-shape bg-gradient-primary shadow text-center border-radius-md">  <b id="fileNew" style="display:none;"></b>
                             @error('icon')
                                 <div class="alert alert-danger">{{ $message }}</div>
                             @enderror
@@ -53,6 +58,22 @@
     <script type="text/javascript">
         $(document).ready(function() {
             $("#category").select2();
+        });
+
+        $(document).ready(function() {
+            $('#imageInput').on('change', function(event) {
+                const imageFile = event.target.files[0];
+                if (imageFile) {
+                    const reader = new FileReader();
+
+                    reader.onload = function(e) {
+                        $('#uploadedImage').attr('src', e.target.result).show();
+                        $('#fileNew').text('Uploaded New File: '+imageFile.name).show();
+                    };
+
+                    reader.readAsDataURL(imageFile);
+                }
+            });
         });
     </script>
 @stop

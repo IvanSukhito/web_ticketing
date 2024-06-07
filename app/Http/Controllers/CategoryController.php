@@ -96,7 +96,9 @@ class CategoryController extends Controller
         try {
             if ($request->hasFile('icon')) {
                 $iconPath = $request->file('icon')->store('category_icons', 'public');
+                //dd($iconPath);
                 $validated['icon'] = $iconPath;
+             
             }
             $updateCategory = Category::where('id', $category)->first();
             $updateCategory->update($validated);
