@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use App\Models\Category;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\ValidationException;
 
@@ -89,7 +90,7 @@ class CategoryController extends Controller
        
         $validated = $request->validate([
             'name' => 'required|string|max:255',
-            'icon' => 'required|image|mimes:png,jpg,svg',
+            'icon' => 'image|mimes:png,jpg,svg',
         ]);
         DB::beginTransaction();
 
@@ -101,6 +102,20 @@ class CategoryController extends Controller
              
             }
             $updateCategory = Category::where('id', $category)->first();
+            
+            //dd(isset($validated['icon']));
+            //dd(isset($updateCategory['icon']));
+            //cek kalo ada kategori lama dan icon yang diganti maka apus icon lama
+            if(isset($updateCategory['icon']) == isset($validated['icon'])){
+                //Storage::delete($updateCategory['icon']);
+                $file_path = file_exists(storage_path('app/public/'.$updateCategory['icon']));
+                //cek ada filenya ga
+                
+                    if($file_path) {
+                        //kalo ada hapus icon lama dilocal storage, replace yang baru
+                     unlink(storage_path('app/public/' .$updateCategory['icon']));
+                    }
+            }
             $updateCategory->update($validated);
 
             DB::commit();
