@@ -75,11 +75,11 @@ class CategoryController extends Controller
      */
     public function edit($category)
     {
-        
-         $category = Category::findOrFail($category);
-         return view('admin.kategori.edit', [
-             'category' => $category,
-         ]);
+
+        $category = Category::findOrFail($category);
+        return view('admin.kategori.edit', [
+            'category' => $category,
+        ]);
     }
 
     /**
@@ -87,7 +87,7 @@ class CategoryController extends Controller
      */
     public function update(Request $request, $category)
     {
-       
+
         $validated = $request->validate([
             'name' => 'required|string|max:255',
             'icon' => 'image|mimes:png,jpg,svg',
@@ -99,22 +99,21 @@ class CategoryController extends Controller
                 $iconPath = $request->file('icon')->store('category_icons', 'public');
                 //dd($iconPath);
                 $validated['icon'] = $iconPath;
-             
             }
             $updateCategory = Category::where('id', $category)->first();
-            
+
             //dd(isset($validated['icon']));
             //dd(isset($updateCategory['icon']));
             //cek kalo ada kategori lama dan icon yang diganti maka apus icon lama
-            if(isset($updateCategory['icon']) == isset($validated['icon'])){
+            if (isset($updateCategory['icon']) == isset($validated['icon'])) {
                 //Storage::delete($updateCategory['icon']);
-                $file_path = file_exists(storage_path('app/public/'.$updateCategory['icon']));
+                $file_path = file_exists(storage_path('app/public/' . $updateCategory['icon']));
                 //cek ada filenya ga
-                
-                    if($file_path) {
-                        //kalo ada hapus icon lama dilocal storage, replace yang baru
-                     unlink(storage_path('app/public/' .$updateCategory['icon']));
-                    }
+
+                if ($file_path) {
+                    //kalo ada hapus icon lama dilocal storage, replace yang baru
+                    unlink(storage_path('app/public/' . $updateCategory['icon']));
+                }
             }
             $updateCategory->update($validated);
 

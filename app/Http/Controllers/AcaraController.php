@@ -11,6 +11,9 @@ use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Notifications\userNotification;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Validation\ValidationException;
 
 class AcaraController extends Controller
 {
@@ -89,43 +92,59 @@ class AcaraController extends Controller
     public function edit(Acara $acara)
     {
         $categories = Category::all();
-        $acaras = Acara::all();
-        return view('admin.acara.edit', [
-            'acara' => $acara,
-            'categories' => $categories,
-        ]);
+        return view('admin.acara.edit', compact('acara', 'categories'));
     }
 
-    public function update(Request $request, string $id)
+    public function update(Request $request, $id)
     {
-        $request->validate([
-            'name' => 'required',
-            'description' => 'required',
-
-            // Sesuaikan aturan validasi sesuai kebutuhan Anda
-        ]);
-        $slug = $request->slug ?? Str::slug($request->name);
-
-        $request->merge([
-            'slug' => Str::slug($request->name),
-
+        $validated = $request->validate([
+            'name' => 'required|string|max:255',
+            'description' => 'required|string|max:255',
+            'namaPelaksana' => 'required|string|max:50',
+            'lokasi' => 'required|string|max:255',
+            'waktu' => 'required|date',
+            'category_id' => 'required|integer',
+            'files.*' => 'image|mimes:png,jpg,jpeg|max:2048' // Validasi untuk file gambar
         ]);
 
-        if ($request->hasFile('files')) {
-            $photos = [];
-            foreach ($request->file('files') as $file) {
-                $photos[] = $file->store('acaras', 'public');
+        DB::beginTransaction();
+
+        try {
+            $acara = Acara::findOrFail($id);
+
+            $photos = $acara->photos ?? []; // Ambil foto sebelumnya
+
+            if ($request->hasFile('files')) {
+                foreach ($request->file('files') as $file) {
+                    $photos[] = $file->store('acaras', 'public');
+                }
+
+                // Hapus foto lama dari storage
+                foreach ($acara->photos as $photo) {
+                    if (Storage::exists('public/' . $photo)) {
+                        Storage::delete('public/' . $photo);
+                    }
+                }
             }
-            $request->merge([
-                'photos' => $photos
+
+            $validated['photos'] = $photos; // Set foto baru
+
+            $acara->update($validated);
+
+            DB::commit();
+            return redirect()->route('acara.index')->with('success', 'Acara berhasil diubah');
+        } catch (\Exception $e) {
+            DB::rollBack();
+            $error = ValidationException::withMessages([
+                'system_error' => ['System error! ' . $e->getMessage()],
             ]);
+            throw $error;
         }
-
-
-        //update Acara
-        Acara::find($id)->update($request->except('files'));
-        return redirect()->route('acara.index')->with('success', 'Acara berhasil di Edit');
     }
+
+
+
+
     public function destroy(Acara $acara)
     {
         $acara->delete();
