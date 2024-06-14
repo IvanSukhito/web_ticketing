@@ -12,7 +12,7 @@ class AcaraSeeder extends Seeder
     /**
      * Run the database seeds.
      */
-    public function run(int $eventCount = 20, int $ticketCount = 5): void
+    public function run(int $eventCount = 5, int $ticketCount = 1): void
     {
         // if categories is empty,run category seeder first
 
@@ -34,7 +34,7 @@ class AcaraSeeder extends Seeder
 
             //BUAT TIKET TERGANTUNG TIKET COUNT
             for ($j = 0; $j < $ticketCount; $j++) {
-                $Acara->tickets()->create([
+                $Acara->ticket()->create([
                     'name' => $faker->sentence(3),
                     'harga' => $faker->numberBetween(100, 1000),
                     'kuantitas' => $faker->numberBetween(10, 10),

@@ -31,15 +31,6 @@ Route::get('/category/{category}', [HomeController::class, 'category'])->name('f
 
 Auth::routes();
 
-// //ROUTE ACARA 
-// Route::get('/admin/acara', [AcaraController::class, 'index'])->name('acara');
-// //ROUTE KE FORM ACARA CREATE
-// Route::get('/admin/acara/create', [AcaraController::class, 'create'])->name('create');
-// //STORE DATA
-// Route::post('/admin/acara', [AcaraController::class, 'store'])->name('admin.acara.create');
-
-//ROUTE RESOURCE ACARA
-
 Route::prefix('admin')->middleware(['auth', 'auth.admin'])->group(function () {
     //route admin
     Route::get('/dashboard', [App\Http\Controllers\DashboardController::class, 'index'])->name('admin.dashboard');
@@ -50,14 +41,7 @@ Route::prefix('admin')->middleware(['auth', 'auth.admin'])->group(function () {
 
     Route::resource('kategori', CategoryController::class)->names('admin.kategori');
 });
-// Route::prefix('vendor')->middleware(['auth', 'auth.vendor'])->group(function () {
-//     //route vendor
 
-//     Route::resource('/acara', VendorController::class);
-
-//     //ROUTE KE TIKET DARI ACARA ID
-//     Route::resource('admin/acara.tickets', TicketController::class)->names('admin.acara.tickets');
-// });
 Route::prefix('user')->middleware(['auth', 'auth.user'])->group(function () {
     //route user
 
