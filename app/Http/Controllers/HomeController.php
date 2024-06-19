@@ -45,7 +45,7 @@ class HomeController extends Controller
             $acaras->withCategory($category);
         }
 
-        return $acaras->get();
+        return $acaras->paginate(6);
     }
     private function fetchCategories()
     {

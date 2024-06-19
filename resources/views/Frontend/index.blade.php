@@ -29,30 +29,25 @@
 
 
         {{-- card acara --}}
-        @foreach ($acaras as $acara)
-            <!-- <a href="{{ route('detail', $acara->slug) }}"> -->
-                <!-- <img src="{{ $acara->thumbnail }}" alt="{{ $acara->name }}"> -->
-                <!-- <div class="card-container">
-                    <div class="card-image"><img src="{{ $acara->thumbnail }}" alt="{{ $acara->name }}" class="card-image">
-                    </div>
-                    <div class="card-detail">
-                        <h3>{{ $acara->name }}</h3>
-                        <p>{{ $acara->description }}</p>
-                        <span>Mulai dari Rp {{ number_format($acara->start_from, 0, ',', '.') }}</span>
-                    </div>
+        <div class="container">
+         
+            @foreach ($acaras as $acara)
+         
+                <div class="card m-2" style="width: 18rem;">
+                  <img src="{{$acara->thumbnail}}" class="card-img-top custom-card-img" alt="..." >
+                  <div class="card-body">
+                    <h5 class="card-title">{{$acara->name}}</h5>
+                    <p class="card-text">{{$acara->lokasi}}</p>
+                    <a href="{{ route('detail', $acara->slug) }}" class="btn btn-primary">@lang('Lihat Detail')</a>
+                  </div>
                 </div>
-            </a> -->
-        <div class="card m-2" style="width: 18rem;">
-          <img src="{{$acara->thumbnail}}" class="card-img-top custom-card-img" alt="..." >
-          <div class="card-body">
-            <h5 class="card-title">{{$acara->name}}</h5>
-            <p class="card-text">{{$acara->lokasi}}</p>
-            <a href="{{ route('detail', $acara->slug) }}" class="btn btn-primary">See {{$acara->name}}</a>
-          </div>
+             @endforeach
         </div>
-        @endforeach
-
-
+            
+            <div class="d-flex justify-content-center mt-4">
+            {{ $acaras->links('pagination::bootstrap-4') }}
+            </div>
+  
 
     </section>
 

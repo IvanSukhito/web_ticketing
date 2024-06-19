@@ -7,6 +7,15 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="csrf-token" content="{{ csrf_token() }}">
     @show
+    <style>
+    .pagination {
+        margin-top: 20px;
+    }
+    .page-item.active .page-link {
+        background-color: #007bff;
+        border-color: #007bff;
+    }
+</style>
     <title>{{ config('app.name', 'Laravel') }}</title>
     @section('css')
         <link rel="stylesheet" href="{{ asset('css/frontend/style.css') }}">
