@@ -100,10 +100,7 @@ class CategoryController extends Controller
                 //dd($iconPath);
                 $validated['icon'] = $iconPath;
             }
-            $updateCategory = Category::where('id', $category)->first();
-
-            //dd(isset($validated['icon']));
-            //dd(isset($updateCategory['icon']));
+            $updateCategory = Category::where('id', $category)->first();         
             //cek kalo ada kategori lama dan icon yang diganti maka apus icon lama
             if (isset($updateCategory['icon']) == isset($validated['icon'])) {
                 //Storage::delete($updateCategory['icon']);

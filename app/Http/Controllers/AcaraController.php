@@ -51,16 +51,6 @@ class AcaraController extends Controller
         $acaras->lokasi = $request->lokasi;
         $acaras->waktu = $request->waktu;
         $acaras->category_id = $request->category_id;
-
-        // $request->validate([
-        //     'name' => 'required|min:5',
-        //     'description' => 'required|string|max:255',
-        //     'photos' => 'required|image|mimes:png,jpg,jpeg',
-        //     'namaPelaksana' => 'required|string|max:50',
-        //     'lokasi' => 'required|string|max:255',
-        //     'waktu' => 'required|date',
-        //     'category_id' => 'required|integer'
-        // ]);
         $slug = $request->slug ?? Str::slug($request->name);
 
         $request->merge([
@@ -112,21 +102,21 @@ class AcaraController extends Controller
         try {
             $acara = Acara::findOrFail($id);
 
-            $photos = $acara->photos ?? []; // Ambil foto sebelumnya
-
-            if ($request->hasFile('files')) {
-                foreach ($request->file('files') as $file) {
-                    $photos[] = $file->store('acaras', 'public');
+            $photoOld = $acara->photos ?? []; // Ambil foto sebelumnya
+           
+            if($request->hasFile('files')){
+                $getNewPhoto = [];
+                foreach($validated['files'] as $photo){
+                    $getNewPhoto[] = $photo->store('acaras','public'); 
+                    
                 }
-
-                // Hapus foto lama dari storage
-                foreach ($acara->photos as $photo) {
-                    if (Storage::exists('public/' . $photo)) {
-                        Storage::delete('public/' . $photo);
-                    }
-                }
+                $photos = $getNewPhoto;
+            }else{
+                $photos = $photoOld;
             }
-
+            
+            
+          
             $validated['photos'] = $photos; // Set foto baru
 
             $acara->update($validated);
