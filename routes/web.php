@@ -3,6 +3,7 @@
 use App\Http\Controllers\AcaraController;
 use App\Http\Controllers\AcaraUserController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\BannerController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\TicketController;
 use App\Http\Controllers\VendorController;
@@ -40,6 +41,9 @@ Route::prefix('admin')->middleware(['auth', 'auth.admin'])->group(function () {
     Route::resource('/acara.tickets', TicketController::class)->names('admin.acara.tickets');
 
     Route::resource('kategori', CategoryController::class)->names('admin.kategori');
+
+    //banner
+    Route::resource('/banner', BannerController::class)->names('admin.banners');
 });
 
 Route::prefix('user')->middleware(['auth', 'auth.user'])->group(function () {
