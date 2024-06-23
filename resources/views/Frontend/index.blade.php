@@ -1,18 +1,37 @@
 @extends('layouts.homeUser')
 
+
 @section('content')
 
 
     <section class="hero">
-        <div class="card swiper mySwiper">
-            <div class="swiper-wrapper">
-                <div class="swiper-slide"><img src="{{ asset('img/slider/2.png') }}" alt="event"></div>
+        
+       
+            <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-inner">
+                @forelse($banner as $key => $banner)
+                <div class="carousel-item {{ $banner->prioritas == 1 ? 'active' : '' }}" data-id="{{ $key }}" data-prioritas="{{ $banner->prioritas }}">
+                    <img src="{{ Storage::url($banner->img) }}" class="d-block w-100" alt="...">
+                </div>
+                @empty
+                <div class="carousel-item">
+                    <img src="{{ asset('img/slider/2.png') }}" class="d-block w-100" alt="...">
+                </div>
+                @endforelse
             </div>
-            <div class="swiper-button-next"></div>
-            <div class="swiper-button-prev"></div>
-            <div class="swiper-pagination"></div>
-
-        </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+            </div>
+           
+           
+           
+    
         {{-- card category --}}
         <div class="card1">
             @forelse ($categories as $category)
@@ -54,10 +73,26 @@
 @endsection
 @section('script-bottom')
     @parent
+    <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script> -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script type="text/javascript">
+     
         $(document).ready(function() {
-            $("#category").select2();
+        //$("#category").select2();
+
+       
+
+        $('#carouselExampleAutoplaying .carousel-control-prev, #carouselExampleAutoplaying .carousel-control-next').click(function() {
+            // Temukan item aktif saat ini dan ubah prioritasnya
+            var activeItem = $('.carousel-item.active');
+            console.log(activeItem);
+            activeItem.each(function() {
+                $(this).attr('data-prioritas',  1);
+                console.log('Item aktif sekarang:', $(this).data('id'));
+            });
         });
+    });
+        
     </script>
   
 @stop

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Acara;
 use App\Models\Category;
+use App\Models\Banner;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -28,10 +29,13 @@ class HomeController extends Controller
 
         $acaras = $this->fetchAcaras();
         $categories = Category::all();
+        $banner = Banner::get();
+        //dd($banner);
         // $categories = Category::all();
         return view('frontend.index', [
             'acaras' => $acaras,
             'categories' => $categories,
+            'banner' => $banner
         ]);
     }
     public function fetchAcaras()
