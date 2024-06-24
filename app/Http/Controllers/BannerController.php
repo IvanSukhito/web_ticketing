@@ -147,4 +147,28 @@ class BannerController extends Controller
         // dd($banner);
         return redirect()->route('admin.banners.index')->with('success', 'Banner berhasil dihapus.');
     }
+    public function updatePriority(string $id){
+        
+       
+        // dd($id);
+        $getBanner = Banner::where('id',$id)->first();
+        if($getBanner->prioritas == 0){
+           
+            //select prioritas lama yg 1 jadi ke 0
+            $getBannerOld = Banner::where('prioritas', 1)->first();
+            if(isset($getBannerOld)){
+                $getBannerOld->update([
+                    'prioritas' => 0 
+                 ]);
+            }
+             //update prioritas baru
+            $getBanner->update(['prioritas' => 1]);
+            //return view
+            return redirect()->route('admin.banners.index')->with('success', 'Prioritas berhasil diubah.');
+        }else{
+            //prioritas tidak berubah
+            return redirect()->route('admin.banners.index');
+        }
+        dd($getBanner);
+    }
 }

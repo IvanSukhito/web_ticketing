@@ -47,6 +47,7 @@ Route::prefix('admin')->middleware(['auth', 'auth.admin'])->group(function () {
     Route::resource('/banner', BannerController::class)->names('admin.banners');
     //vendor
     Route::resource('/vendor-client', VendorClientController::class)->names('admin.vendor-client');
+    Route::get('/banner/{id}/update-priority',  [App\Http\Controllers\BannerController::class, 'updatePriority'])->name('admin.banners.updatePriority');
     //Route::resourse('/vendor', VendorController::class)->names('admin.vendor');
 });
 

@@ -23,8 +23,8 @@
                             <thead>
                                 <tr>
                                     <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">ID</th>
-                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
-                                        Name</th>
+                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Name</th>
+                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Prioritas</th>
                                     <th class="text-secondary opacity-7">Action</th>
                                 </tr>
                             </thead>
@@ -33,9 +33,18 @@
                                     <tr>
                                         <td>{{ $dataBanner->id }}</td>
                                         <td>{{ $dataBanner->name }}</td>
+                                        <td>{{ $dataBanner->prioritas == 1 ? 'First Slide' : 'secondary' }}</td>
                                         <td>
                                             {{-- Action Buttons --}}
                                             <div class="d-flex">
+                                                {{-- Update Priority Button --}}
+                                                @if($dataBanner->prioritas == 1)
+                                                <a href="{{ route('admin.banners.updatePriority', $dataBanner->id) }}"
+                                                    class="btn btn-primary me-2">Priority</a>
+                                                @else
+                                                <a href="{{ route('admin.banners.updatePriority', $dataBanner->id) }}"
+                                                class="btn btn-info me-2">Secondary</a>
+                                                @endif
                                                 {{-- Edit Button --}}
                                                 <a href="{{ route('admin.banners.edit', $dataBanner->id) }}"
                                                     class="btn btn-warning me-2">Edit</a>
