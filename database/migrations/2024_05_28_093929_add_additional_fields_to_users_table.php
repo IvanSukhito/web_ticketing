@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::table('users', function (Blueprint $table) {
             $table->string('no_telp')->unique()->nullable()->after('email');
-            $table->integer('nik')->unique()->nullable()->after('no_telp');
+            $table->string('nik')->unique()->nullable()->after('no_telp');
         });
     }
 
