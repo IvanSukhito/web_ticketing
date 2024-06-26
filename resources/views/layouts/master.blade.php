@@ -70,7 +70,7 @@
         <div class="collapse navbar-collapse  w-auto " id="sidenav-collapse-main">
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link  active {{ request()->is('dashboard') ? 'active' : '' }}"
+                    <a class="nav-link {{ Request::routeIs('admin.dashboard') ? 'active' : '' }}"
                         href="{{ route('admin.dashboard') }}">
                         <div
                             class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
@@ -98,7 +98,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link  {{ request()->is('acaras') ? 'active' : '' }}"
+                    <a class="nav-link {{ Request::routeIs('acara.*') ? 'active' : '' }}"
                         href="{{ route('acara.index') }}">
                         <div
                             class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
@@ -126,7 +126,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link  " href="{{ route('admin.kategori.index') }}">
+                    <a class="nav-link {{ Request::routeIs('admin.kategori.*') ? 'active' : '' }}" href="{{ route('admin.kategori.index') }}">
                         <div
                             class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
                             <svg width="12px" height="12px" viewBox="0 0 43 36" version="1.1"
@@ -180,7 +180,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a  class="nav-link  {{ request()->is('banners') ? 'active' : '' }}" href="{{ route('admin.banners.index') }}">
+                    <a  class="nav-link  {{ Request::routeIs('admin.banner.*') ? 'active' : '' }}" href="{{ route('admin.banners.index') }}">
                         <div
                             class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
                             <svg width="12px" height="12px" viewBox="0 0 43 36" version="1.1"
@@ -208,7 +208,7 @@
                 </li>
                 <!--Vendor Client-->
                 <li class="nav-item">
-                    <a  class="nav-link  {{ request()->is('vendor-client') ? 'active' : '' }}" href="{{ route('admin.vendor-client.index') }}">
+                    <a  class="nav-link  {{ Request::routeIs('admin.vendor-client.*') ? 'active' : '' }}" href="{{ route('admin.vendor-client.index') }}">
                         <div
                             class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
                             <svg width="12px" height="12px" viewBox="0 0 43 36" version="1.1"

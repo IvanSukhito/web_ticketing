@@ -36,7 +36,7 @@ Auth::routes();
 Route::prefix('admin')->middleware(['auth', 'auth.admin'])->group(function () {
     //route admin
     Route::get('/dashboard', [App\Http\Controllers\DashboardController::class, 'index'])->name('admin.dashboard');
-    Route::resource('/acara', AcaraController::class);
+    Route::resource('/acara', AcaraController::class)->names('acara');
 
     //ROUTE KE TIKET DARI ACARA ID
     Route::resource('/acara.tickets', TicketController::class)->names('admin.acara.tickets');

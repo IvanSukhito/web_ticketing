@@ -35,7 +35,7 @@
                                         <td>{{ $dataVendor->id }}</td>
                                         <td>{{ $dataVendor->name }}</td>
                                         <td>{{ $dataVendor->no_telp }}</td>
-                                        <td>{{ $dataVendor->nik }}</td>
+                                        <td>{{ $dataVendor->email }}</td>
                                         <td>
                                             {{-- Action Buttons --}}
                                             <div class="d-flex">
@@ -63,3 +63,4 @@
         </div>
     </div>
 @endsection
+@

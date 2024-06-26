@@ -20,10 +20,6 @@
                                     <th
                                         class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
                                         Nama Pelaksana</th>
-
-                                    <th
-                                        class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                        Lokasi</th>
                                     <th
                                         class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
                                         Waktu</th>
@@ -40,7 +36,6 @@
                                         <td>{{ $acara->id }}</td>
                                         <td>{{ $acara->name }}</td>
                                         <td>{{ $acara->namaPelaksana }}</td>
-                                        <td>{{ $acara->lokasi }}</td>
                                         <td>{{ $acara->waktu->format('d M Y') }}</td>
                                         <td>{{ $acara->category->name ?? '-' }}</td>
                                         <td>

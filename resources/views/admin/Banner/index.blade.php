@@ -43,7 +43,7 @@
                                                     class="btn btn-primary me-2">Priority</a>
                                                 @else
                                                 <a href="{{ route('admin.banners.updatePriority', $dataBanner->id) }}"
-                                                class="btn btn-info me-2">Secondary</a>
+                                                class="btn btn-info me-2">Set Priority</a>
                                                 @endif
                                                 {{-- Edit Button --}}
                                                 <a href="{{ route('admin.banners.edit', $dataBanner->id) }}"
