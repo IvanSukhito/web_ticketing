@@ -47,7 +47,8 @@ class LoginController extends Controller
 
             return redirect()->route('home');
         } elseif ($user->role == 'vendor') {
-            return redirect()->route('vendor.dashboard');
+
+            return redirect()->route('vendor.dashboards');
         } else {
 
             Auth::logout();
