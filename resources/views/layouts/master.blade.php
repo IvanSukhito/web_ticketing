@@ -253,13 +253,21 @@
                     </div>
                     <ul class="navbar-nav  justify-content-end">
                         <li class="nav-item d-flex align-items-center">
-                            <a class="btn btn-outline-primary btn-sm mb-0 me-3" target="_blank" href="#">Online
-                            </a>
+                                 @if(Auth::user()->role == 'admin')
+                                 <a class="btn btn-outline-primary btn-sm mb-0 me-3" href="{{ route('admin.dashboard') }}">@lang('Admin')
+                                 </a>
+                                @elseif(Auth::user()->role == 'vendor')
+                                <a class="btn btn-outline-info btn-sm mb-0 me-3" href="{{ route('vendor.dashboards')}}">@lang('Vendor')
+                                 </a>
+                                @endif
+                          
                         </li>
                         <li class="nav-item d-flex align-items-center">
                             <a href="javascript:;" class="nav-link text-body font-weight-bold px-0">
                                 <i class="fa fa-user me-sm-1"></i>
-                                <span class="d-sm-inline d-none">Admin</span>
+                                
+                                <span class="d-sm-inline d-none">{{ Auth::user()->name}}</span>
+                              
                             </a>
                         </li>
 
