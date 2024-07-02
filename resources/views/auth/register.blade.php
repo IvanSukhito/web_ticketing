@@ -34,13 +34,14 @@
                     <p>atau daftar dengan</p>
                     <hr />
                 </div>
+                <a href="{{ route('google-auth') }}"  class="button pill2">
                 <div class="button-google">
-                    <img src="{{ asset('img/auth/google.png') }}" alt="google">
-                    <button class="pill2">Google</button>
-                    <div>
-                        
-                    </div>
+                    <img src="{{ asset('img/auth/google.png') }}" alt="google"> 
+                    
+                    <div style="align-item: center;">Google</div>
+                   
                 </div>
+                </a>
                 <p>Sudah memiliki akun Ticoz? <a href="{{ route('login') }}" id="login">&nbsp;Masuk</a></p>
             </div>
         </div>

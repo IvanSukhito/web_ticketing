@@ -5,6 +5,7 @@ use App\Http\Controllers\AcaraUserController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\BannerController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\GoogleAuthController;
 use App\Http\Controllers\TicketController;
 use App\Http\Controllers\VendorController;
 use App\Http\Controllers\VendorDashboardController;
@@ -61,6 +62,9 @@ Route::prefix('vendor')->middleware(['auth','auth.vendor'])->group(function (){
     Route::get('/dashboard', [App\Http\Controllers\VendorDashboardController::class, 'index'])->name('vendor.dashboards');
     //Route::get('/dashboard', [App\Http\Controllers\DashboardController::class, 'index'])->name('admin.dashboard');
 });
+
+Route::get('auth/google', [GoogleAuthController::class,'redirect'])->name('google-auth');
+Route::get('auth/google/call-back',[GoogleAuthController::class, 'CallBackGoogle'])->name('google-auth.callback');
 Route::get('logout', function () {
     Auth::logout();
 });
