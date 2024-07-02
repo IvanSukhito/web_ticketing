@@ -24,6 +24,11 @@ class Acara extends Model
         'photos' => 'array',
         'waktu' => 'datetime',
     ];
+
+    public function vendors()
+    {
+        return $this->belongsToMany(User::class, 'vendor_acara');
+    }
     //relasi ke tiket
     public function ticket()
     {

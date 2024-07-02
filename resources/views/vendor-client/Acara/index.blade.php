@@ -6,7 +6,7 @@
             <div class="card mb-4">
                 <div class="card-header pb-0">
                     <h6>Acara</h6>
-                    <a href="{{ route('admin.acara.create') }}"class="btn btn-primary float-end">Buat Acara</a>
+                    <a href="{{ route('vendor.acara.create') }}"class="btn btn-primary float-end">Buat Acara</a>
                 </div>
                 <div class="card-body px-0 pt-0 pb-2">
                     <div class="table-responsive p-0">
@@ -41,17 +41,17 @@
                                         <td>
                                             {{-- EDIT --}}
                                             <a
-                                                href="{{ route('admin.acara.edit', [
+                                                href="{{ route('vendor.acara.edit', [
                                                     'acara' => $acara->id,
                                                 ]) }}"class="btn btn-warning">Edit</a>
-                                            <a
-                                                href="{{ route('admin.acara.tickets.index', [
+                                            {{-- <a
+                                                href="{{ route('vendor.acara.tickets.index', [
                                                     'acara' => $acara->id,
-                                                ]) }}"class="btn btn-info">Tiket</a>
+                                                ]) }}"class="btn btn-info">Tiket</a> --}}
 
                                             {{-- FORM DELETE --}}
                                             <form onsubmit="return confirm('Hapus Acara {{ $acara->name }}?')"
-                                                action="{{ route('admin.acara.destroy', [
+                                                action="{{ route('vendor.acara.destroy', [
                                                     'acara' => $acara->id,
                                                 ]) }}"method="POST">
                                                 @method('DELETE')

@@ -20,7 +20,7 @@ class AcaraController extends Controller
     public function index()
     {
         $acaras = Acara::paginate(6);
-       
+
         return view('admin.acara.index', [
             'acaras' => $acaras
         ]);
@@ -104,20 +104,19 @@ class AcaraController extends Controller
             $acara = Acara::findOrFail($id);
 
             $photoOld = $acara->photos ?? []; // Ambil foto sebelumnya
-           
-            if($request->hasFile('files')){
+
+            if ($request->hasFile('files')) {
                 $getNewPhoto = [];
-                foreach($validated['files'] as $photo){
-                    $getNewPhoto[] = $photo->store('acaras','public'); 
-                    
+                foreach ($validated['files'] as $photo) {
+                    $getNewPhoto[] = $photo->store('acaras', 'public');
                 }
                 $photos = $getNewPhoto;
-            }else{
+            } else {
                 $photos = $photoOld;
             }
-            
-            
-          
+
+
+
             $validated['photos'] = $photos; // Set foto baru
 
             $acara->update($validated);

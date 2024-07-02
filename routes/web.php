@@ -38,7 +38,7 @@ Auth::routes();
 Route::prefix('admin')->middleware(['auth', 'auth.admin'])->group(function () {
     //route admin
     Route::get('/dashboard', [App\Http\Controllers\DashboardController::class, 'index'])->name('admin.dashboard');
-    Route::resource('/acara', AcaraController::class)->names('acara');
+    Route::resource('/acara', AcaraController::class)->names('admin.acara');
 
     //ROUTE KE TIKET DARI ACARA ID
     Route::resource('/acara.tickets', TicketController::class)->names('admin.acara.tickets');
@@ -58,13 +58,14 @@ Route::prefix('user')->middleware(['auth', 'auth.user'])->group(function () {
 
     Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 });
-Route::prefix('vendor')->middleware(['auth','auth.vendor'])->group(function (){
+Route::prefix('vendor')->middleware(['auth', 'auth.vendor'])->group(function () {
     Route::get('/dashboard', [App\Http\Controllers\VendorDashboardController::class, 'index'])->name('vendor.dashboards');
+    Route::resource('/acara', VendorController::class)->names('vendor.acara');
     //Route::get('/dashboard', [App\Http\Controllers\DashboardController::class, 'index'])->name('admin.dashboard');
 });
 
-Route::get('auth/google', [GoogleAuthController::class,'redirect'])->name('google-auth');
-Route::get('auth/google/call-back',[GoogleAuthController::class, 'CallBackGoogle'])->name('google-auth.callback');
+Route::get('auth/google', [GoogleAuthController::class, 'redirect'])->name('google-auth');
+Route::get('auth/google/call-back', [GoogleAuthController::class, 'CallBackGoogle'])->name('google-auth.callback');
 Route::get('logout', function () {
     Auth::logout();
 });

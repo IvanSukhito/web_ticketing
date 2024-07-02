@@ -69,17 +69,17 @@
         <hr class="horizontal dark mt-0">
         <div class="collapse navbar-collapse  w-auto " id="sidenav-collapse-main">
             <ul class="navbar-nav">
-                @if(Auth::user()->role == 'admin' || Auth::user()->role == 'vendor')
-                <li class="nav-item">
-                    @if(Auth::check())
-                        @if(Auth::user()->role == 'admin')
-                        <a class="nav-link {{ Request::routeIs('admin.dashboard') ? 'active' : '' }}"
-                        href="{{ route('admin.dashboard') }}">
-                        @elseif(Auth::user()->role == 'vendor')
-                        <a class="nav-link {{ Request::routeIs('vendor.dashboards') ? 'active' : '' }}"
-                        href="{{ route('admin.dashboard') }}">
+                @if (Auth::user()->role == 'admin' || Auth::user()->role == 'vendor')
+                    <li class="nav-item">
+                        @if (Auth::check())
+                            @if (Auth::user()->role == 'admin')
+                                <a class="nav-link {{ Request::routeIs('admin.dashboard') ? 'active' : '' }}"
+                                    href="{{ route('admin.dashboard') }}">
+                                @elseif(Auth::user()->role == 'vendor')
+                                    <a class="nav-link {{ Request::routeIs('vendor.dashboards') ? 'active' : '' }}"
+                                        href="{{ route('admin.dashboard') }}">
+                            @endif
                         @endif
-                    @endif
                         <div
                             class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
                             <svg width="12px" height="12px" viewBox="0 0 45 40" version="1.1"
@@ -103,19 +103,23 @@
                             </svg>
                         </div>
                         <span class="nav-link-text ms-1">Dashboard</span>
-                    </a>
-                </li>
-                <!-- Acara -->
-                <li class="nav-item">
-                @if(Auth::check())
-                        @if(Auth::user()->role == 'admin')
-                        <a class="nav-link {{ Request::routeIs('acara.*') ? 'active' : '' }}"
-                        href="{{ route('acara.index') }}">
-                        @elseif(Auth::user()->role == 'vendor')
-                        <a class="nav-link {{ Request::routeIs('acara.*') ? 'active' : '' }}"
-                        href="{{ route('admin.dashboard') }}">
+                        </a>
+                    </li>
+                    <!-- Acara -->
+
+                    <li class="nav-item">
+                        @if (Auth::check())
+                            @if (Auth::user()->role == 'admin')
+                                <a class="nav-link {{ Request::routeIs('acara.*') ? 'active' : '' }}"
+                                    href="{{ route('admin.acara.index') }}">
+                                @elseif(Auth::user()->role == 'vendor')
+                                    <a class="nav-link {{ Request::routeIs('acara.*') ? 'active' : '' }}"
+                                        href="{{ route('vendor.acara.index') }}">
+                                    @elseif(Auth::user()->role == 'vendor')
+                                        <a class="nav-link {{ Request::routeIs('acara.*') ? 'active' : '' }}"
+                                            href="{{ route('admin.dashboard') }}">
+                            @endif
                         @endif
-                    @endif
                         <div
                             class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
                             <svg width="12px" height="12px" viewBox="0 0 42 42" version="1.1"
@@ -139,20 +143,20 @@
                             </svg>
                         </div>
                         <span class="nav-link-text ms-1">Acara</span>
-                    </a>
-                </li>
-                <!-- Banner -->
-                <li class="nav-item">
-                 
-                    @if(Auth::check())
-                        @if(Auth::user()->role == 'admin')
-                        <a  class="nav-link  {{ Request::routeIs('admin.banners.*') ? 'active' : '' }}" 
-                        href="{{ route('admin.banners.index') }}">
-                        @elseif(Auth::user()->role == 'vendor')
-                        <a class="nav-link {{ Request::routeIs('vendor.banner.*') ? 'active' : '' }}"
-                        href="#">
+                        </a>
+                    </li>
+                    <!-- Banner -->
+                    <li class="nav-item">
+
+                        @if (Auth::check())
+                            @if (Auth::user()->role == 'admin')
+                                <a class="nav-link  {{ Request::routeIs('admin.banners.*') ? 'active' : '' }}"
+                                    href="{{ route('admin.banners.index') }}">
+                                @elseif(Auth::user()->role == 'vendor')
+                                    <a class="nav-link {{ Request::routeIs('vendor.banner.*') ? 'active' : '' }}"
+                                        href="#">
+                            @endif
                         @endif
-                    @endif
                         <div
                             class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
                             <svg width="12px" height="12px" viewBox="0 0 43 36" version="1.1"
@@ -176,67 +180,69 @@
                             </svg>
                         </div>
                         <span class="nav-link-text ms-1">Banner</span>
-                    </a>
-                </li>
+                        </a>
+                    </li>
                 @endif
-                @if(Auth::user()->role == 'admin')
-                <li class="nav-item">
-                    <a class="nav-link {{ Request::routeIs('admin.kategori.*') ? 'active' : '' }}" href="{{ route('admin.kategori.index') }}">
-                        <div
-                            class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
-                            <svg width="12px" height="12px" viewBox="0 0 43 36" version="1.1"
-                                xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-                                <title>credit-card</title>
-                                <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-                                    <g transform="translate(-2169.000000, -745.000000)" fill="#FFFFFF"
-                                        fill-rule="nonzero">
-                                        <g transform="translate(1716.000000, 291.000000)">
-                                            <g transform="translate(453.000000, 454.000000)">
-                                                <path class="color-background opacity-6"
-                                                    d="M43,10.7482083 L43,3.58333333 C43,1.60354167 41.3964583,0 39.4166667,0 L3.58333333,0 C1.60354167,0 0,1.60354167 0,3.58333333 L0,10.7482083 L43,10.7482083 Z">
-                                                </path>
-                                                <path class="color-background"
-                                                    d="M0,16.125 L0,32.25 C0,34.2297917 1.60354167,35.8333333 3.58333333,35.8333333 L39.4166667,35.8333333 C41.3964583,35.8333333 43,34.2297917 43,32.25 L43,16.125 L0,16.125 Z M19.7083333,26.875 L7.16666667,26.875 L7.16666667,23.2916667 L19.7083333,23.2916667 L19.7083333,26.875 Z M35.8333333,26.875 L28.6666667,26.875 L28.6666667,23.2916667 L35.8333333,23.2916667 L35.8333333,26.875 Z">
-                                                </path>
+                @if (Auth::user()->role == 'admin')
+                    <li class="nav-item">
+                        <a class="nav-link {{ Request::routeIs('admin.kategori.*') ? 'active' : '' }}"
+                            href="{{ route('admin.kategori.index') }}">
+                            <div
+                                class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
+                                <svg width="12px" height="12px" viewBox="0 0 43 36" version="1.1"
+                                    xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                    <title>credit-card</title>
+                                    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                        <g transform="translate(-2169.000000, -745.000000)" fill="#FFFFFF"
+                                            fill-rule="nonzero">
+                                            <g transform="translate(1716.000000, 291.000000)">
+                                                <g transform="translate(453.000000, 454.000000)">
+                                                    <path class="color-background opacity-6"
+                                                        d="M43,10.7482083 L43,3.58333333 C43,1.60354167 41.3964583,0 39.4166667,0 L3.58333333,0 C1.60354167,0 0,1.60354167 0,3.58333333 L0,10.7482083 L43,10.7482083 Z">
+                                                    </path>
+                                                    <path class="color-background"
+                                                        d="M0,16.125 L0,32.25 C0,34.2297917 1.60354167,35.8333333 3.58333333,35.8333333 L39.4166667,35.8333333 C41.3964583,35.8333333 43,34.2297917 43,32.25 L43,16.125 L0,16.125 Z M19.7083333,26.875 L7.16666667,26.875 L7.16666667,23.2916667 L19.7083333,23.2916667 L19.7083333,26.875 Z M35.8333333,26.875 L28.6666667,26.875 L28.6666667,23.2916667 L35.8333333,23.2916667 L35.8333333,26.875 Z">
+                                                    </path>
+                                                </g>
                                             </g>
                                         </g>
                                     </g>
-                                </g>
-                            </svg>
-                        </div>
-                        <span class="nav-link-text ms-1">Kategori</span>
-                    </a>
-                </li>
-                <!-- AddVendor -->
-                <li class="nav-item">
-                    <a  class="nav-link  {{ Request::routeIs('admin.vendor-client.*') ? 'active' : '' }}" href="{{ route('admin.vendor-client.index') }}">
-                        <div
-                            class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
-                            <svg width="12px" height="12px" viewBox="0 0 43 36" version="1.1"
-                                xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-                                <title>vendor</title>
-                                <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-                                    <g transform="translate(-2169.000000, -745.000000)" fill="#FFFFFF"
-                                        fill-rule="nonzero">
-                                        <g transform="translate(1716.000000, 291.000000)">
-                                            <g transform="translate(453.000000, 454.000000)">
-                                                <path class="color-background opacity-6"
-                                                    d="M43,10.7482083 L43,3.58333333 C43,1.60354167 41.3964583,0 39.4166667,0 L3.58333333,0 C1.60354167,0 0,1.60354167 0,3.58333333 L0,10.7482083 L43,10.7482083 Z">
-                                                </path>
-                                                <path class="color-background"
-                                                    d="M0,16.125 L0,32.25 C0,34.2297917 1.60354167,35.8333333 3.58333333,35.8333333 L39.4166667,35.8333333 C41.3964583,35.8333333 43,34.2297917 43,32.25 L43,16.125 L0,16.125 Z M19.7083333,26.875 L7.16666667,26.875 L7.16666667,23.2916667 L19.7083333,23.2916667 L19.7083333,26.875 Z M35.8333333,26.875 L28.6666667,26.875 L28.6666667,23.2916667 L35.8333333,23.2916667 L35.8333333,26.875 Z">
-                                                </path>
+                                </svg>
+                            </div>
+                            <span class="nav-link-text ms-1">Kategori</span>
+                        </a>
+                    </li>
+                    <!-- AddVendor -->
+                    <li class="nav-item">
+                        <a class="nav-link  {{ Request::routeIs('admin.vendor-client.*') ? 'active' : '' }}"
+                            href="{{ route('admin.vendor-client.index') }}">
+                            <div
+                                class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
+                                <svg width="12px" height="12px" viewBox="0 0 43 36" version="1.1"
+                                    xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                    <title>vendor</title>
+                                    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                        <g transform="translate(-2169.000000, -745.000000)" fill="#FFFFFF"
+                                            fill-rule="nonzero">
+                                            <g transform="translate(1716.000000, 291.000000)">
+                                                <g transform="translate(453.000000, 454.000000)">
+                                                    <path class="color-background opacity-6"
+                                                        d="M43,10.7482083 L43,3.58333333 C43,1.60354167 41.3964583,0 39.4166667,0 L3.58333333,0 C1.60354167,0 0,1.60354167 0,3.58333333 L0,10.7482083 L43,10.7482083 Z">
+                                                    </path>
+                                                    <path class="color-background"
+                                                        d="M0,16.125 L0,32.25 C0,34.2297917 1.60354167,35.8333333 3.58333333,35.8333333 L39.4166667,35.8333333 C41.3964583,35.8333333 43,34.2297917 43,32.25 L43,16.125 L0,16.125 Z M19.7083333,26.875 L7.16666667,26.875 L7.16666667,23.2916667 L19.7083333,23.2916667 L19.7083333,26.875 Z M35.8333333,26.875 L28.6666667,26.875 L28.6666667,23.2916667 L35.8333333,23.2916667 L35.8333333,26.875 Z">
+                                                    </path>
+                                                </g>
                                             </g>
                                         </g>
                                     </g>
-                                </g>
-                            </svg>
-                        </div>
-                        <span class="nav-link-text ms-1">Vendor</span>
-                    </a>
-                </li>
+                                </svg>
+                            </div>
+                            <span class="nav-link-text ms-1">Vendor</span>
+                        </a>
+                    </li>
                 @endif
-              
+
             </ul>
         </div>
 
@@ -246,28 +252,30 @@
         <nav class="navbar navbar-main navbar-expand-lg px-0 mx-4 shadow-none border-radius-xl" id="navbarBlur"
             navbar-scroll="true">
             <div class="container-fluid py-1 px-3">
-               
+
                 <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
                     <div class="ms-md-auto pe-md-3 d-flex align-items-center">
 
                     </div>
                     <ul class="navbar-nav  justify-content-end">
                         <li class="nav-item d-flex align-items-center">
-                                 @if(Auth::user()->role == 'admin')
-                                 <a class="btn btn-outline-primary btn-sm mb-0 me-3" href="{{ route('admin.dashboard') }}">@lang('Admin')
-                                 </a>
-                                @elseif(Auth::user()->role == 'vendor')
-                                <a class="btn btn-outline-info btn-sm mb-0 me-3" href="{{ route('vendor.dashboards')}}">@lang('Vendor')
-                                 </a>
-                                @endif
-                          
+                            @if (Auth::user()->role == 'admin')
+                                <a class="btn btn-outline-primary btn-sm mb-0 me-3"
+                                    href="{{ route('admin.dashboard') }}">@lang('Admin')
+                                </a>
+                            @elseif(Auth::user()->role == 'vendor')
+                                <a class="btn btn-outline-info btn-sm mb-0 me-3"
+                                    href="{{ route('vendor.dashboards') }}">@lang('Vendor')
+                                </a>
+                            @endif
+
                         </li>
                         <li class="nav-item d-flex align-items-center">
                             <a href="javascript:;" class="nav-link text-body font-weight-bold px-0">
                                 <i class="fa fa-user me-sm-1"></i>
-                                
-                                <span class="d-sm-inline d-none">{{ Auth::user()->name}}</span>
-                              
+
+                                <span class="d-sm-inline d-none">{{ Auth::user()->name }}</span>
+
                             </a>
                         </li>
 

@@ -17,7 +17,7 @@
                             </ul>
                         </div>
                     @endif
-                    <form action="{{ route('admin.acara.update', $acara->id) }}" method="POST" enctype="multipart/form-data">
+                    <form action="{{ route('vendor.acara.update', $acara->id) }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         @method('PUT')
                         <div class="form-group">

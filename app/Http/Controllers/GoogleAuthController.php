@@ -10,23 +10,25 @@ use Laravel\Socialite\Facades\Socialite;
 class GoogleAuthController extends Controller
 {
     //
-    public function redirect(){
+    public function redirect()
+    {
         return Socialite::driver('google')->redirect();
     }
 
-    public function CallBackGoogle(){
+    public function CallBackGoogle()
+    {
         try {
             //code...
             $google = Socialite::driver('google')->user();
 
-            $user = User::where('email',$google->getEmail())->first();
+            $user = User::where('email', $google->getEmail())->first();
 
             if (!$user) {
                 # tahun
                 $tahun = date('Y');
                 # generatepass
-                $generate_pass = str_replace(' ', '', $google->getName().$tahun);
-              
+                $generate_pass = str_replace(' ', '', $google->getName() . $tahun);
+
                 # code...
                 $new_user = User::create([
                     'name' => $google->getName(),
@@ -39,18 +41,17 @@ class GoogleAuthController extends Controller
                 Auth::login($new_user);
 
                 return redirect()->route('home');
-            }else{
-                Auth::login($user); 
+            } else {
+                Auth::login($user);
                 if ($user->role == 'user') {
                     return redirect()->route('home');
-                }elseif($user->role == 'vendor'){
+                } elseif ($user->role == 'vendor') {
                     return redirect()->route('vendor.dashboards');
                 }
             }
         } catch (\Throwable $th) {
             //throw $th;
-            dd('something went wrong'.$th->getMessage());
+            dd('something went wrong' . $th->getMessage());
         }
     }
- 
 }

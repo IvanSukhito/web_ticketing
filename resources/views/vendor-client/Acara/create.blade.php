@@ -6,11 +6,11 @@
         <div class="col-12">
             <div class="card mb-4">
                 <div class="card-header pb-0">
-                    <h6>Add Acara</h6>
+                    <h6>Add Acara as Vendor</h6>
                 </div>
                 <div class="card-body px-2 pt-0 pb-2">
 
-                    <form action = "{{ route('admin.acara.store') }}" method="POST" enctype="multipart/form-data">
+                    <form action = "{{ route('vendor.acara.store') }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="form-group">
                             <label for="name">Nama Acara</label>
