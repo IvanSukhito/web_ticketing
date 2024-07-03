@@ -20,8 +20,10 @@
 <body>
     <header>
         <div class="logo">
-            <img src="{{ asset('img/auth/logo.png') }}" alt="Logo">
-            <h1>Ticoz</h1>
+        <a href="{{ url('/') }}" class="logo">
+                <img src="{{ asset('img/ticoz.png') }}" alt="Logo">
+                <h1>Ticoz</h1>
+            </a>
         </div>
     </header>
 
