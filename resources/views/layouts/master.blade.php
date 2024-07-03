@@ -110,10 +110,10 @@
                     <li class="nav-item">
                         @if (Auth::check())
                             @if (Auth::user()->role == 'admin')
-                                <a class="nav-link {{ Request::routeIs('acara.*') ? 'active' : '' }}"
+                                <a class="nav-link {{ Request::routeIs('admin.acara.*') ? 'active' : '' }}"
                                     href="{{ route('admin.acara.index') }}">
                                 @elseif(Auth::user()->role == 'vendor')
-                                    <a class="nav-link {{ Request::routeIs('acara.*') ? 'active' : '' }}"
+                                    <a class="nav-link {{ Request::routeIs('vendor.acara.*') ? 'active' : '' }}"
                                         href="{{ route('vendor.acara.index') }}">
                                     @elseif(Auth::user()->role == 'vendor')
                                         <a class="nav-link {{ Request::routeIs('acara.*') ? 'active' : '' }}"

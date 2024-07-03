@@ -65,6 +65,9 @@
                             </tbody>
                         </table>
                     </div>
+                    <div class="d-flex justify-content-center mt-3">
+                        {{ $acaras->links('pagination::bootstrap-4') }}
+                    </div>
                 </div>
             </div>
         </div>
