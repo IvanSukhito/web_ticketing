@@ -9,6 +9,8 @@ use App\Models\Ticket;
 use App\Models\Transaction;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+use PhpParser\Node\Stmt\TryCatch;
 
 class AcaraUserController extends Controller
 {
@@ -29,26 +31,46 @@ class AcaraUserController extends Controller
 
     public function checkoutPay(Request $request)
     {
+        // dd(auth()->user()); // 
 
         $user = Auth::user();
-        $validated = $request->validate([
+        $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|email',
-            'phone_number' => 'required|number|',
+            'phone_number' => 'required|numeric|',
             'quantity' => 'required|string|in:manual_transfer',
             'payment_method' => 'required|string|in:credit-card,bank-transfer,e_wallet,qris',
             'address' => 'required|string|max:255',
-        ]);
+            'acara_id' => 'required|exists:acaras,id', // pastikan acara_id dikirim dalam request
 
+        ]);
+        // Ambil detail acara dari database
+        $acara = Acara::find($request->acara_id);
+        $ticket = Ticket::where('acara_id', $acara->id)->first();
+
+        // Hitung total price berdasarkan kuantitas tiket dan harga tiket
+        $total_price = $ticket->harga * $request->quantity;
+        if (!$ticket) {
+            return response()->json(['error' => 'Ticket not found for the selected event.'], 404);
+        }
+        // Ambil tiket yang berkaitan dengan acara
+        $ticket = Ticket::where('acara_id', $acara->id)->first();
         $transaction = Transaction::create([
             'acara_id' => $acara->id,
-            'user_id' => $user->id,
+            'user_id' => auth()->user()->id, // pastikan user sudah login
             'name' => $request->name,
             'phone_number' => $request->phone_number,
             'address' => $request->address,
             'email' => $request->email,
             'kuantitas' => $request->quantity,
-            'total_price' => $request->total_price,
+            'total_price' => $total_price,
+            'payment_method' => $request->payment_method,
+            'status' => 'Unpaid',
         ]);
+        // return response()->json(['success' => 'Transaction created successfully.', 'transaction' => $transaction], 201);
+        dd($transaction); // Tambahkan ini untuk melihat data transaksi yang dibuat
+
+
+        return redirect()->route('frontend.index');
     }
 }
