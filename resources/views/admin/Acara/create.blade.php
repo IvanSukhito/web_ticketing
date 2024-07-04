@@ -1,7 +1,8 @@
 @extends('layouts.master')
 
 @section('content')
-
+<form action = "{{ route('admin.acara.store') }}" method="POST" enctype="multipart/form-data">
+@csrf
     <div class="row">
         <div class="col-12">
             <div class="card mb-4">
@@ -9,43 +10,7 @@
                     <h6>Add Acara</h6>
                 </div>
                 <div class="card-body px-2 pt-0 pb-2">
-
-                    <form action = "{{ route('admin.acara.store') }}" method="POST" enctype="multipart/form-data">
-                        @csrf
-                        <div class="form-group">
-                            <label for="name">Nama Acara</label>
-                            <input name ="name"type="text" class="form-control" id="exampleInputEmail1" required
-                                aria-describedby="emailHelp" placeholder="Nama Acara">
-
-                        </div>
-                        <div class="form-group">
-                            <label for="description">Description</label>
-                            <textarea name="description" type="text" id="description" class="form-control" aria-describedby="emailHelp" required
-                                oninvalid="this.setCustomValidity('Masukkan Deskripsi Disini')" oninput="this.setCustomValidity('')"
-                                placeholder="Deskripsi"> </textarea>
-
-                        </div>
-                        <div class="form-group">
-                            <label for="pelaksana">Nama Pelaksana</label>
-                            <input name ="namaPelaksana" type="text" class="form-control" id="pelaksana" required
-                                aria-describedby="emailHelp" placeholder="Nama Pelaksana">
-
-                        </div>
-                        <div class="form-group">
-                            <label for="exampleInputEmail1">Lokasi</label>
-                            <input name ="lokasi" type="text" class="form-control" id="exampleInputEmail1"required
-                                oninvalid="this.setCustomValidity('Masukkan Lokasi Disini')"
-                                oninput="this.setCustomValidity('')" aria-describedby="emailHelp"
-                                placeholder="Lokasi Acara">
-
-                        </div>
-                        <div class="form-group">
-                            <label for="exampleInputEmail1">Waktu</label>
-                            <input name ="waktu" type="datetime-local" class="form-control" id="exampleInputEmail1"required
-                                aria-describedby="emailHelp" placeholder="Tanggal Mulai Acara">
-
-                        </div>
-                        <div class="form-group">
+                    <div class="form-group">
                             <label for="exampleInputEmail1">Pilih Kategori</label>
                             <select id="category" class="form-control" name="category_id">
                                 <option value="0">Pilih Kategori Acara</option>
@@ -56,18 +21,86 @@
 
                         </div>
                         <div class="form-group">
-                            <label for="p">Picture</label>
+                            <label for="name">Nama Acara</label>
+                            <input name="name" type="text" class="form-control" id="exampleInputEmail1" required="" aria-describedby="emailHelp" placeholder="Nama Acara">
+
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Waktu</label>
+                            <input name ="waktu" type="datetime-local" class="form-control" id="exampleInputEmail1"required
+                                aria-describedby="emailHelp" placeholder="Tanggal Mulai Acara">
+
+                        </div>
+                      
+                        <div class="form-group">
+                            <label for="p">Picture Thumbnail</label>
                             <input name ="files[]"multiple type="file" class="form-control" id="p" required
                                 aria-describedby="emailHelp" placeholder="Enter Height">
                         </div>
-
-
-                        <button type="submit" class="btn btn-primary">Submit</button>
-                    </form>
+                       
+                      
+                     
+                   
                 </div>
             </div>
         </div>
     </div>
+
+      
+    <div class="row">
+        <div class="col-12">
+            <div class="card mb-4">
+             
+                <div class="card-body px-2 pt-0 pb-2">
+              
+                <div class="form-group">
+                            <label for="exampleInputEmail1">Lokasi</label>
+                            <input name="lokasi" type="text" class="form-control" id="exampleInputEmail1" required="" oninvalid="this.setCustomValidity('Masukkan Lokasi Disini')" oninput="this.setCustomValidity('')" aria-describedby="emailHelp" placeholder="Lokasi Acara">
+
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-md-6">
+                                <label for="exampleInputEmail1">Longtitude</label>
+                                <input name="lokasi" type="text" class="form-control" id="exampleInputEmail1" required="" oninvalid="this.setCustomValidity('Masukkan Lokasi Disini')" oninput="this.setCustomValidity('')" aria-describedby="emailHelp" placeholder="Lokasi Acara">
+    
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="exampleInputEmail1">Latitude</label>
+                                <input name="lokasi" type="text" class="form-control" id="exampleInputEmail1" required="" oninvalid="this.setCustomValidity('Masukkan Lokasi Disini')" oninput="this.setCustomValidity('')" aria-describedby="emailHelp" placeholder="Lokasi Acara">
+    
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <iframe src="https://www.google.com/maps?q=sekolah+cinta+kasih+tzu+chi&amp;hl=es;z=14&amp;output=embed"></iframe>  
+                        </div>
+                                
+                        <div class="form-group">
+                            <label>Image Content (1120 x 400)</label> 
+                            <input name ="image_content"multiple type="file" class="form-control" id="p" required
+                                aria-describedby="emailHelp" placeholder="Enter Height">
+                        </div>
+                       
+                        <div class="form-group">
+                            <label for="description">Description</label>
+                            <textarea name="description" type="text" id="description" class="form-control" aria-describedby="emailHelp" required="" oninvalid="this.setCustomValidity('Masukkan Deskripsi Disini')" oninput="this.setCustomValidity('')" placeholder="Deskripsi"> </textarea>
+
+                        </div>
+                        <div class="form-group">
+                            <label for="pelaksana">Penanggung Jawab /Pelaksana </label>
+                            <input name="namaPelaksana" type="text" class="form-control" id="pelaksana" required="" aria-describedby="emailHelp" placeholder="Penanggung Jawab / Pelaksana">
+
+                        </div>
+                      
+                    
+                     
+
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    
+                </div>
+            </div>
+        </div>
+        </form>
+          
 @endsection
 @section('script-bottom')
     @parent

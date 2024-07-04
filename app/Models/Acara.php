@@ -14,8 +14,11 @@ class Acara extends Model
         'slug',
         'description',
         'photos',
+        'image_content',
         'namaPelaksana',
         'lokasi',
+        'latitude',
+        'longitude',
         'waktu',
         'category_id',
     ];
