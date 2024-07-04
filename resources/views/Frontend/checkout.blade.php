@@ -7,6 +7,8 @@
     <title>Ticoz - Pembelian Tiket</title>
     @section('css')
         <link rel="stylesheet" href="{{ asset('css/checkout.css') }}">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
     </head>
 
     <body>
@@ -17,6 +19,22 @@
             </nav>
         </header>
         <main>
+            {{-- detail acara --}}
+            <div class="acara-container">
+                <div class="detail-acara">
+                    <h2>Detail Acara</h2>
+                    <div>
+                        <img src="{{ $acara->thumbnail }}" class="card-img-top custom-card-img" alt="...">
+                    </div>
+                    <p class="nama-acara"></i><strong> {{ $acara->name }}</p></strong>
+                    <p><i class="fas fa-calendar-alt"> </i> {{ $acara->waktu->format('d-m-Y') }}</p>
+                    <p><i class="fas fa-clock"> </i>{{ $acara->waktu->format('H:i') }}</p>
+                    <p><i class = "fas fa-map-marker-alt"></i> {{ $acara->lokasi }}</p>
+                    <hr>
+                    <p><strong>Harga Tiket:</strong> Rp {{ number_format($acara->ticket->harga, 0, ',', '.') }}</p>
+
+                </div>
+            </div>
             <div class="form-container">
                 @if ($errors->any())
                     <div class="alert alert-danger">
@@ -30,6 +48,7 @@
                 <form method="POST" action="{{ route('checkout-pay') }}" enctype="multipart/form-data"
                     class="checkout-form">
                     @csrf
+
                     <div class="form-left">
                         <h2>Detail Pemesanan Event</h2>
                         <input type="hidden" name="acara_id" value="{{ $acara->id }}">
