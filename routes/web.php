@@ -31,7 +31,8 @@ Route::get('/', [HomeController::class, 'index']);
 Route::get('/details/{slug}', [AcaraUserController::class, 'index'])->name('detail');
 Route::get('/search', [HomeController::class, 'search'])->name('frontend.search');
 Route::get('/category/{category}', [HomeController::class, 'category'])->name('front.category');
-
+Route::get('/checkout/event/{slug}', [AcaraUserController::class, 'checkout'])->name('checkout');
+Route::get('/checkout/pay', [AcaraUserController::class, 'checkoutPay'])->name('checkout-pay');
 
 Auth::routes();
 

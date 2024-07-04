@@ -10,7 +10,7 @@
     </head>
 
     <body>
-        <header>
+        <header class="bg-light py">
             <h1>Ticoz</h1>
             <nav>
                 <a href="#">Home</a>
@@ -18,11 +18,13 @@
         </header>
         <main>
             <div class="form-container">
-                <div class="form-left">
-                    <h2>Detail Pemesanan Event</h2>
-                    <form>
+                <form method="POST" action="{{ route('checkout-pay') }}" enctype="multipart/form-data"
+                    class="checkout-form">
+                    @csrf
+                    <div class="form-left">
+                        <h2>Detail Pemesanan Event</h2>
                         <div class="form-group">
-                            <label for="name">Nama Lengkap</label>
+                            <label for="name">Nama Panjang</label>
                             <input type="text" id="name" name="name" required>
                         </div>
                         <div class="form-group">
@@ -31,25 +33,33 @@
                         </div>
                         <div class="form-group">
                             <label for="phone">Nomor Telepon</label>
-                            <input type="tel" id="phone" name="phone" required>
+                            <input type="tel" id="phone" name="phone_number" required>
                         </div>
                         <div class="form-group">
-                            <label for="event-date">Tanggal Acara</label>
-                            <input type="date" id="event-date" name="event-date" required>
+                            <label for="quantity">Quantity</label>
+                            <input type="number" id="quantity" name="quantity" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="address">Alamat</label>
+                            <textarea id="address" name="address" class="form-control" style="resize:none;" rows="10" cols="50"
+                                required></textarea>
                         </div>
                         <div class="form-group">
                             <button type="submit" class="btn">Lanjutkan</button>
                         </div>
-                    </form>
-                </div>
-                <div class="form-right">
-                    <h2>Metode Pembayaran</h2>
-                    <div class="payment-methods">
-                        <label><input type="radio" name="payment" value="credit-card"> Kartu Kredit</label>
-                        <label><input type="radio" name="payment" value="bank-transfer"> Transfer Bank</label>
-                        <label><input type="radio" name="payment" value="e-wallet"> E-Wallet</label>
                     </div>
-                </div>
+                    <div class="form-right">
+                        <h2>Metode Pembayaran</h2>
+                        <div class="payment-methods">
+                            <label><input type="radio" name="payment" value="credit-card"> Kartu Kredit</label>
+                            <label><input type="radio" name="payment" value="bank-transfer"> Transfer Bank</label>
+                            <label><input type="radio" name="payment" value="e_wallet"> E-Wallet</label>
+                            <label><input type="radio" name="payment" value="qris"> Qris</label>
+                        </div>
+
+                    </div>
+                </form>
             </div>
         </main>
         <footer>

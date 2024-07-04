@@ -50,4 +50,8 @@ class User extends Authenticatable
     {
         return $this->belongsToMany(Acara::class, 'vendor_acara');
     }
+    public function transactions()
+    {
+        return $this->hasMany(Transaction::class);
+    }
 }
