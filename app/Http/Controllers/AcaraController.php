@@ -47,6 +47,8 @@ class AcaraController extends Controller
         $acaras = new Acara;
         $acaras->name = $request->name;
         $acaras->description = $request->description;
+        $acaras->latitude = $request->latitude ?? null;
+        $acaras->longitude = $request->longitude ?? null;
         // $acaras->photos = $request->photos;
         $acaras->namaPelaksana = $request->namaPelaksana;
         $acaras->lokasi = $request->lokasi;
@@ -78,7 +80,7 @@ class AcaraController extends Controller
         // Notification::send($users, new userNotification($acara));
 
         //return to index
-        return redirect()->route('acara.index')->with('success', 'Acara berhasil di buat ');
+        return redirect()->route('admin.acara.index')->with('success', 'Acara berhasil di buat ');
     }
     public function edit(Acara $acara)
     {
@@ -93,6 +95,8 @@ class AcaraController extends Controller
             'description' => 'required|string|max:255',
             'namaPelaksana' => 'required|string|max:50',
             'lokasi' => 'required|string|max:255',
+            'latitude' => '',
+            'longitude' => '',
             'waktu' => 'required|date',
             'category_id' => 'required|integer',
             'files.*' => 'image|mimes:png,jpg,jpeg|max:2048' // Validasi untuk file gambar
