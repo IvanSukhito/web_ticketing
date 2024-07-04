@@ -37,26 +37,26 @@ class AcaraUserController extends Controller
         $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|email',
-            'phone_number' => 'required|numeric|',
-            'quantity' => 'required|string|in:manual_transfer',
+            'phone_number' => 'required|numeric',
+            'quantity' => 'required|numeric', // Pastikan ini numeric
             'payment_method' => 'required|string|in:credit-card,bank-transfer,e_wallet,qris',
             'address' => 'required|string|max:255',
-            'acara_id' => 'required|exists:acaras,id', // pastikan acara_id dikirim dalam request
-
         ]);
+
         // Ambil detail acara dari database
         $acara = Acara::find($request->acara_id);
         $ticket = Ticket::where('acara_id', $acara->id)->first();
 
-        // Hitung total price berdasarkan kuantitas tiket dan harga tiket
-        $total_price = $ticket->harga * $request->quantity;
         if (!$ticket) {
             return response()->json(['error' => 'Ticket not found for the selected event.'], 404);
         }
-        // Ambil tiket yang berkaitan dengan acara
-        $ticket = Ticket::where('acara_id', $acara->id)->first();
+
+        // Hitung total price berdasarkan kuantitas tiket dan harga tiket
+        $total_price = $ticket->harga * $request->quantity;
+
+        // Buat transaksi
         $transaction = Transaction::create([
-            'acara_id' => $acara->id,
+            'acara_id' => $acara,
             'user_id' => auth()->user()->id, // pastikan user sudah login
             'name' => $request->name,
             'phone_number' => $request->phone_number,
@@ -67,10 +67,26 @@ class AcaraUserController extends Controller
             'payment_method' => $request->payment_method,
             'status' => 'Unpaid',
         ]);
-        // return response()->json(['success' => 'Transaction created successfully.', 'transaction' => $transaction], 201);
-        dd($transaction); // Tambahkan ini untuk melihat data transaksi yang dibuat
 
+        // Debug data transaksi
+        $getTransaction = [
+            [
+                'acara_id' => $acara,
+                'user_id' => auth()->user()->id, // pastikan user sudah login
+                'name' => $request->name,
+                'phone_number' => $request->phone_number,
+                'address' => $request->address,
+                'email' => $request->email,
+                'kuantitas' => $request->quantity,
+                'total_price' => $total_price,
+                'payment_method' => $request->payment_method,
+                'status' => 'Unpaid',
+            ]
+        ];
 
-        return redirect()->route('frontend.index');
+        // Uncomment dd below for debugging purposes
+        dd($getTransaction);
+
+        return redirect()->route('frontend.index')->with('success', 'Transaction created successfully.');
     }
 }
