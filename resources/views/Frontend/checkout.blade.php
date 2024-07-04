@@ -18,11 +18,21 @@
         </header>
         <main>
             <div class="form-container">
+                @if ($errors->any())
+                    <div class="alert alert-danger">
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
                 <form method="POST" action="{{ route('checkout-pay') }}" enctype="multipart/form-data"
                     class="checkout-form">
                     @csrf
                     <div class="form-left">
                         <h2>Detail Pemesanan Event</h2>
+                        <input type="hidden" name="acara_id" value="{{ $acara->id }}">
                         <div class="form-group">
                             <label for="name">Nama Panjang</label>
                             <input type="text" id="name" name="name" required>

@@ -34,6 +34,7 @@ Route::get('/category/{category}', [HomeController::class, 'category'])->name('f
 Route::get('/checkout/event/{slug}', [AcaraUserController::class, 'checkout'])->name('checkout');
 Route::post('/checkout/pay', [AcaraUserController::class, 'checkoutPay'])->name('checkout-pay');
 
+
 Auth::routes();
 
 Route::prefix('admin')->middleware(['auth', 'auth.admin'])->group(function () {
