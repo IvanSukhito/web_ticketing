@@ -26,7 +26,8 @@ class AcaraUserController extends Controller
     public function checkout(Request $request, $slug)
     {
         $acara = Acara::where('slug', $slug)->firstOrFail();
-
+        // TEMP STORE TO SESSION
+        $request > session()->put('acara_id', $acara);
         return view('Frontend.checkout', compact('acara'));
     }
 
@@ -45,9 +46,18 @@ class AcaraUserController extends Controller
         ]);
 
         // Ambil detail acara dari database
-        $acara = Acara::find($request->acara_id);
+        // $acara = Acara::find($request->acara_id);
+        $acara = $request->session()->get('acara_id');
         // dd($acara);
+        // SELECT * FROM tickets WHERE acara_id = [acara_id] LIMIT 1;
         $ticket = Ticket::where('acara_id', $acara->id)->first();
+        // Hitung jumlah tiket yang telah terjual,dari table transactions dicari tiap acara_id dan menjumlah kuantitas dari acara id tersebut
+        $totalSoldTickets = Transaction::where('acara_id', $acara->id)->sum('kuantitas');
+        // Cek apakah kuantitas yang diminta melebihi jumlah tiket yang tersedia, 
+        $remainingTickets = $ticket->quantity - $totalSoldTickets;
+        if ($request->quantity > $remainingTickets) {
+            return back()->withErrors(['quantity' => 'Tiket sudah habis ']);
+        }
 
         if (!$ticket) {
             return response()->json(['error' => 'Ticket not found for the selected event.'], 404);
@@ -64,6 +74,8 @@ class AcaraUserController extends Controller
         if ($validateQty + $request->quantity > $ticket->max_buy) {
             return back()->withErrors(['quantity' => 'Jumlah tiket melebihi batas maksimal pembelian.']);
         }
+
+
         $transaction = Transaction::create([
             'acara_id' => $acara->id,
             'user_id' => auth()->user()->id, // pastikan user sudah login

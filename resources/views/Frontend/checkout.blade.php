@@ -15,7 +15,7 @@
         <header class="bg-light py">
             <h1>Ticoz</h1>
             <nav>
-                <a href="#">Home</a>
+                <a href="{{ route('home') }}">Home</a>
             </nav>
         </header>
         <main>
@@ -31,6 +31,8 @@
                     <p><i class="fas fa-clock"> </i>{{ $acara->waktu->format('H:i') }}</p>
                     <p><i class = "fas fa-map-marker-alt"></i> {{ $acara->lokasi }}</p>
                     <hr>
+                    <p><strong>Stok Tiket :</strong> {{ $acara->ticket->kuantitas }}</p>
+                    <p><strong>Max Pembelian Tiket :</strong> {{ $acara->ticket->max_buy }}/user</p>
                     <p><strong>Harga Tiket:</strong> Rp {{ number_format($acara->ticket->harga, 0, ',', '.') }}</p>
 
                 </div>
@@ -51,7 +53,7 @@
 
                     <div class="form-left">
                         <h2>Detail Pemesanan Event</h2>
-                        <input type="hidden" name="acara_id" value="{{ $acara->id }}">
+                        {{-- <input type="hidden" name="acara_id" value="{{ $acara->id }}"> --}}
                         <div class="form-group">
                             <label for="name">Nama Panjang</label>
                             <input type="text" id="name" name="name" required>

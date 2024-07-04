@@ -38,19 +38,34 @@ class LoginController extends Controller
     {
         $this->middleware('guest')->except('logout');
     }
-    public function authenticated(Request $request, $user)
+    // public function authenticated(Request $request, $user)
+    // {
+    //     if ($user->role == 'admin') {
+
+    //         return redirect()->route('admin.dashboard');
+    //     } elseif ($user->role == 'user') {
+
+    //         return redirect()->route('home');
+    //     } elseif ($user->role == 'vendor') {
+
+    //         return redirect()->route('vendor.dashboards');
+    //     } else {
+
+    //         Auth::logout();
+    //         // flash('Anda tidak punya role')->error();
+    //         return redirect()->route('login')->with('flash', 'Anda Tidak Punya Role');
+    //     }
+    // }
+    protected function authenticated(Request $request, $user)
     {
         if ($user->role == 'admin') {
-
             return redirect()->route('admin.dashboard');
         } elseif ($user->role == 'user') {
-
-            return redirect()->route('home');
+            // Redirect to intended URL or home
+            return redirect()->intended(route('home'));
         } elseif ($user->role == 'vendor') {
-
             return redirect()->route('vendor.dashboards');
         } else {
-
             Auth::logout();
             // flash('Anda tidak punya role')->error();
             return redirect()->route('login')->with('flash', 'Anda Tidak Punya Role');
