@@ -55,23 +55,24 @@
               
                 <div class="form-group">
                             <label for="exampleInputEmail1">Lokasi</label>
-                            <input name="lokasi" type="text" class="form-control" id="exampleInputEmail1" required="" oninvalid="this.setCustomValidity('Masukkan Lokasi Disini')" oninput="this.setCustomValidity('')" aria-describedby="emailHelp" placeholder="Lokasi Acara">
+                            <input name="lokasi" type="text" class="form-control" id="inputLokasi" required="" oninvalid="this.setCustomValidity('Masukkan Lokasi Disini')" oninput="this.setCustomValidity('')" aria-describedby="emailHelp" placeholder="Lokasi Acara">
 
                         </div>
                         <div class="row">
+                            
                             <div class="form-group col-md-6">
-                                <label for="exampleInputEmail1">Longtitude</label>
-                                <input name="lokasi" type="text" class="form-control" id="exampleInputEmail1" required="" oninvalid="this.setCustomValidity('Masukkan Lokasi Disini')" oninput="this.setCustomValidity('')" aria-describedby="emailHelp" placeholder="Lokasi Acara">
+                                <label for="exampleInputEmail1">Latitude</label>
+                                <input name="laitude" type="text" class="form-control" id="inputLatitude" required="" aria-describedby="latitude" placeholder="opsional latitude">
     
                             </div>
                             <div class="form-group col-md-6">
-                                <label for="exampleInputEmail1">Latitude</label>
-                                <input name="lokasi" type="text" class="form-control" id="exampleInputEmail1" required="" oninvalid="this.setCustomValidity('Masukkan Lokasi Disini')" oninput="this.setCustomValidity('')" aria-describedby="emailHelp" placeholder="Lokasi Acara">
+                                <label for="exampleInputEmail1">Longitude</label>
+                                <input name="longitude" type="text" class="form-control" id="inputLongitude" required="" aria-describedby="longitude" placeholder="opsional longitude">
     
                             </div>
                         </div>
-                        <div class="form-group">
-                            <iframe src="https://www.google.com/maps?q=sekolah+cinta+kasih+tzu+chi&amp;hl=es;z=14&amp;output=embed"></iframe>  
+                        <div class="form-group" id="directMap">
+                          
                         </div>
                                 
                         <div class="form-group">
@@ -107,6 +108,55 @@
     <script type="text/javascript">
         $(document).ready(function() {
             $("#category").select2();
+
+
+            $('#inputLokasi, #inputLatitude, #inputLongitude').change(function(){
+                var str = $('#inputLokasi').val();
+                var lokasiStr = str.replace(/\s+/g, '+').toLowerCase();
+                console.log(lokasiStr);
+
+                let latitude = $('#inputLatitude').val();
+                let longitude = $('#inputLongitude').val();
+
+                console.log(latitude);
+                console.log(longitude);
+                // if ada longitude sama laitudenya
+                 
+                if(!latitude && !longitude){
+                 
+                    console.log('lokasi aja');
+                    hanyaLokasi();
+                     // kalo ga ada timpa iframe map pake input lokasi aja
+                    
+                }else{
+                    console.log('ada latitude');
+                    adaLongLat();
+                // timpa iframe map pake longitude sama laitude aja
+                }
+                   
+
+                function hanyaLokasi(){
+             
+
+             let html = '<iframe src="https://www.google.com/maps?q='+lokasiStr+'&amp;hl=es;z=14&amp;output=embed"></iframe>';
+
+            $('#directMap').html(html);
+        
+            return false;
+        }
+        function adaLongLat(){
+
+            let html = '<iframe src="https://www.google.com/maps?q='+latitude+','+longitude+'&amp;hl=es;z=14&amp;output=embed"></iframe>';
+
+            $('#directMap').html(html);
+
+            return false;
+        }
+
+
+            });
+
+           
         });
     </script>
 @stop
