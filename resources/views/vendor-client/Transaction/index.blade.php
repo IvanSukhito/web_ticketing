@@ -19,46 +19,50 @@
                                         Name </th>
                                     <th
                                         class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                        Nama Pelaksana</th>
+                                        Phone Number</th>
                                     <th
                                         class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                        Waktu</th>
+                                        Email Address</th>
                                     <th
                                         class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                        Kategori</th>
+                                        Quantity</th>
+                                    <th
+                                        class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                        Total Price</th>
+                                    <th
+                                        class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                        Status</th>
+                                    <th
+                                        class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                        Payment method</th>
                                     <th class="text-secondary opacity-7">Action</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($acaras as $acara)
+                                @foreach ($transactions as $transaction)
                                     {{-- {{ dd($acara->pictures) }} --}}
                                     <tr>
-                                        <td>{{ $acara->id }}</td>
-                                        <td>{{ $acara->name }}</td>
-                                        <td>{{ $acara->namaPelaksana }}</td>
-                                        <td>{{ $acara->waktu->format('d M Y') }}</td>
-                                        <td>{{ $acara->category->name ?? '-' }}</td>
+                                        <td>{{ $transaction->id }}</td>
+                                        <td>{{ $transaction->name }}</td>
+                                        <td>{{ $transaction->phone_number }}</td>
+                                        <td>{{ $transaction->email }}</td>
+                                        <td>{{ $transaction->kuantitas }}</td>
+                                        <td>Rp{{ number_format($transaction->total_price, 0, ',', '.') }}</td>
+                                        <td>{{ $transaction->status }}</td>
+                                        <td>{{ $transaction->payment_method }}</td>
+
                                         <td>
                                             {{-- EDIT --}}
-                                            <a
-                                                href="{{ route('vendor.acara.edit', [
-                                                    'acara' => $acara->id,
-                                                ]) }}"class="btn btn-warning">Edit</a>
-                                            <a
-                                                href="{{ route('vendor.acara.tickets.index', [
-                                                    'acara' => $acara->id,
-                                                ]) }}"class="btn btn-info">Tiket</a>
-                                            <a
-                                                href="{{ route('vendor.transactions', $acara->id) }}"class="btn btn-info">Transaction</a>
+                                            <a href="#"class="btn btn-warning">Edit</a>
+                                            <a href="#"class="btn btn-info">Tiket</a>
+                                            <a href="#"class="btn btn-info">Transaction</a>
                                             {{-- FORM DELETE --}}
-                                            <form onsubmit="return confirm('Hapus Acara {{ $acara->name }}?')"
-                                                action="{{ route('vendor.acara.destroy', [
-                                                    'acara' => $acara->id,
-                                                ]) }}"method="POST">
+                                            {{-- <form onsubmit="return confirm('Hapus Acara {{ $acara->name }}?')"
+                                                action="#"method="POST">
                                                 @method('DELETE')
                                                 @csrf
                                                 <input type="submit" class="btn btn-danger" value="Delete">
-                                            </form>
+                                            </form> --}}
 
                                         </td>
                                     </tr>
@@ -67,7 +71,7 @@
                         </table>
                     </div>
                     <div class="d-flex justify-content-center mt-3">
-                        {{ $acaras->links('pagination::bootstrap-4') }}
+                        {{-- {{ $acaras->links('pagination::bootstrap-4') }} --}}
                     </div>
                 </div>
             </div>

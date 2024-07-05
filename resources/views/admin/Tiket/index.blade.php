@@ -5,8 +5,9 @@
         <div class="col-12">
             <div class="card mb-4">
                 <div class="card-header pb-0">
-                    <h6>Acara</h6>
-                    <a href="{{ route('admin.acara.tickets.create', $acara->id) }}"class="btn btn-primary float-end">Buat
+                    <h6>Tiket</h6>
+                    <a
+                        href="{{ Auth::user()->role == 'vendor' ? route('vendor.acara.tickets.create', ['acara' => $acara->id]) : route('admin.acara.tickets.create', ['acara' => $acara->id]) }}"class="btn btn-primary float-end">Buat
                         Tiket</a>
                 </div>
                 <div class="card-body px-0 pt-0 pb-2">
@@ -43,19 +44,16 @@
                                         <td>{{ number_format($ticket->max_buy) }}</td>
                                         <td>
                                             {{-- EDIT --}}
-                                            <a
-                                                href="{{ route('admin.acara.tickets.edit', [
-                                                    'acara' => $acara->id,
-                                                    'ticket' => $ticket->id,
-                                                ]) }}"class="btn btn-warning">Edit</a>
-
+                                            <a href="{{ Auth::user()->role == 'vendor'
+                                                ? route('vendor.acara.tickets.edit', ['acara' => $acara->id, 'ticket' => $ticket->id])
+                                                : route('admin.acara.tickets.edit', ['acara' => $acara->id, 'ticket' => $ticket->id]) }}"
+                                                class="btn btn-warning">Edit</a>
 
                                             {{-- FORM DELETE --}}
                                             <form onsubmit="return confirm('Hapus ticket {{ $acara->name }}?')"
-                                                action="{{ route('admin.acara.tickets.destroy', [
-                                                    'acara' => $acara->id,
-                                                    'ticket' => $ticket->id,
-                                                ]) }}"method="POST">
+                                                action="{{ Auth::user()->role == 'vendor'
+                                                    ? route('vendor.acara.tickets.destroy', ['acara' => $acara->id, 'ticket' => $ticket->id])
+                                                    : route('admin.acara.tickets.destroy', ['acara' => $acara->id, 'ticket' => $ticket->id]) }}"method="POST">
                                                 @method('DELETE') @csrf <input type="submit" class="btn btn-danger"
                                                     value="Delete">
                                             </form>

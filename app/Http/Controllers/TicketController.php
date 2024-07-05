@@ -40,9 +40,13 @@ class TicketController extends Controller
 
         $requestData = $request->all();
         $requestData['acara_id'] = $acara->id;
-
+        // dd($requestData);
+        $route = auth()->user()->role == 'vendor'
+            ? 'vendor.acara.tickets.index'
+            : 'admin.acara.tickets.index';
         Ticket::create($requestData);
-        return redirect()->route('admin.acara.tickets.index', $acara->id)->with('success', 'Tiket Berhasil Di tambahkan');
+        // return redirect()->route('admin.acara.tickets.index', $acara->id)->with('success', 'Tiket Berhasil Di tambahkan');
+        return redirect()->route($route, $acara)->with('success', 'Tiket berhasil ditambahkan');
     }
 
     /**
@@ -71,8 +75,11 @@ class TicketController extends Controller
     {
         //update ticket
         // dd($request->all());
+        $route = auth()->user()->role == 'vendor'
+            ? 'vendor.acara.tickets.index'
+            : 'admin.acara.tickets.index';
         Ticket::find($id)->update($request->all());
-        return redirect()->route('admin.acara.tickets.index', ['acara' => $acara->id])->with('success', 'Tiket Berhasil Dihapus');
+        return redirect()->route($route, $acara)->with('success', 'Tiket Berhasil Dihapus');
     }
 
     /**
@@ -81,7 +88,10 @@ class TicketController extends Controller
     public function destroy(Acara $acara, Ticket $ticket)
     {
         $ticket->delete();
+        $route = auth()->user()->role == 'vendor'
+            ? 'vendor.acara.tickets.index'
+            : 'admin.acara.tickets.index';
         // return redirect()->route('admin.acara.tickets.index', $acara->id)->with('success', 'Tiket Berhasil Di tambahkan');
-        return redirect()->route('admin.acara.tickets.index', ['acara' => $acara->id])->with('success', 'Tiket Berhasil Dihapus');
+        return redirect()->route($route, $acara)->with('success', 'Tiket Berhasil Dihapus');
     }
 }

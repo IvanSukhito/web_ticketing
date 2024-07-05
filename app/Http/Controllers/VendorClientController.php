@@ -7,6 +7,7 @@ use App\Models\User;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\ValidationException;
+
 class VendorClientController extends Controller
 {
     /**
@@ -16,7 +17,7 @@ class VendorClientController extends Controller
     {
         //
         // $banner = Vendor::paginate(10);
-        $getDataVendor = User::where('role','vendor')->paginate(10);
+        $getDataVendor = User::where('role', 'vendor')->paginate(10);
         //dd($getDataVendor); 
         return view('admin.Vendor-Client.index', [
             'getVendor' => $getDataVendor ?? ''
@@ -45,24 +46,22 @@ class VendorClientController extends Controller
             'nik' => 'required|unique:users',
             'email' => 'required|unique:users',
             'password' => 'required|confirmed|string|min:6',
-            
+
         ]);
         //dd($validated);
         try {
-          
-           User::create($validated);
+
+            User::create($validated);
             //dd($db);
-           
+
             return redirect()->route('admin.vendor-client.index');
         } catch (\Exception $e) {
-           
+
             $error = ValidationException::withMessages([
                 'system_error' => ['System error!', $e->getMessage()],
             ]);
             throw $error;
         }
-       
-
     }
 
     /**
@@ -79,8 +78,8 @@ class VendorClientController extends Controller
     public function edit(string $id)
     {
         //
-        $getDataVendor = User::where('role','vendor')->where('id',$id)->find($id);
-        return view('admin.Vendor-Client.edit',[
+        $getDataVendor = User::where('role', 'vendor')->where('id', $id)->find($id);
+        return view('admin.Vendor-Client.edit', [
             'vendor' => $getDataVendor
         ]);
     }
@@ -98,20 +97,20 @@ class VendorClientController extends Controller
             'no_telp' => 'required',
             'nik' => 'required',
             'email' => 'required',
-       
+
         ]);
-        
-       
-            $updateVendor = User::where('id', $id)->first();   
-            $updateVendor->update([
-                'name' => $request->name,
-                'role' => 'vendor',
-                'no_telp' => $request->no_telp ?? $updateVendor->no_telp,
-                'nik' => $request->nik ?? $updateVendor->nik,
-                'email' => $request->email,
-            ]);
-        
-            return redirect()->route('admin.vendor-client.index');
+
+
+        $updateVendor = User::where('id', $id)->first();
+        $updateVendor->update([
+            'name' => $request->name,
+            'role' => 'vendor',
+            'no_telp' => $request->no_telp ?? $updateVendor->no_telp,
+            'nik' => $request->nik ?? $updateVendor->nik,
+            'email' => $request->email,
+        ]);
+
+        return redirect()->route('admin.vendor-client.index');
     }
 
     /**
@@ -120,7 +119,7 @@ class VendorClientController extends Controller
     public function destroy(string $id)
     {
         //
-        $vendor = User::where('role','vendor')->find($id);
+        $vendor = User::where('role', 'vendor')->find($id);
         $vendor->delete();
 
 

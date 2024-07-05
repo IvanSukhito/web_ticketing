@@ -7,6 +7,7 @@ use App\Http\Controllers\BannerController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\GoogleAuthController;
 use App\Http\Controllers\TicketController;
+use App\Http\Controllers\TransactionController;
 use App\Http\Controllers\VendorController;
 use App\Http\Controllers\VendorDashboardController;
 use App\Http\Controllers\VendorClientController;
@@ -61,11 +62,14 @@ Route::prefix('user')->middleware(['auth', 'auth.user'])->group(function () {
 
     Route::get('/checkout/event/{slug}', [AcaraUserController::class, 'checkout'])->name('checkout');
 
+
     Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 });
 Route::prefix('vendor')->middleware(['auth', 'auth.vendor'])->group(function () {
     Route::get('/dashboard', [App\Http\Controllers\VendorDashboardController::class, 'index'])->name('vendor.dashboards');
     Route::resource('/acara', VendorController::class)->names('vendor.acara');
+    Route::resource('/acara.tickets', TicketController::class)->names('vendor.acara.tickets');
+    Route::get('/transactions/{id}', [TransactionController::class, 'show'])->name('vendor.transactions');
     //Route::get('/dashboard', [App\Http\Controllers\DashboardController::class, 'index'])->name('admin.dashboard');
 });
 
