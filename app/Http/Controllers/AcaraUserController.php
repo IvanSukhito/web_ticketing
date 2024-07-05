@@ -18,7 +18,7 @@ class AcaraUserController extends Controller
     {
 
         $acara = Acara::where('slug', $slug)->with('ticket', 'category')->firstOrFail();
-
+        $ticket = Ticket::where('acara_id', $acara->id)->first();
         $category = $acara->category; // Mengambil kategori terkait
 
         return view('frontend.details', compact('acara', 'category'));
@@ -45,10 +45,10 @@ class AcaraUserController extends Controller
             'address' => 'required|string|max:255',
         ]);
 
-        // Ambil detail acara dari database
-        // $acara = Acara::find($request->acara_id);
+
+        // ambil acara id 
         $acara = $request->session()->get('acara_id');
-        // dd($acara);
+        // dd($acara); 
         // SELECT * FROM tickets WHERE acara_id = [acara_id] LIMIT 1;
         $ticket = Ticket::where('acara_id', $acara->id)->first();
         // Hitung jumlah tiket yang telah terjual,dari table transactions dicari tiap acara_id dan menjumlah kuantitas dari acara id tersebut

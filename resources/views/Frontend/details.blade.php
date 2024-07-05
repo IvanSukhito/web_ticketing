@@ -4,12 +4,13 @@
     <main class="container" style="padding-top:20px;">
         <div class="p-4 p-md-5 mb-4 text-white rounded bg-dark">
             <div class="col-md-6 px-0">
-                <h1 class="display-4 fst-italic">Title of a longer featured blog post</h1>
-                <p class="lead my-3">Multiple lines of text that form the lede, informing new readers quickly and efficiently
-                    about what’s most interesting in this post’s contents.</p>
-                <p class="lead mb-0"><a href="#" class="text-white fw-bold">Continue reading...</a></p>
+                <img src="{{ $acara->thumbnail }}" alt="">
+                <h1 class="display-4 fst-italic">{{ $acara->name }}</h1>
+                <p class="lead my-3">{{ $acara->description }}</p>
+
             </div>
         </div>
+
 
 
 
@@ -21,13 +22,18 @@
 
                 <article class="blog-post">
                     <h2 class="blog-post-title">Description Events</h2>
-                    <p class="blog-post-meta">January 1, 2021 by <a href="#">Mark</a></p>
+                    <h4>Acara {{ $acara->category->name }}</h1>
+                        <p class="blog-post-meta">{{ $acara->waktu->format('d-m-Y') }} </p>
 
-                    <p>This blog post shows a few different types of content that’s supported and styled with Bootstrap.
-                        Basic typography, lists, tables, images, code, and more are all supported as expected.</p>
-                    <hr>
-                    <p>Map</p>
-                    <b>Lokasinya</b>
+                        <p>{{ $acara->description }}</p>
+                        <hr>
+                        <p>Map</p>
+                        <iframe width="600" height="450" style="border:0" loading="lazy" allowfullscreen
+                            referrerpolicy="no-referrer-when-downgrade"
+                            src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d7933.923513599259!2d106.80766924932085!3d-6.135840833655163!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zNsKwMDgnMDYuMiJTIDEwNsKwNDgnNTAuMCJF!5e0!3m2!1sid!2sid!4v1720220964328!5m2!1sid!2sid{{ $acara->longitude }}!3d{{ $acara->latitude }}!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2z0KHQsNCx0LjQvNCw0Y8g0LTQsNC60LDRhtC40Y8!5e0!3m2!1sen!2sid!4v1600962355748!5m2!1sen!2sid">
+                        </iframe>
+                        <h2>Lokasi</h2>
+                        <p class = "text-uppercase">{{ $acara->lokasi }}</p>
                 </article>
 
                 <article class="blog-post">
@@ -81,13 +87,21 @@
 
             <div class="col-md-4">
                 <div class="position-sticky" style="top: 2rem;">
-                    <div class="p-4 mb-3 bg-light rounded">
-                        <h4 class="fst-italic">Check Out</h4>
-                        <p class="mb-0">Customize this section to tell your visitors a little bit about your
-                            publication,
-                            writers, content, or something else entirely. Totally up to you.</p>
-                        <a href="{{ route('checkout', $acara->slug) }}" class="btn btn-primary mt-3">Buy Ticket</a>
+                    <div class="custom-card">
+                        <h5 class="checkout-out">Check Out Tiket</h5>
+                        <hr>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div>
+                                <p class="custom-card-title ">{{ $acara->ticket->name }}</p>
+                                <p class="custom-card-price ">Rp {{ number_format($acara->ticket->harga, 0, ',', '.') }}
+                                </p>
 
+                            </div>
+                        </div>
+                        {{-- <div class ="d-flex justify-content-end mt-3 "> --}}
+                        <a href="{{ route('checkout', $acara->slug) }}" class="btn btn-primary ">Buy
+                            Ticket</a>
+                        {{-- </div> --}}
                     </div>
 
 

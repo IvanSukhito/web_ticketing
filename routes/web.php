@@ -58,9 +58,9 @@ Route::prefix('admin')->middleware(['auth', 'auth.admin'])->group(function () {
 
 Route::prefix('user')->middleware(['auth', 'auth.user'])->group(function () {
     //route user
-    Route::post('/checkout/pay', [AcaraUserController::class, 'checkoutPay'])->name('checkout-pay');
 
     Route::get('/checkout/event/{slug}', [AcaraUserController::class, 'checkout'])->name('checkout');
+    Route::post('/checkout/pay', [AcaraUserController::class, 'checkoutPay'])->name('checkout-pay');
 
 
     Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

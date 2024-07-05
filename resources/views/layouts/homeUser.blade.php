@@ -8,23 +8,25 @@
         <meta name="csrf-token" content="{{ csrf_token() }}">
     @show
     <style>
-    .pagination {
-        margin-top: 20px;
-    }
-    .page-item.active .page-link {
-        background-color: #007bff;
-        border-color: #007bff;
-    }
-</style>
+        .pagination {
+            margin-top: 20px;
+        }
+
+        .page-item.active .page-link {
+            background-color: #007bff;
+            border-color: #007bff;
+        }
+    </style>
     <title>{{ config('app.name', 'Laravel') }}</title>
     @section('css')
         <link rel="stylesheet" href="{{ asset('css/frontend/style.css') }}">
         <link rel="stylesheet" href="{{ asset('css/frontend/swiper-bundle.min.css') }}">
         <link rel="stylesheet" href="{{ asset('css/frontend/details.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/frontend/event_details.css') }}">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 
         <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
-            integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"> -->
+                    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"> -->
 
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -117,7 +119,7 @@
             <script src="{{ asset('js/frontend/script.js') }}"></script>
             <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
                 integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous">
-            </script> 
+            </script>
             <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
                 integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous">
             </script>
