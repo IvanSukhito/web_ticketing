@@ -84,13 +84,15 @@ class AcaraUserController extends Controller
         // $validateQty = Transaction::where('acara_id', $acara->id)->where('user_id', $user->id)->get();
         $validateQty = Auth::user()->transactions->where('acara_id', $acara->id)->sum('kuantitas');
         // dd($validateQty);
-        // Buat transaksi
+        // user yang mempunyai mendaftar acara_id tersebut dan menjumlahkan kuantitas + req quantity dari form > maksimal tiket dari table tiket
         if ($validateQty + $request->quantity > $ticket->max_buy) {
             return back()->withErrors(['quantity' => 'Jumlah tiket melebihi batas maksimal pembelian.']);
         }
         // 5(ticket->quantity)5-1 = 4 (remaining ticket)
         // 3 (req->quantity), 5-3= 2 (remaining ticket)
-        if ($request->quantity >  $remainingTickets) {
+        if ($remainingTickets == 0) {
+            return back()->withErrors(['quantity' => 'Tiket Stok habis']);
+        } elseif ($request->quantity >  $remainingTickets) {
             return back()->withErrors(['quantity' => 'Tiket yang tersedia hanya ' . $remainingTickets . ' tiket.']);
         } elseif ($request->quantity <= $remainingTickets) {
             $transaction = Transaction::create([
@@ -106,6 +108,22 @@ class AcaraUserController extends Controller
                 'status' => 'Unpaid',
             ]);
         }
+        // if (!($request->quantity > $remainingTickets)) {
+        //     $transaction = Transaction::create([
+        //         'acara_id' => $acara->id,
+        //         'user_id' => auth()->user()->id, // pastikan user sudah login
+        //         'name' => $request->name,
+        //         'phone_number' => $request->phone_number,
+        //         'address' => $request->address,
+        //         'email' => $request->email,
+        //         'kuantitas' => $request->quantity,
+        //         'total_price' => $total_price,
+        //         'payment_method' => $request->payment,
+        //         'status' => 'Unpaid',
+        //     ]);
+        // } elseif ($request->quantity > $remainingTickets) {
+        //     return back()->withErrors(['quantity' => 'Tiket yang tersedia hanya ' . $remainingTickets . ' tiket.']);
+        // }
 
         // $transaction = Transaction::create([
         //     'acara_id' => $acara->id,
