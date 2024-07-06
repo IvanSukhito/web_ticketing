@@ -43,24 +43,24 @@ class AcaraController extends Controller
     {
 
         // dd($request->all());
-
-        $acaras = new Acara;
-        $acaras->name = $request->name;
-        $acaras->description = $request->description;
-        $acaras->latitude = $request->latitude ?? null;
-        $acaras->longitude = $request->longitude ?? null;
-        // $acaras->photos = $request->photos;
-        $acaras->namaPelaksana = $request->namaPelaksana;
-        $acaras->lokasi = $request->lokasi;
-        $acaras->waktu = $request->waktu;
-        $acaras->category_id = $request->category_id;
+        $request->validate([
+         
+            'files' => 'required',
+            'description' => 'required',
+            'name' => 'required',
+            'namaPelaksana' => 'required',
+            'lokasi' => 'required',
+            'waktu' => 'required',
+            'category_id' => 'required',
+            'image_content'   => 'required',
+        ]);
+       
         $slug = $request->slug ?? Str::slug($request->name);
 
         $request->merge([
             'slug' => Str::slug($request->name),
 
         ]);
-
 
         if ($request->hasFile('files')) {
             $photos = [];
@@ -72,14 +72,26 @@ class AcaraController extends Controller
                 'photos' => $photos
             ]);
         }
+        if ($request->hasFile('image_content')) {
+            $imgPath = $request->file('image_content')->store('acaras/image_content', 'public');  
+        }
+        $saveData = [
+            'name' => $request->name,
+            'deskripsi' => $request->description,
+            'latitude' => $request->latitude, 
+            'longitude' => $request->longitude, 
+            'photos' => $request->photos,
+            'slug' => $request->slug,
+            'image_content' => $imgPath,
+            'namaPelaksana' => $request->namaPelaksana,
+            'lokasi' => $request->lokasi,
+            'waktu' => $request->waktu,
+            'category_id' => $request->category_id
+        ];
 
-
-
-        $acara = Acara::create($request->except('files'));
-        // $users = User::all();
-        // Notification::send($users, new userNotification($acara));
-
-        //return to index
+       // dd($saveData);
+        Acara::create($saveData);
+        
         return redirect()->route('admin.acara.index')->with('success', 'Acara berhasil di buat ');
     }
     public function edit(Acara $acara)
@@ -126,7 +138,7 @@ class AcaraController extends Controller
             $acara->update($validated);
 
             DB::commit();
-            return redirect()->route('acara.index')->with('success', 'Acara berhasil diubah');
+            return redirect()->route('admin.acara.index')->with('success', 'Acara berhasil diubah');
         } catch (\Exception $e) {
             DB::rollBack();
             $error = ValidationException::withMessages([
@@ -143,6 +155,6 @@ class AcaraController extends Controller
     {
         $acara->delete();
         // dd($acara);
-        return redirect()->route('acara.index')->with('success', 'Acara berhasil di hapus');
+        return redirect()->route('admin.acara.index')->with('success', 'Acara berhasil di hapus');
     }
 }

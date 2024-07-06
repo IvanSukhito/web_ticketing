@@ -12,7 +12,7 @@ class Acara extends Model
     protected $fillable = [
         'name',
         'slug',
-        'description',
+        'deskripsi',
         'photos',
         'image_content',
         'namaPelaksana',

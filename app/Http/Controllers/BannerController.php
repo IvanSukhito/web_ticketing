@@ -51,7 +51,7 @@ class BannerController extends Controller
                 $iconPath = $request->file('img')->store('banner', 'public');
                 $validated['img'] = $iconPath;
             }
-
+            dd($validated);
             $newCategory = Banner::create($validated);
 
             DB::commit();

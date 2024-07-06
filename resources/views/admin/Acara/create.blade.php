@@ -62,7 +62,7 @@
                             
                             <div class="form-group col-md-6">
                                 <label for="exampleInputEmail1">Latitude</label>
-                                <input name="laitude" type="text" class="form-control" id="inputLatitude"  aria-describedby="latitude" placeholder="opsional latitude">
+                                <input name="latitude" type="text" class="form-control" id="inputLatitude"  aria-describedby="latitude" placeholder="opsional latitude">
     
                             </div>
                             <div class="form-group col-md-6">
