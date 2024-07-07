@@ -14,4 +14,8 @@ class Transaction extends Model
     {
         return $this->belongsTo(User::class);
     }
+    public function Acara()
+    {
+        return $this->belongsTo(Acara::class);
+    }
 }

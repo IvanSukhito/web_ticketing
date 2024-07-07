@@ -23,10 +23,11 @@
         <link rel="stylesheet" href="{{ asset('css/frontend/swiper-bundle.min.css') }}">
         <link rel="stylesheet" href="{{ asset('css/frontend/details.css') }}">
         <link rel="stylesheet" href="{{ asset('css/frontend/event_details.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/frontend/user_transaction.css') }}">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 
         <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
-                                                    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"> -->
+                                                                integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"> -->
 
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -85,7 +86,7 @@
                                         Logout
                                     </a>
                                     <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item" href="#">Acara Kamu </a>
+                                    <a class="dropdown-item" href="{{ route('myTransaction') }}">My Transaction </a>
 
 
 

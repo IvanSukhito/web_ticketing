@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\Acara;
+use App\Models\User;
 use App\Models\Category;
 use App\Models\Ticket;
 use App\Models\Transaction;
@@ -158,5 +159,19 @@ class AcaraUserController extends Controller
         // dd($getTransaction);
 
         return redirect()->route('home')->with('success', 'Transaction created successfully.');
+    }
+    public function myTransaction()
+    {
+
+        $user = Auth::user();
+        //$transactions = $user->transactions()->get();
+
+        $transactions = $user->transactions()->paginate(10);
+
+
+        // dd($transaction);
+        return view('vendor-client.transaction.user_transaction', [
+            'transactions' => $transactions,
+        ]);
     }
 }
