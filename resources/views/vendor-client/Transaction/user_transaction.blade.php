@@ -3,7 +3,7 @@
 @section('content')
     <div>
         <header>
-            <nav>
+            <nav class = "home-custom">
                 <a href="{{ route('home') }}">Home</a>
             </nav>
         </header>
@@ -21,7 +21,8 @@
                                 <tr>
                                     <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">ID
                                     </th>
-                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Thumbnail
+                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                        Thumbnail
                                     </th>
                                     <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
                                         Name </th>

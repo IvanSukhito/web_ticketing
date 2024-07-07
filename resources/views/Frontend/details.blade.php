@@ -92,8 +92,21 @@
                         <hr>
                         <div class="d-flex justify-content-between align-items-center">
                             <div>
-                                <p class="custom-card-title ">{{ $acara->ticket->name }}</p>
-                                <p class="custom-card-price ">Rp {{ number_format($acara->ticket->harga, 0, ',', '.') }}
+
+                                <p class="custom-card-title ">
+                                    @if ($acara->ticket)
+                                        {{ $acara->ticket->name }}
+                                    @else
+                                        Tiket tidak tersedia
+                                    @endif
+                                </p>
+                                <p class="custom-card-price ">
+                                    @if ($acara->ticket)
+                                        Rp
+                                        {{ number_format($acara->ticket->harga, 0, ',', '.') ?? 'Tiket tidak tersedia' }}
+                                    @else
+                                        Tiket tidak tersedia
+                                    @endif
                                 </p>
 
                             </div>
