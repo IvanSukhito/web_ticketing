@@ -44,7 +44,7 @@ class AcaraController extends Controller
 
         // dd($request->all());
         $request->validate([
-         
+
             'files' => 'required',
             'description' => 'required',
             'name' => 'required',
@@ -54,7 +54,7 @@ class AcaraController extends Controller
             'category_id' => 'required',
             'image_content'   => 'required',
         ]);
-       
+
         $slug = $request->slug ?? Str::slug($request->name);
 
         $request->merge([
@@ -65,21 +65,31 @@ class AcaraController extends Controller
         if ($request->hasFile('files')) {
             $photos = [];
             foreach ($request->file('files') as $file) {
-                $photos[] = $file->store('acaras', 'public');
+                // $photos[] = $file->store('acaras', 'public');
+
+                // $photos[] = str_replace('/', '\\', $file->store('acaras', 'public'));
+                $path = $file->store('acaras', 'public');
+                $path = str_replace('/', '\\', $path); // Ganti slash dengan backslash
+                $path = preg_replace('/\\\\+/', '\\', $path); // Hapus backslash ganda
+                $photos[] = $path; // Simpan path dengan satu backslash
             }
 
             $request->merge([
                 'photos' => $photos
             ]);
         }
+        // if ($request->hasFile('image_content')) {
+        //     $imgPath = $request->file('image_content')->store('acaras/image_content', 'public');
+        // }
         if ($request->hasFile('image_content')) {
-            $imgPath = $request->file('image_content')->store('acaras/image_content', 'public');  
+            $imgPath = str_replace('/', '\\', $request->file('image_content')->store('acaras/image_content', 'public'));
+            $imgPath = preg_replace('/\\\\+/', '\\', $imgPath); // Hapus backslash ganda
         }
         $saveData = [
             'name' => $request->name,
             'deskripsi' => $request->description,
-            'latitude' => $request->latitude, 
-            'longitude' => $request->longitude, 
+            'latitude' => $request->latitude,
+            'longitude' => $request->longitude,
             'photos' => $request->photos,
             'slug' => $request->slug,
             'image_content' => $imgPath,
@@ -89,9 +99,9 @@ class AcaraController extends Controller
             'category_id' => $request->category_id
         ];
 
-       // dd($saveData);
+        // dd($saveData);
         Acara::create($saveData);
-        
+
         return redirect()->route('admin.acara.index')->with('success', 'Acara berhasil di buat ');
     }
     public function edit(Acara $acara)
@@ -124,7 +134,7 @@ class AcaraController extends Controller
             if ($request->hasFile('files')) {
                 $getNewPhoto = [];
                 foreach ($validated['files'] as $photo) {
-                    $getNewPhoto[] = $photo->store('acaras', 'public');
+                    $getNewPhoto[] = str_replace('/', '\\', $photo->store('acaras', 'public'));
                 }
                 $photos = $getNewPhoto;
             } else {

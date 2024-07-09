@@ -51,7 +51,9 @@ class Acara extends Model
     {
         $photos = $this->photos;
         if ($photos && !empty($photos)) {
-            return Storage::url($photos[0]);
+            $photoPath = str_replace('\\', '/', $photos[0]);
+
+            return Storage::url($photoPath);
         }
 
         return asset('img/images.jpg');

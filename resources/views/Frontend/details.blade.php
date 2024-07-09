@@ -22,18 +22,23 @@
 
                 <article class="blog-post">
                     <h2 class="blog-post-title">Description Events</h2>
-                    <h4>Acara {{ $acara->category->name }}</h1>
-                        <p class="blog-post-meta">{{ $acara->waktu->format('d-m-Y') }} </p>
+                    @if (isset($acara->category) && isset($acara->category->name))
+                        <h4>Acara {{ $acara->category->name }}</h4>
+                    @else
+                        <h4>Acara : No Category</h1>
+                    @endif
 
-                        <p>{{ $acara->description }}</p>
-                        <hr>
-                        <p>Map</p>
-                        <iframe width="600" height="450" style="border:0" loading="lazy" allowfullscreen
-                            referrerpolicy="no-referrer-when-downgrade"
-                            src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d7933.923513599259!2d106.80766924932085!3d-6.135840833655163!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zNsKwMDgnMDYuMiJTIDEwNsKwNDgnNTAuMCJF!5e0!3m2!1sid!2sid!4v1720220964328!5m2!1sid!2sid{{ $acara->longitude }}!3d{{ $acara->latitude }}!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2z0KHQsNCx0LjQvNCw0Y8g0LTQsNC60LDRhtC40Y8!5e0!3m2!1sen!2sid!4v1600962355748!5m2!1sen!2sid">
-                        </iframe>
-                        <h2>Lokasi</h2>
-                        <p class = "text-uppercase">{{ $acara->lokasi }}</p>
+                    <p class="blog-post-meta">{{ $acara->waktu->format('d-m-Y') }} </p>
+
+                    <p>{{ $acara->description }}</p>
+                    <hr>
+                    <p>Map</p>
+                    <iframe width="600" height="450" style="border:0" loading="lazy" allowfullscreen
+                        referrerpolicy="no-referrer-when-downgrade"
+                        src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d7933.923513599259!2d106.80766924932085!3d-6.135840833655163!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zNsKwMDgnMDYuMiJTIDEwNsKwNDgnNTAuMCJF!5e0!3m2!1sid!2sid!4v1720220964328!5m2!1sid!2sid{{ $acara->longitude }}!3d{{ $acara->latitude }}!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2z0KHQsNCx0LjQvNCw0Y8g0LTQsNC60LDRhtC40Y8!5e0!3m2!1sen!2sid!4v1600962355748!5m2!1sen!2sid">
+                    </iframe>
+                    <h2>Lokasi</h2>
+                    <p class = "text-uppercase">{{ $acara->lokasi }}</p>
                 </article>
 
                 <article class="blog-post">

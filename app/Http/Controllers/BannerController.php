@@ -7,6 +7,7 @@ use App\Models\Banner;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\ValidationException;
+
 class BannerController extends Controller
 {
     /**
@@ -19,7 +20,6 @@ class BannerController extends Controller
         return view('admin.Banner.index', [
             'getBanner' => $banner ?? ''
         ]);
-     
     }
 
     /**
@@ -28,8 +28,7 @@ class BannerController extends Controller
     public function create()
     {
         //
-            return view('admin.Banner.create');
-        
+        return view('admin.Banner.create');
     }
 
     /**
@@ -42,7 +41,7 @@ class BannerController extends Controller
         $validated = $request->validate([
             'name' => 'required|string|max:255',
             'status' => 'required',
-            'img' =>'required|image|mimes:png,jpg,svg',
+            'img' => 'required|image|mimes:png,jpg,svg',
         ]);
         DB::beginTransaction();
 
@@ -51,7 +50,7 @@ class BannerController extends Controller
                 $iconPath = $request->file('img')->store('banner', 'public');
                 $validated['img'] = $iconPath;
             }
-            dd($validated);
+            // dd($validated);
             $newCategory = Banner::create($validated);
 
             DB::commit();
@@ -106,7 +105,7 @@ class BannerController extends Controller
                 //dd($iconPath);
                 $validated['img'] = $iconPath;
             }
-            $updateBanner = Banner::where('id', $id)->first();   
+            $updateBanner = Banner::where('id', $id)->first();
             //dd(isset($validated['img']));      
             //cek kalo ada kategori lama dan icon yang diganti maka apus icon lama
             if (isset($updateBanner['img']) == isset($validated['img'])) {
@@ -147,25 +146,26 @@ class BannerController extends Controller
         // dd($banner);
         return redirect()->route('admin.banners.index')->with('success', 'Banner berhasil dihapus.');
     }
-    public function updatePriority(string $id){
-        
-       
+    public function updatePriority(string $id)
+    {
+
+
         // dd($id);
-        $getBanner = Banner::where('id',$id)->first();
-        if($getBanner->prioritas == 0){
-           
+        $getBanner = Banner::where('id', $id)->first();
+        if ($getBanner->prioritas == 0) {
+
             //select prioritas lama yg 1 jadi ke 0
             $getBannerOld = Banner::where('prioritas', 1)->first();
-            if(isset($getBannerOld)){
+            if (isset($getBannerOld)) {
                 $getBannerOld->update([
-                    'prioritas' => 0 
-                 ]);
+                    'prioritas' => 0
+                ]);
             }
-             //update prioritas baru
+            //update prioritas baru
             $getBanner->update(['prioritas' => 1]);
             //return view
             return redirect()->route('admin.banners.index')->with('success', 'Prioritas berhasil diubah.');
-        }else{
+        } else {
             //prioritas tidak berubah
             return redirect()->route('admin.banners.index');
         }

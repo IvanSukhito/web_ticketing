@@ -31,7 +31,12 @@
                     <p><i class="fas fa-clock"> </i>{{ $acara->waktu->format('H:i') }}</p>
                     <p><i class = "fas fa-map-marker-alt"></i> {{ $acara->lokasi }}</p>
                     <hr>
-                    <p><strong>Stok Tiket :</strong> {{ $acara->ticket->kuantitas }}</p>
+                    @if ($acara->ticket->kuantitas)
+                        <p><strong>Stok Tiket :</strong> {{ $acara->ticket->kuantitas }}</p>
+                    @else
+                        <p><strong>Stok Tiket :</strong> Tiket Kosong</p>
+                    @endif
+
                     <p><strong>Max Pembelian Tiket :</strong> {{ $acara->ticket->max_buy }}/user</p>
                     <p><strong>Harga Tiket:</strong> Rp {{ number_format($acara->ticket->harga, 0, ',', '.') }}</p>
 

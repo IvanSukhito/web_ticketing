@@ -27,7 +27,7 @@
                         </div>
                         <div class="form-group">
                             <label for="description">Description</label>
-                            <textarea name="description" id="description" class="form-control" placeholder="Deskripsi">{{ $acara->description }}</textarea>
+                            <textarea name="description" id="description" class="form-control" placeholder="Deskripsi">{{ $acara->deskripsi }}</textarea>
                         </div>
                         <div class="form-group">
                             <label for="pelaksana">Nama Pelaksana</label>
