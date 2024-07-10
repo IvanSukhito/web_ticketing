@@ -108,7 +108,7 @@
                                 <p class="custom-card-price ">
                                     @if ($acara->ticket)
                                         
-                                        <p style="color:blue;">Rp {{ number_format($acara->ticket->harga, 0, ',', '.') ?? 'Tiket tidak tersedia' }}
+                                        <p style="color:red; font-weight:bold;">Rp {{ number_format($acara->ticket->harga, 0, ',', '.') ?? 'Tiket tidak tersedia' }}
                                     @else
                                         <p style="color:red;">Harga tidak tersedia</p>
                                     @endif

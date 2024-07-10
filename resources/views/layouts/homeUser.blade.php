@@ -115,6 +115,20 @@
             </div>
         </header>
         @yield('content')
+        <footer class="d-flex flex-wrap justify-content-center align-items-center py-3 my-4 border-top">
+        <div class="col-md-4 d-flex flex-column align-items-center">
+           
+              
+        
+            <span class="text-muted">
+            <svg class="bi" width="30" height="24">
+                    <image width="30" height="24" xlink:href="{{ asset('img/ticoz.png') }}"></image>
+                </svg>    
+                © Ticoz 2024 Company, Indonesia
+            </span>
+        </div>
+        </footer>
+
 
         @section('script-bottom')
             <script>

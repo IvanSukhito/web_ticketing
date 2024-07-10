@@ -74,7 +74,7 @@ class HomeController extends Controller
     public function category(Category $category)
     {
         $acaras = Acara::where('category_id', $category->id)->with('category')->get();
-
+      
         return view('frontend.category', [
             'category' => $category,
             'acaras' => $acaras,
