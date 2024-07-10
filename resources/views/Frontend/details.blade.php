@@ -17,28 +17,31 @@
         <div class="row g-5">
             <div class="col-md-8">
                 <h3 class="pb-4 mb-4 fst-italic border-bottom">
-                    From the Firehose
+                    {{$acara->name}}
                 </h3>
 
                 <article class="blog-post">
                     <h2 class="blog-post-title">Description Events</h2>
                     @if (isset($acara->category) && isset($acara->category->name))
-                        <h4>Acara {{ $acara->category->name }}</h4>
+                          <p class="blog-post-meta"><b>Acara : </b> {{ $acara->category->name }} - {{ $acara->waktu->format('d-m-Y') }} </p>
                     @else
-                        <h4>Acara : No Category</h1>
+                        
                     @endif
 
-                    <p class="blog-post-meta">{{ $acara->waktu->format('d-m-Y') }} </p>
+                  
 
-                    <p>{{ $acara->description }}</p>
+                    <p>{{ $acara->deskripsi }}</p>
                     <hr>
-                    <p>Map</p>
-                    <iframe width="600" height="450" style="border:0" loading="lazy" allowfullscreen
-                        referrerpolicy="no-referrer-when-downgrade"
-                        src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d7933.923513599259!2d106.80766924932085!3d-6.135840833655163!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zNsKwMDgnMDYuMiJTIDEwNsKwNDgnNTAuMCJF!5e0!3m2!1sid!2sid!4v1720220964328!5m2!1sid!2sid{{ $acara->longitude }}!3d{{ $acara->latitude }}!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2z0KHQsNCx0LjQvNCw0Y8g0LTQsNC60LDRhtC40Y8!5e0!3m2!1sen!2sid!4v1600962355748!5m2!1sen!2sid">
-                    </iframe>
-                    <h2>Lokasi</h2>
-                    <p class = "text-uppercase">{{ $acara->lokasi }}</p>
+                    <p><b>Location Map : </b>{{$acara->lokasi}}</p>
+                    @if (isset($acara->lokasi) || isset($acara->longitude))
+                    <div id="directMap">
+                          
+                    </div>
+                    @else
+                    <p>Map Not available</p>
+                    @endif
+
+                   
                 </article>
 
                 <article class="blog-post">
@@ -93,7 +96,7 @@
             <div class="col-md-4">
                 <div class="position-sticky" style="top: 2rem;">
                     <div class="custom-card">
-                        <h5 class="checkout-out">Check Out Tiket</h5>
+                        <h5 class="checkout-out">Check Out</h5>
                         <hr>
                         <div class="d-flex justify-content-between align-items-center">
                             <div>
@@ -107,31 +110,26 @@
                                 </p>
                                 <p class="custom-card-price ">
                                     @if ($acara->ticket)
-                                        Rp
-                                        {{ number_format($acara->ticket->harga, 0, ',', '.') ?? 'Tiket tidak tersedia' }}
+                                        
+                                        <p style="color:blue;">Rp {{ number_format($acara->ticket->harga, 0, ',', '.') ?? 'Tiket tidak tersedia' }}
                                     @else
-                                        Tiket tidak tersedia
+                                        <p style="color:red;">Harga tidak tersedia</p>
                                     @endif
                                 </p>
 
                             </div>
                         </div>
+                        @if ($acara->ticket)
                         {{-- <div class ="d-flex justify-content-end mt-3 "> --}}
                         <a href="{{ route('checkout', $acara->slug) }}" class="btn btn-primary ">Buy
                             Ticket</a>
                         {{-- </div> --}}
+                        @else
+                                       
+                        @endif
+                     
                     </div>
-
-
-
-                    <div class="p-4">
-                        <h4 class="fst-italic">Elsewhere</h4>
-                        <ol class="list-unstyled">
-                            <li><a href="#">GitHub</a></li>
-                            <li><a href="#">Twitter</a></li>
-                            <li><a href="#">Facebook</a></li>
-                        </ol>
-                    </div>
+                    <!-- isi nanti kalo ada bisa banyak tiket -->
                 </div>
 
             </div>
@@ -186,3 +184,47 @@
 
     </main>
 @endsection
+@section('script-bottom')
+    @parent
+    <script type="text/javascript">
+         let dataLokasi = "<?= $acara->lokasi ?>";
+         let dataLatitude = "<?= $acara->latitude ?>";
+         let dataLongitude = "<?= $acara->longitude ?>";
+         console.log(dataLongitude);
+         $(document).ready(function() {
+
+            var lokasiStr = dataLokasi.replace(/\s+/g, '+').toLowerCase();
+           
+                    if(!dataLatitude && !dataLongitude){
+
+                         console.log('lokasi aja');
+                         hanyaLokasi();
+                          // kalo ga ada timpa iframe map pake input lokasi aja
+
+                     }else{
+                         console.log('ada latitude');
+                         adaLongLat();
+                     // timpa iframe map pake longitude sama laitude aja
+                     }
+                function hanyaLokasi(){
+
+                    let html = '<iframe width="100%" height="600" src="https://maps.google.com/maps?width=100%&amp;height=600&amp;hl=en&amp;q='+lokasiStr+'&amp;ie=UTF8&amp;t=&amp;z=14&amp;iwloc=B&amp;output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe><br />';
+                    
+                    $('#directMap').html(html);
+                    
+                    return false;
+                }
+                function adaLongLat(){
+                
+                    let html = '<iframe width="100%" height="600" src="https://maps.google.com/maps?width=100%&amp;height=600&amp;hl=en&amp;coord='+dataLatitude+','+dataLongitude+'&amp;q='+lokasiStr+'&amp;ie=UTF8&amp;t=&amp;z=14&amp;iwloc=B&amp;output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe><br />';
+                    
+                    $('#directMap').html(html);
+                    
+                    return false;
+                }
+         });
+
+        console.log(dataLokasi);
+    </script>
+@stop
+
