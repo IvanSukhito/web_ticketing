@@ -22,7 +22,7 @@ class AcaraUserController extends Controller
         $ticket = Ticket::where('acara_id', $acara->id)->first();
         $category = $acara->category ?? null; // Mengambil kategori terkait
         //rekomend nanti bisa dri kategori acara yg sesuai
-        $getRecomendAcara = Acara::orderBy('waktu','ASC')->where('category_id', $category->id ?? null)->whereDate('waktu', '>', date('Y-m-d'))->limit(2)->get();
+        $getRecomendAcara = Acara::orderBy('waktu','ASC')->where('id', '!=', $acara->id)->where('category_id', $category->id ?? null)->whereDate('waktu', '>', date('Y-m-d'))->limit(2)->get();
         //dd($getRecomendAcara);
         return view('frontend.details', compact('acara', 'category','getRecomendAcara'));
     }

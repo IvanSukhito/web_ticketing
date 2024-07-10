@@ -13,6 +13,7 @@ class Acara extends Model
         'name',
         'slug',
         'deskripsi',
+        'description',
         'photos',
         'image_content',
         'namaPelaksana',

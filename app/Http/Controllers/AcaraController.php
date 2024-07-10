@@ -52,7 +52,7 @@ class AcaraController extends Controller
             'lokasi' => 'required',
             'waktu' => 'required',
             'category_id' => 'required',
-            'image_content'   => 'required',
+            'image_content' => 'required',
         ]);
 
         $slug = $request->slug ?? Str::slug($request->name);
@@ -87,7 +87,7 @@ class AcaraController extends Controller
         }
         $saveData = [
             'name' => $request->name,
-            'deskripsi' => $request->description,
+            'description' => $request->description,
             'latitude' => $request->latitude,
             'longitude' => $request->longitude,
             'photos' => $request->photos,
@@ -99,7 +99,7 @@ class AcaraController extends Controller
             'category_id' => $request->category_id
         ];
 
-        // dd($saveData);
+        //dd($saveData);
         Acara::create($saveData);
 
         return redirect()->route('admin.acara.index')->with('success', 'Acara berhasil di buat ');

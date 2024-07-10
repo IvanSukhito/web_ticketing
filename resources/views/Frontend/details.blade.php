@@ -2,14 +2,16 @@
 
 @section('content')
     <main class="container" style="padding-top:20px;">
-        <div class="p-4 p-md-5 mb-4 text-white rounded bg-dark">
-            <div class="col-md-6 px-0">
-                <img src="{{ $acara->thumbnail }}" alt="">
-                <h1 class="display-4 fst-italic">{{ $acara->name }}</h1>
-                <p class="lead my-3">{{ $acara->description }}</p>
+    <div class="p-4 p-md-5 mb-4 text-white rounded bg-dark" style="position: relative; width: 100%; height: 100%; overflow: hidden;">
+    <div class="col-md-6 px-0" style="position: relative; width: 100%; height: 100%;">
+        @if(isset($acara->image_content))
+        <img src="{{ Storage::url($acara->image_content) }}" alt="" style="width: 100%; object-fit: cover;">
+        @else
+        <img src="{{ Storage::url('acaras/image_content/no-image.png') }}" alt="" style="width: 100%; object-fit: cover;">
+        @endif
+    </div>
+</div>
 
-            </div>
-        </div>
 
 
 
@@ -30,7 +32,7 @@
 
                   
 
-                    <p>{{ $acara->deskripsi }}</p>
+                    <p>{{ $acara->description }}</p>
                     <hr>
                     <p><b>Location Map : </b>{{$acara->lokasi}}</p>
                     @if (isset($acara->lokasi) || isset($acara->longitude))
@@ -85,12 +87,7 @@
                         highly repetitive body text used throughout.</p>
                 </article>
 
-                <nav class="blog-pagination" aria-label="Pagination">
-                    <a class="btn btn-outline-primary" href="#">Older</a>
-                    <a class="btn btn-outline-secondary disabled" href="#" tabindex="-1"
-                        aria-disabled="true">Newer</a>
-                </nav>
-
+               
             </div>
 
             <div class="col-md-4">
@@ -148,9 +145,8 @@
                         @endif
                         <h3 class="mb-0">{{$rekomendasi->name}}</h3>
                         <div class="mb-1 text-muted">{{date('d-M-Y', strtotime($rekomendasi->waktu))}}</div>
-                        <p class="card-text mb-auto">This is a wider card with supporting text below as a natural lead-in to
-                            additional content.</p>
-                        <a href="#" class="stretched-link">Continue reading</a>
+                        <p class="card-text mb-auto">This is a event from lapaktiket.com </p>
+                        <a href="{{ route('detail', $rekomendasi->slug) }}" class="stretched-link">Continue reading</a>
                     </div>
                     <div class="col-auto d-none d-lg-block">
                     <svg class="bd-placeholder-img" width="200" height="250" xmlns="http://www.w3.org/2000/svg"
