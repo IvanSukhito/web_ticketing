@@ -107,6 +107,9 @@ class AcaraController extends Controller
     public function edit(Acara $acara)
     {
         $categories = Category::all();
+        // dd($acara->id);
+        // $acara = Acara::find($acara);
+        // dd($acara);
         return view('admin.acara.edit', compact('acara', 'categories'));
     }
 
@@ -121,7 +124,7 @@ class AcaraController extends Controller
             'longitude' => '',
             'waktu' => 'required|date',
             'category_id' => 'required|integer',
-            'files.*' => 'image|mimes:png,jpg,jpeg|max:2048' // Validasi untuk file gambar
+            // 'files.*' => 'image|mimes:png,jpg,jpeg|max:2048' // Validasi untuk file gambar
         ]);
 
         DB::beginTransaction();
@@ -145,6 +148,7 @@ class AcaraController extends Controller
 
             $validated['photos'] = $photos; // Set foto baru
 
+            dd($validated);
             $acara->update($validated);
 
             DB::commit();
