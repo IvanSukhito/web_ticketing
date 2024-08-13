@@ -4,7 +4,7 @@
     <head>
         @section('head')
         <meta charset="utf-8">
-        <title>LifeSure - Life Insurance Website Template</title>
+        <title>Ticoz</title>
         <meta content="width=device-width, initial-scale=1.0" name="viewport">
         <meta content="" name="keywords">
         <meta content="" name="description">
@@ -87,15 +87,18 @@
             <div class="container">
                 <nav class="navbar navbar-expand-lg navbar-light"> 
                     <a href="#" class="navbar-brand p-0">
-                        <h1 class="text-primary mb-0"><i class="fab fa-slack me-2"></i> LifeSure</h1>
-                        <!-- <img src="img/logo.png" alt="Logo"> -->
+                        <div class="d-flex align-items-center" style="padding-right:25px;">
+                            <img src="{{ asset('img/logo-ticoz.png') }}" alt="Your Logo"  style="height: 40px;">
+                            <h4 class="text-primary mb-0 ms-2">Ticoz</h4>
+                        </div>
+                        
                     </a>
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
                         <span class="fa fa-bars"></span>
                     </button>
                     <div class="navbar-nav w-100"> <!-- Make navbar full width -->
                         <div class="d-flex justify-content-start"> <!-- Align "Home" to the left -->
-                            <a href="index.html" class="nav-item nav-link active">Home</a>
+                            <a href="{{ url('/') }}" class="nav-item nav-link active">Home</a>
                         </div>
                         <div class="mx-auto d-flex justify-content-center"> <!-- Center other items -->
                             <a href="about.html" class="nav-item nav-link">About</a>
@@ -152,10 +155,10 @@
                                 <div class="col-md-6 col-lg-6 col-xl-5">
                                     <div class="footer-item">
                                         <a href="index.html" class="p-0">
-                                            <h3 class="text-white"><i class="fab fa-slack me-3"></i> LifeSure</h3>
+                                            <h3 class="text-white"><i class="fab fa-slack me-3"></i> Ticoz</h3>
                                             <!-- <img src="img/logo.png" alt="Logo"> -->
                                         </a>
-                                        <p class="text-white mb-4">Dolor amet sit justo amet elitr clita ipsum elitr est.Lorem ipsum dolor sit amet, consectetur adipiscing...</p>
+                                        <p class="text-white mb-4">Ticoz merupakan situs pembelian dan panjualan tiket akses semua acara</p>
                                         <div class="footer-btn d-flex">
                                             <a class="btn btn-md-square rounded-circle me-3" href="#"><i class="fab fa-facebook-f"></i></a>
                                             <a class="btn btn-md-square rounded-circle me-3" href="#"><i class="fab fa-twitter"></i></a>
@@ -294,7 +297,7 @@
                                 </div>
                                 <div class="d-flex flex-column ms-3 flex-shrink-0">
                                     <span>Call to Our Experts</span>
-                                    <a href="tel:+ 0123 456 7890"><span class="text-white">Free: + 0123 456 7890</span></a>
+                                    <a href="tel:+ 0123 456 7890"><span class="text-white">Contact Us</span></a>
                                 </div>
                             </div>
                         </div>
@@ -309,13 +312,7 @@
             <div class="container">
                 <div class="row g-4 align-items-center">
                     <div class="col-md-6 text-center text-md-end mb-md-0">
-                        <span class="text-body"><a href="#" class="border-bottom text-white"><i class="fas fa-copyright text-light me-2"></i>Your Site Name</a>, All right reserved.</span>
-                    </div>
-                    <div class="col-md-6 text-center text-md-start text-body">
-                        <!--/*** This template is free as long as you keep the below author’s credit link/attribution link/backlink. ***/-->
-                        <!--/*** If you'd like to use the template without the below author’s credit link/attribution link/backlink, ***/-->
-                        <!--/*** you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". ***/-->
-                        Designed By <a class="border-bottom text-white" href="https://htmlcodex.com">HTML Codex</a> Distributed By <a class="border-bottom text-white" href="https://themewagon.com">ThemeWagon</a>
+                        <span class="text-body"><a href="#" class="border-bottom text-white"><i class="fas fa-copyright text-light me-2"></i>Ticoz 2024</a>, Company, Indonesia</span>
                     </div>
                 </div>
             </div>
