@@ -17,9 +17,12 @@
 
         <!-- Icon Font Stylesheet -->
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"/>
+        
         <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
 
         <!-- Libraries Stylesheet -->
+        {{-- <link rel="stylesheet" href="{{ asset('css/frontend/style.css') }}"> --}}
+        <link rel="stylesheet" href="{{ asset('css/frontend/details.css') }}">
         <link rel="stylesheet" href="{{ asset('frontend/lib/animate/animate.min.css') }}"/>
         <link href="{{ asset('frontend/lib/lightbox/css/lightbox.min.css') }}" rel="stylesheet">
         <link href="{{ asset('frontend/lib/owlcarousel/assets/owl.carousel.min.css') }}" rel="stylesheet">
@@ -86,7 +89,7 @@
         <div class="container-fluid nav-bar px-0 px-lg-4 py-lg-0">
             <div class="container">
                 <nav class="navbar navbar-expand-lg navbar-light"> 
-                    <a href="#" class="navbar-brand p-0">
+                    <a href="{{ url('/') }}" class="navbar-brand p-0">
                         <div class="d-flex align-items-center" style="padding-right:25px;">
                             <img src="{{ asset('img/logo-ticoz.png') }}" alt="Your Logo"  style="height: 40px;">
                             <h4 class="text-primary mb-0 ms-2">Ticoz</h4>
@@ -113,12 +116,47 @@
                                 
                         
                     </div>
-                    <div class="d-none d-xl-flex flex-shrink-0 ps-4">
-                        <div class="d-flex justify-content-end"> <!-- Align "Sign In" and "Sign Up" to the right -->
-                            <a href="login.html" class="btn btn-outline-primary me-2">Sign In</a> <!-- Sign In button -->
-                            <a href="register.html" class="btn btn-primary">Sign Up</a> <!-- Sign Up button -->
+                    @guest
+                        
+                   
+                        <div class="d-none d-xl-flex flex-shrink-0 ps-4">
+                            <div class="d-flex justify-content-end"> <!-- Align "Sign In" and "Sign Up" to the right -->
+                            @if (Route::has('login'))
+                                <a href="{{ route('login') }}" class="btn btn-outline-primary me-2">Sign In</a> <!-- Sign In button -->
+                            @endif
+                            @if (Route::has('register'))
+
+                            <a href="{{ route('register') }}" class="btn btn-primary">Sign Up</a> <!-- Sign Up button -->
+                            @endif
+                            
+                            </div>
                         </div>
-                    </div>
+                        @else
+                        @if (Auth::check())
+                        <div class="icon-nav">
+                            <div class="icon-nav-list">
+                                <a href="#"><i data-feather="bell"></i></a>
+                            </div>
+                            <div class="Profile">
+                                <img src="{{ asset('img/profile.png') }}" alt="casey">
+                                <!-- Dropdown Button -->
+                                    <span >
+                                        {{ Auth::user()->name }}
+                                    </span>
+                                    
+                                    <a class="btn btn-outline-dark me-2" href="{{ route('logout') }}"
+                                    onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                    Logout
+                                    </a>
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                        @csrf
+                                    </form>
+                               
+                            </div>
+                        </div>
+                        
+                    @endif
+                        @endguest
                 </nav>
             </div>
         </div>
@@ -142,6 +180,22 @@
             </div>
         </div>
         <!-- Modal Search End -->
+        <div class="modal fade" id="searchModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-fullscreen">
+                <div class="modal-content rounded-0">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Search by keyword</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body d-flex align-items-center bg-primary">
+                        <div class="input-group w-75 mx-auto d-flex">
+                            <input type="search" class="form-control p-3" placeholder="keywords" aria-describedby="search-icon-1">
+                            <span id="search-icon-1" class="btn bg-light border nput-group-text p-3"><i class="fa fa-search"></i></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
         @yield('content')
 
  
@@ -285,6 +339,7 @@
                             <div class="position-relative rounded-pill mb-4">
                                 <input class="form-control rounded-pill w-100 py-3 ps-4 pe-5" type="text" placeholder="Enter your email">
                                 <button type="button" class="btn btn-primary rounded-pill position-absolute top-0 end-0 py-2 mt-2 me-2">SignUp</button>
+                               
                             </div>
                             <div class="d-flex flex-shrink-0">
                                 <div class="footer-btn">
@@ -332,8 +387,8 @@
         <script src="{{ asset('frontend/lib/easing/easing.min.js') }}"></script>
         <script src="{{ asset('frontend/lib/waypoints/waypoints.min.js') }}"></script>
         <script src="{{ asset('frontend/lib/counterup/counterup.min.js') }}"></script>
-        <script src="{{ asset('frontend/lib/lightbox/js/lightbox.min.') }}js"></script>
-        <script src="{{ asset('frontend/lib/owlcarousel/owl.carousel.min.') }}js"></script>
+        <script src="{{ asset('frontend/lib/lightbox/js/lightbox.min.js') }}"></script>
+        <script src="{{ asset('frontend/lib/owlcarousel/owl.carousel.min.js') }}"></script>
         
 
         <!-- Template Javascript -->

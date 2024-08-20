@@ -10157,8 +10157,8 @@ fieldset:disabled .btn {
 }
 
 .py-5 {
-  padding-top: 3rem !important;
-  padding-bottom: 3rem !important;
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
 }
 
 .py-6 {

@@ -1,4 +1,4 @@
-@extends('layouts.homeUser')
+@extends('layouts.frontend')
 
 @section('content')
     <main class="container" style="padding-top:20px;">

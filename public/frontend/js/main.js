@@ -33,13 +33,13 @@
         margin: 0,
         stagePadding: 0,
         autoplay: true,
-        smartSpeed: 500,
+        smartSpeed: 1000,
         dots: true,
         loop: true,
         nav : true,
         navText : [
-            '<i class="bi bi-arrow-left"></i>',
-            '<i class="bi bi-arrow-right"></i>'
+            '<i class="bi bi-arrow-right"></i>',
+            '<i class="bi bi-arrow-left"></i>'
         ],
     });
 
@@ -55,8 +55,8 @@
         margin: 25,
         nav : true,
         navText : [
-            '<i class="fa fa-arrow-right"></i>',
-            '<i class="fa fa-arrow-left"></i>'
+            '<i class="fa fa-arrow-left"></i>',
+            '<i class="fa fa-arrow-right"></i>'
         ],
         responsiveClass: true,
         responsive: {

@@ -3,9 +3,84 @@
 
 @section('content')
 
-<br>
-Isi 
-<br>
+<div class="header-carousel owl-carousel">
+    @forelse ($banner as $key => $banner)
+            <div class="container">
+                <img src="{{ Storage::url($banner->img) }}" class="d-block w-100" alt="...">
+            </div>
+    @empty
+    <div class="carousel-item">
+        <img src="{{ asset('img/slider/2.png') }}" class="d-block w-100" alt="...">
+    </div>
+    @endforelse
+    
+                
+  
+</div>
+
+       <!-- Service Start -->
+       <div class="container-fluid service ">
+        <div class="container py-5">
+            <div class="text-center mx-auto wow fadeInUp" data-wow-delay="0.2s" style="max-width: 800px;">
+                <h4 class="text-primary">Our Category</h4>
+                <h6 class="display-4 mb-4">We Provide Best Services</h6>
+               
+                <div class="card1">
+                    @forelse ($categories as $category)
+                        <div class="card-info">
+                            <a href="{{ route('front.category', $category) }}">
+                                <img src="{{ Storage::url($category->icon) }}" alt="card">
+                                <p>{{ $category->name }}</p>
+                            </a>
+                        </div>
+                    @empty
+                        <p>Category Tidak tersedia</p>
+                    @endforelse
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Service End -->
+    <div class="container-fluid testimonial ">
+        <div class="container pb-5">
+            <div class="text-center mx-auto  wow fadeInUp" data-wow-delay="0.2s" style="max-width: 800px;">
+                <h4 class="text-primary">Recently Events</h4>
+            </div>
+            <div class="owl-carousel testimonial-carousel wow fadeInUp" data-wow-delay="0.2s">
+                @foreach ($acaras as $acara)
+                <div class="acara-item bg-light rounded">
+                    <div class="row g-0">
+                        <div class="col-4 col-lg-4 col-xl-3">
+                            <div class="h-100">
+                                <img src="{{ $acara->thumbnail }}" class="img-fluid h-100 rounded" style="object-fit: cover;" alt="{{ $acara->client_name }}">
+                            </div>
+                        </div>
+                        <div class="col-8 col-lg-8 col-xl-9">
+                            <div class="d-flex flex-column my-auto text-start p-4">
+                                <h4 class="text-dark mb-0">{{ $acara->name }}</h4>
+                                <p class="mb-3">{{ $acara->lokasi }}</p>
+                                <div class="d-flex text-primary mb-3">
+                                  
+                                   
+                              
+                                </div>
+                                <a href="{{ route('detail', $acara->slug) }}" class="btn btn-primary rounded-pill py-2 px-4">@lang('See More')</a>
+                    
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                @endforeach
+            </div>
+    
+            <!-- Owl Carousel Navigation -->
+          
+        </div>
+    </div>
+    
+    <!-- Include this script at the end of your page -->
+    
+    
 
 @endsection
 @section('script-bottom')
@@ -30,5 +105,38 @@ Isi
                 });
         });
     </script>
+    <script>
+        $(document).ready(function(){
+            $('.testimonial-carousel').owlCarousel({
+                loop: true,
+                margin: 10,
+                nav: true,
+                navText: [
+                    $('.owl-prev').html(),
+                    $('.owl-next').html()
+                ],
+                responsive: {
+                    0: {
+                        items: 1
+                    },
+                    600: {
+                        items: 2
+                    },
+                    1000: {
+                        items: 3
+                    }
+                }
+            });
+    
+            // Custom navigation events
+            $('.owl-prev').click(function() {
+                $('.testimonial-carousel').trigger('prev.owl.carousel');
+            });
+            $('.owl-next').click(function() {
+                $('.testimonial-carousel').trigger('next.owl.carousel');
+            });
+        });
+    </script>
+    
 
 @stop
