@@ -105,7 +105,16 @@
                         </div>
                         <div class="mx-auto d-flex justify-content-center"> <!-- Center other items -->
                             <a href="about.html" class="nav-item nav-link">About</a>
-                            <a href="service.html" class="nav-item nav-link">Services</a> <!-- Added "Services" text -->
+                            <div class="nav-item dropdown">
+                                <a href="#" class="nav-link" data-bs-toggle="dropdown">
+                                    <span class="dropdown-toggle">Categories</span>
+                                </a>
+                                <div class="dropdown-menu">
+                                    @foreach ($categories as $category)
+                                    <a href="{{ route('front.category', $category) }}" class="dropdown-item">{{ $category->name }}</a>
+                                    @endforeach
+                                </div>
+                            </div>
                             
                             <!-- Search form -->
                             <form action="{{ route('frontend.search') }}" method="GET" class="d-flex ms-3"> <!-- Optional: Add spacing with 'ms-3' -->

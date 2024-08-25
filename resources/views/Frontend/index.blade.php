@@ -19,27 +19,7 @@
 </div>
 
        <!-- Service Start -->
-       <div class="container-fluid service ">
-        <div class="container py-5">
-            <div class="text-center mx-auto wow fadeInUp" data-wow-delay="0.2s" style="max-width: 800px;">
-                <h4 class="text-primary">Our Category</h4>
-                <h6 class="display-4 mb-4">We Provide Best Services</h6>
-               
-                <div class="card1">
-                    @forelse ($categories as $category)
-                        <div class="card-info">
-                            <a href="{{ route('front.category', $category) }}">
-                                <img src="{{ Storage::url($category->icon) }}" alt="card">
-                                <p>{{ $category->name }}</p>
-                            </a>
-                        </div>
-                    @empty
-                        <p>Category Tidak tersedia</p>
-                    @endforelse
-                </div>
-            </div>
-        </div>
-    </div>
+       
     <!-- Service End -->
     <div class="container-fluid testimonial ">
         <div class="container pb-5">
