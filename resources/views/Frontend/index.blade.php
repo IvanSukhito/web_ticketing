@@ -18,11 +18,43 @@
   
 </div>
 
+<div class="container-fluid feature bg-light py-5">
+    <div class="container">
+        
+        <form>
+            <h1 class="display-4 mb-4 text-primary">Filter Whatever You Want</h1>
+            <br>
+            <div class="row ">
+                <div class="col-lg-12 col-xl-9">
+                    <div class="form-floating">
+                        <input type="date" class="form-control border-0" id="name" placeholder="Your Name">
+                        {{-- <label for="name">Tanggal </label> --}}
+                    </div>
+                </div>
+                <div class="col-lg-12 col-xl-3">
+                    <div class="form-floating">
+                        <select class="form-select border-0" id="harga" aria-label="Harga">
+                            <option selected>Pilih Harga</option>
+                            <option value="murah">Murah</option>
+                            <option value="sedang">Sedang</option>
+                            <option value="mahal">Mahal</option>
+                        </select>
+                        {{-- <label for="harga">Harga</label> --}}
+                    </div>
+                    
+                    
+                </div>
+              
+              
+            </div>
+        </form>
+    </div>
+</div>
        <!-- Service Start -->
        
     <!-- Service End -->
-    <div class="container-fluid testimonial ">
-        <div class="container pb-5">
+    <div class="container-fluid testimonial py-5">
+        <div class="container p-5">
             <div class="text-center mx-auto  wow fadeInUp" data-wow-delay="0.2s" style="max-width: 800px;">
                 <h4 class="text-primary">Recently Events</h4>
             </div>
