@@ -70,7 +70,11 @@
                         <div class="col-8 col-lg-8 col-xl-9">
                             <div class="d-flex flex-column my-auto text-start p-4">
                                 <h4 class="text-dark mb-0">{{ $acara->name }}</h4>
-                                <p class="mb-3">{{ $acara->lokasi }} - {{ $acara->tanggal }}</p>
+                                <p class="mb-3">{{ $acara->lokasi }}  - <span class="text-primary">{{ \Carbon\Carbon::parse($acara->waktu)->format('H:i') }}</span>
+                                </p>
+                                <p class="text-primary">
+                                    {{ \Carbon\Carbon::parse($acara->waktu)->format('l, d F Y') }}
+                                </p>
                                 <div class="d-flex text-primary mb-3">
                                   
                                    
