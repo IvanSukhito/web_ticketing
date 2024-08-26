@@ -284,31 +284,17 @@
                                 data-bs-toggle="dropdown" aria-expanded="false">
                                 <i class="fa fa-cog fixed-plugin-button-nav cursor-pointer"></i>
                             </a>
-                            <ul class="dropdown-menu  dropdown-menu-end  px-2 py-3 me-sm-n4"
-                                aria-labelledby="dropdownMenuButton">
-                                <li class="mb-2">
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST"
-                                        class="d-none">
-                                        @csrf
-                                    </form>
-                                    <a class="dropdown-item border-radius-md"ref="{{ route('logout') }}"
-                                        onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                        <div class="d-flex py-1">
-
-                                            <div class="d-flex flex-column justify-content-center">
-                                                <h6 class="text-sm font-weight-normal mb-1">
-                                                    <span class="font-weight-bold">Logout</span>
-
-                                                </h6>
-
-                                            </div>
-                                        </div>
-
-                                    </a>
-                                </li>
-
-                            </ul>
+                          
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                @csrf
+                            </form>
+                            <a class="dropdown-item border-radius-md" href="{{ route('logout') }}"
+                               onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                <div class="d-flex py-1">
+                                    <b>logout</b>
+                                </div>
+                            </a>
+                            
                         </li>
                     </ul>
                 </div>

@@ -25,6 +25,19 @@ class Handler extends ExceptionHandler
     {
         $this->reportable(function (Throwable $e) {
             //
+
         });
     }
+    public function render($request, Throwable $exception)
+    {
+    if ($this->isHttpException($exception)) {
+        switch ($exception->getStatusCode()) {
+            case 404:
+                return response()->view('Frontend.NotFound.404', [], 404);
+        }
+    }
+
+    return parent::render($request, $exception);
+    }
+
 }
