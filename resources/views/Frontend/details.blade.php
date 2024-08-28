@@ -1,16 +1,36 @@
 @extends('layouts.frontend')
 
+@section('head')
+<style>
+    .img-thumbnails {
+        border-radius: 15px; /* Rounded corners */
+        border: 2px solid #ddd; /* Border color and thickness */
+        max-width: 50%; 
+        height: auto; /* Maintain aspect ratio */
+    }
+
+    .img-custom {
+        width: 100%; /* Responsive width for mobile */
+    }
+
+    /* Media query for desktop screens */
+    @media (min-width: 768px) {
+        .img-custom {
+            /*max-width: 300px;  Adjust the size for desktop */
+        }
+    }
+</style>
+@endsection
 @section('content')
-    <main class="container" style="padding-top:20px;">
-    <div class="p-4 p-md-5 mb-4 text-white rounded bg-dark" style="position: relative; width: 100%; height: 100%; overflow: hidden;">
-    <div class="col-md-6 px-0" style="position: relative; width: 100%; height: 100%;">
-        @if(isset($acara->image_content))
-        <img src="{{ Storage::url($acara->image_content) }}" alt="" style="width: 100%; object-fit: cover;">
-        @else
-        <img src="{{ Storage::url('acaras/image_content/no-image.png') }}" alt="" style="width: 100%; object-fit: cover;">
-        @endif
-    </div>
+<div class="container-fluid d-flex justify-content-center">
+    @if(isset($acara->image_content))
+        <img src="{{ Storage::url($acara->image_content) }}" alt="" class="img-thumbnails img-custom">
+    @else
+        <img src="{{ Storage::url('acaras/image_content/no-image.png') }}" alt="" class="img-thumbnails img-custom">
+    @endif 
 </div>
+    <main class="container" style="padding-top:20px;">
+  
         <div class="row g-5">
             <div class="col-md-8">
                 <h3 class="pb-4 mb-4 fst-italic border-bottom">
