@@ -11,11 +11,6 @@
         @endif
     </div>
 </div>
-
-
-
-
-
         <div class="row g-5">
             <div class="col-md-8">
                 <h3 class="pb-4 mb-4 fst-italic border-bottom">
@@ -45,46 +40,27 @@
 
                    
                 </article>
-
+                <hr>
                 <article class="blog-post">
-                    <h3>Slot Terdaftar</h3>
-                    <p>And don't forget about tables in these posts:</p>
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <th>Name</th>
-                                <th>Upvotes</th>
-                                <th>Downvotes</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>Alice</td>
-                                <td>10</td>
-                                <td>11</td>
-                            </tr>
-                            <tr>
-                                <td>Bob</td>
-                                <td>4</td>
-                                <td>3</td>
-                            </tr>
-                            <tr>
-                                <td>Charlie</td>
-                                <td>7</td>
-                                <td>9</td>
-                            </tr>
-                        </tbody>
-                        <tfoot>
-                            <tr>
-                                <td>Totals</td>
-                                <td>21</td>
-                                <td>23</td>
-                            </tr>
-                        </tfoot>
-                    </table>
-
-                    <p>This is some additional paragraph placeholder content. It's a slightly shorter version of the other
-                        highly repetitive body text used throughout.</p>
+                    <h5 class="text-primary ">Syarat dan Ketentuan</h5>
+                    <div>
+                        <p dir="ltr" >REGULAR TICKET<br>
+                        <hr>    
+                        &nbsp;</p>
+                        <p dir="ltr">1. Tiket yang sudah dibeli tidak dapat dikembalikan.</p>
+                        <p dir="ltr">2. Penonton wajib mematuhi peraturan dan protokol kesehatan yang ada.</p>
+                        <p dir="ltr">3. Tidak disediakan penjualan tiket pada hari-h.</p>
+                        <p dir="ltr">4. <span class="text-danger"> TICOZ</span> tidak bertanggung jawab atas tiket yang hangus dikarenakan pembelian di luar website resmi.</p>
+                        <p dir="ltr">5. <span class="text-danger"> TICOZ</span>  tidak bertanggung jawab atas tiket yang hilang ataupun rusak.</p>
+                        <p dir="ltr">6. Nomor kursi akan ditentukan secara otomatis oleh Sistem Loket<br>
+                        &nbsp;</p>
+                        <b dir="ltr">INFORMASI PENUKARAN TIKET</b>
+                        <p dir="ltr">1. Penukaran tiket akan dilaksanakan selama 3 hari di <span class="text-success">{{ $acara->lokasi }}</span>.</p>
+                        <p dir="ltr">2. Penukaran tiket akan dilaksanakan pada tanggal  <span class="text-primary">
+                            {{ \Carbon\Carbon::parse($acara->waktu)->format('l, d F Y') }}
+                        </span></p>
+                        <p dir="ltr">3. Informasi mengenai penukaran tiket akan diinfokan lebih lanjut pada Instagram  <span class="text-primary">@Ticoz</span></p>
+                        </div>
                 </article>
 
                
