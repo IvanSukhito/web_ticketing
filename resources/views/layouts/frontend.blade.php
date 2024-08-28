@@ -104,7 +104,7 @@
                             <a href="{{ url('/') }}" class="nav-item nav-link active">Home</a>
                         </div>
                         <div class="mx-auto d-flex justify-content-center"> <!-- Center other items -->
-                            <a href="about.html" class="nav-item nav-link">About</a>
+                            <a href="{{ route('frontend.about') }}" class="nav-item nav-link">About</a>
                             <div class="nav-item dropdown">
                                 <a href="#" class="nav-link" data-bs-toggle="dropdown">
                                     <span class="dropdown-toggle">Categories</span>
