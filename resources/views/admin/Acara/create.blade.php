@@ -34,7 +34,7 @@
                       
                         <div class="form-group">
                             <label for="p">Picture Thumbnail</label>
-                            <input name ="files[]"multiple type="file" class="form-control" id="p" required
+                            <input name ="files[]"multiple type="file" class="form-control" id="p" accept="image/jpeg, image/png, image/jpg, image/gif" required
                                 aria-describedby="emailHelp" placeholder="Enter Height">
                         </div>
                        
@@ -77,7 +77,7 @@
                                 
                         <div class="form-group">
                             <label>Image Content (1120 x 400)</label> 
-                            <input name ="image_content"multiple type="file" class="form-control" id="p" required
+                            <input name ="image_content"multiple type="file" accept="image/jpeg, image/png, image/jpg, image/gif" class="form-control" id="p" required
                                 aria-describedby="emailHelp" placeholder="Enter Height">
                         </div>
                        
