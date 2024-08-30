@@ -112,12 +112,9 @@
                                 <a href="#"><i data-feather="bell"></i></a>
                             </div>
                             <div class="Profile">
+                                
                                 <img src="{{ asset('img/profile.png') }}" alt="casey">
-                                <!-- Dropdown Button -->
-                                    <span >
-                                        <a href="{{ route('admin.acara.index') }}"></a>
-                                    </span>
-                                    
+
                                     <a class="btn btn-outline-primary me-2" href="{{ route('logout') }}"
                                     onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                                     Dashboard
