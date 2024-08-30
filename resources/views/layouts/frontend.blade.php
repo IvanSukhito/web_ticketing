@@ -115,10 +115,14 @@
                                 <img src="{{ asset('img/profile.png') }}" alt="casey">
                                 <!-- Dropdown Button -->
                                     <span >
-                                        {{ Auth::user()->name }}
+                                        <a href="{{ route('admin.acara.index') }}"></a>
                                     </span>
                                     
-                                    <a class="btn btn-outline-dark me-2" href="{{ route('logout') }}"
+                                    <a class="btn btn-outline-primary me-2" href="{{ route('logout') }}"
+                                    onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                    Dashboard
+                                    </a>
+                                    <a class="btn btn-outline-danger me-2" href="{{ route('logout') }}"
                                     onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                                     Logout
                                     </a>
