@@ -29,7 +29,7 @@ class HomeController extends Controller
 
         $acaras = $this->fetchAcaras();
         $categories = Category::all();
-        $banner = Banner::get();
+        $banner = Banner::where('status','active')->get();
         //dd($banner);
         // $categories = Category::all();
         return view('frontend.index', [
