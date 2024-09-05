@@ -22,7 +22,9 @@
     <div class="container" style="justify-content: center;">
         
         <form>
-            <h1 class="display-4 mb-4 text-primary">Filter Whatever You Want</h1>
+          
+            <h3 class="display-4 mb-4 text-primary" style="text-transform: uppercase; font-size: 36px; font-weight: 900;">Filter WhatEver You Want</h3>
+
             <br>
             <div class="row ">
                 <div class="col-lg-12 col-xl-9">
@@ -52,7 +54,7 @@
 </div>
        <!-- Service Start -->
        
-    <!-- Service End -->
+    <!-- Service End / Recently Event -->
     <div class="container-fluid testimonial ">
         <div class="container p-5" style="justify-content: center;">
             <div data-wow-delay="0.2s" style="max-width: 800px;">
@@ -92,6 +94,7 @@
         </div>
     </div>
 
+    <!-- Comming Soon -->
    <div class="container-fluid team ">
             <div class="container py-5">
               
@@ -101,7 +104,7 @@
                     <div class="col-md-6 col-lg-6 col-xl-3 wow fadeInUp" data-wow-delay="0.2s" style="visibility: visible; animation-delay: 0.2s; animation-name: fadeInUp;">
                         <div class="team-item">
                             <div class="team-img">
-                                <img src="img/team-1.jpg" class="img-fluid rounded-top w-100" alt="">
+                                <img src="{{ asset("img/com_event.jpg") }}" class="img-fluid rounded-top w-100" alt="">
                                 <div class="team-icon">
                                    
                                     <a class="btn btn-success btn-sm-square rounded-pill mb-2" href=""><i class="fab fa-whatsapp"></i></a>
@@ -117,7 +120,7 @@
                     <div class="col-md-6 col-lg-6 col-xl-3 wow fadeInUp" data-wow-delay="0.4s" style="visibility: visible; animation-delay: 0.4s; animation-name: fadeInUp;">
                         <div class="team-item">
                             <div class="team-img">
-                                <img src="img/team-2.jpg" class="img-fluid rounded-top w-100" alt="">
+                                <img src="{{ asset("img/com_event1.jpg") }}" class="img-fluid rounded-top w-100" alt="">
                                 <div class="team-icon">
                                    
                                     <a class="btn btn-success btn-sm-square rounded-pill mb-2" href=""><i class="fab fa-whatsapp"></i></a>
@@ -133,7 +136,7 @@
                     <div class="col-md-6 col-lg-6 col-xl-3 wow fadeInUp" data-wow-delay="0.6s" style="visibility: visible; animation-delay: 0.6s; animation-name: fadeInUp;">
                         <div class="team-item">
                             <div class="team-img">
-                                <img src="img/team-3.jpg" class="img-fluid rounded-top w-100" alt="">
+                                <img src="{{ asset("img/com_event.jpg") }}" class="img-fluid rounded-top w-100" alt="">
                                 <div class="team-icon">
                                    
                                     <a class="btn btn-primary btn-sm-square rounded-pill mb-2" href=""><i class="fab fa-whatsapp"></i></a>
@@ -149,7 +152,7 @@
                     <div class="col-md-6 col-lg-6 col-xl-3 wow fadeInUp" data-wow-delay="0.8s" style="visibility: visible; animation-delay: 0.8s; animation-name: fadeInUp;">
                         <div class="team-item">
                             <div class="team-img">
-                                <img src="img/team-4.jpg" class="img-fluid rounded-top w-100" alt="">
+                                <img src="{{ asset("img/com_event1.jpg") }}" class="img-fluid rounded-top w-100" alt="">
                                 <div class="team-icon">
                                    
                                     <a class="btn btn-primary btn-sm-square rounded-pill mb-2" href=""><i class="fab fa-whatsapp"></i></a>
