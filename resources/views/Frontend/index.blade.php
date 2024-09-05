@@ -19,7 +19,7 @@
 </div>
 
 <div class="container-fluid feature bg-light py-5">
-    <div class="container">
+    <div class="container" style="justify-content: center;">
         
         <form>
             <h1 class="display-4 mb-4 text-primary">Filter Whatever You Want</h1>
@@ -53,10 +53,11 @@
        <!-- Service Start -->
        
     <!-- Service End -->
-    <div class="container-fluid testimonial py-5">
-        <div class="container p-5">
-            <div class="text-center mx-auto  wow fadeInUp" data-wow-delay="0.2s" style="max-width: 800px;">
-                <h4 class="text-primary">Recently Events</h4>
+    <div class="container-fluid testimonial ">
+        <div class="container p-5" style="justify-content: center;">
+            <div data-wow-delay="0.2s" style="max-width: 800px;">
+                <h3 class="display-4 mb-4" style="text-transform: uppercase; font-size: 36px; font-weight: 900;">Recently Event</h3>
+
             </div>
             <div class="owl-carousel testimonial-carousel wow fadeInUp" data-wow-delay="0.2s">
                 @foreach ($acaras as $acara)
@@ -76,9 +77,6 @@
                                     {{ \Carbon\Carbon::parse($acara->waktu)->format('l, d F Y') }}
                                 </p>
                                 <div class="d-flex text-primary mb-3">
-                                  
-                                   
-                              
                                 </div>
                                 <a href="{{ route('detail', $acara->slug) }}" class="btn btn-primary rounded-pill py-2 px-4">@lang('See More')</a>
                     
@@ -93,7 +91,80 @@
           
         </div>
     </div>
-    
+
+   <div class="container-fluid team ">
+            <div class="container py-5">
+              
+                    <h3 class="display-4 mb-4" style="text-transform: uppercase; font-size: 36px; font-weight: 900;">Our Coming Soon Event</h3>
+
+                <div class="row g-4">
+                    <div class="col-md-6 col-lg-6 col-xl-3 wow fadeInUp" data-wow-delay="0.2s" style="visibility: visible; animation-delay: 0.2s; animation-name: fadeInUp;">
+                        <div class="team-item">
+                            <div class="team-img">
+                                <img src="img/team-1.jpg" class="img-fluid rounded-top w-100" alt="">
+                                <div class="team-icon">
+                                   
+                                    <a class="btn btn-success btn-sm-square rounded-pill mb-2" href=""><i class="fab fa-whatsapp"></i></a>
+                                    <a class="btn btn-primary btn-sm-square rounded-pill mb-0" href=""><i class="fab fa-instagram"></i></a>
+                                </div>
+                            </div>
+                            <div class="team-title p-4">
+                                <h4 class="mb-0">David James</h4>
+                                <p class="mb-0">Profession</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-6 col-xl-3 wow fadeInUp" data-wow-delay="0.4s" style="visibility: visible; animation-delay: 0.4s; animation-name: fadeInUp;">
+                        <div class="team-item">
+                            <div class="team-img">
+                                <img src="img/team-2.jpg" class="img-fluid rounded-top w-100" alt="">
+                                <div class="team-icon">
+                                   
+                                    <a class="btn btn-success btn-sm-square rounded-pill mb-2" href=""><i class="fab fa-whatsapp"></i></a>
+                                    <a class="btn btn-primary btn-sm-square rounded-pill mb-0" href=""><i class="fab fa-instagram"></i></a>
+                                </div>
+                            </div>
+                            <div class="team-title p-4">
+                                <h4 class="mb-0">David James</h4>
+                                <p class="mb-0">Profession</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-6 col-xl-3 wow fadeInUp" data-wow-delay="0.6s" style="visibility: visible; animation-delay: 0.6s; animation-name: fadeInUp;">
+                        <div class="team-item">
+                            <div class="team-img">
+                                <img src="img/team-3.jpg" class="img-fluid rounded-top w-100" alt="">
+                                <div class="team-icon">
+                                   
+                                    <a class="btn btn-primary btn-sm-square rounded-pill mb-2" href=""><i class="fab fa-whatsapp"></i></a>
+                                    <a class="btn btn-primary btn-sm-square rounded-pill mb-0" href=""><i class="fab fa-instagram"></i></a>
+                                </div>
+                            </div>
+                            <div class="team-title p-4">
+                                <h4 class="mb-0">David James</h4>
+                                <p class="mb-0">Profession</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-6 col-xl-3 wow fadeInUp" data-wow-delay="0.8s" style="visibility: visible; animation-delay: 0.8s; animation-name: fadeInUp;">
+                        <div class="team-item">
+                            <div class="team-img">
+                                <img src="img/team-4.jpg" class="img-fluid rounded-top w-100" alt="">
+                                <div class="team-icon">
+                                   
+                                    <a class="btn btn-primary btn-sm-square rounded-pill mb-2" href=""><i class="fab fa-whatsapp"></i></a>
+                                    <a class="btn btn-primary btn-sm-square rounded-pill mb-0" href=""><i class="fab fa-instagram"></i></a>
+                                </div>
+                            </div>
+                            <div class="team-title p-4">
+                                <h4 class="mb-0">David James</h4>
+                                <p class="mb-0">Profession</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     <!-- Include this script at the end of your page -->
     
     
