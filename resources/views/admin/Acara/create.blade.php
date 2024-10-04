@@ -83,7 +83,7 @@
                        
                         <div class="form-group">
                             <label for="description">Description</label>
-                            <textarea name="description" type="text" id="description" class="form-control" aria-describedby="emailHelp" required="" oninvalid="this.setCustomValidity('Masukkan Deskripsi Disini')" oninput="this.setCustomValidity('')" placeholder="Deskripsi"> </textarea>
+                            <input name="description" type="text" class="texteditor" id="editor"> </input>
 
                         </div>
                         <div class="form-group">

@@ -36,14 +36,15 @@
 
         <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">
         <link rel="icon" type="image/png" href="../assets/img/favicon.png">
-
+        <link rel="stylesheet" href="{{ asset('ckeditor5/ckeditor5.css') }}">
+     
         <!--     Fonts and icons     -->
         <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
         <!-- Nucleo Icons -->
         <link href="{{ asset('css/nucleo-icons.css') }}" rel="stylesheet" />
         <link href="{{ asset('css/nucleo-svg.css') }}" rel="stylesheet" />
         <!-- Font Awesome Icons -->
-        <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
+       
         <link href="{{ asset('css/nucleo-svg.css') }}" rel="stylesheet" />
         <!-- CSS Files -->
         <link id="pagestyle" href="{{ asset('css/soft-ui-dashboard.css?v=1.0.7') }}" rel="stylesheet" />
@@ -51,7 +52,10 @@
     @show
     @section('script-top')
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-        <script defer data-site="YOUR_DOMAIN_HERE" src="https://api.nepcha.com/js/nepcha-analytics.js"></script>
+        {{-- <script defer data-site="YOUR_DOMAIN_HERE" src="https://api.nepcha.com/js/nepcha-analytics.js"></script> --}}
+        <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
+
+       
     @show
 </head>
 
@@ -399,7 +403,24 @@
         <script src="{{ asset('js/plugins/perfect-scrollbar.min.js') }}"></script>
         <script src="{{ asset('js/plugins/smooth-scrollbar.min.js') }}"></script>
         <script src="{{ asset('js/plugins/chartjs.min.js') }}"></script>
+        <script src="{{ asset('dropify/js/dropify.min.js') }}"></script>
+        <script src="{{ asset('dropify/js/dropify.js') }}"></script>
+    
+     <script type="importmap">
+        {
+            "imports": {
+                "ckeditor5": "https://cdn.ckeditor.com/ckeditor5/43.2.0/ckeditor5.js",
+                "ckeditor5/": "https://cdn.ckeditor.com/ckeditor5/43.2.0/"
+            }
+        }
+    </script>
+    
+       
+        <!-- Github buttons -->
+        <script async defer src="https://buttons.github.io/buttons.js"></script>
 
+        <!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->
+        
         <script>
             var ctx = document.getElementById("chart-bars").getContext("2d");
 
@@ -578,12 +599,32 @@
                 }
                 Scrollbar.init(document.querySelector('#sidenav-scrollbar'), options);
             }
-        </script>
-        <!-- Github buttons -->
-        <script async defer src="https://buttons.github.io/buttons.js"></script>
+        <script src="{{ asset('js/soft-ui-dashboard.min.js?v=1.0.7') }}"></script>
+        <script type="module">
+            import {
+                ClassicEditor,
+                Essentials,
+                Paragraph,
+                Bold,
+                Italic,
+                Font
+            } from 'ckeditor5';
 
-        <!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->
-        <script src="../assets/js/soft-ui-dashboard.min.js?v=1.0.7"></script>
+            ClassicEditor
+                .create( document.querySelector( '#editor' ), {
+                    plugins: [ Essentials, Paragraph, Bold, Italic, Font ],
+                    toolbar: [
+                        'undo', 'redo', '|', 'bold', 'italic', '|',
+                        'fontSize', 'fontFamily', 'fontColor', 'fontBackgroundColor'
+                    ]
+                } )
+                .then( editor => {
+                    window.editor = editor;
+                } )
+                .catch( error => {
+                    console.error( error );
+                } );
+        </script>
     @show
 </body>
 
