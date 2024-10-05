@@ -23,7 +23,7 @@ class AcaraRequest extends FormRequest
     {
         return [
             'name' => 'required|min:5',
-            'description' => 'required|string|max:255',
+            'description' => 'required|string',
             // 'photos' => 'required',
             // 'photos.*' => 'image|mimes:png,jpg,jpeg|max:2048', // Aturan untuk setiap file
             'namaPelaksana' => 'required|string|max:255',

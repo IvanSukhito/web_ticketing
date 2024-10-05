@@ -47,7 +47,7 @@
 
                   
 
-                    <p>{{ $acara->description }}</p>
+                    <p>{!! $acara->description !!}</p>
                     <hr>
                     <p><b>Location Map : </b>{{$acara->lokasi}}</p>
                     @if (isset($acara->lokasi) || isset($acara->longitude))

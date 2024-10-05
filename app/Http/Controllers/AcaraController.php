@@ -43,6 +43,7 @@ class AcaraController extends Controller
     {
 
         // dd($request->all());
+        //dd($request->all());
         $request->validate([
 
             'files' => 'required',
@@ -104,6 +105,7 @@ class AcaraController extends Controller
 
         return redirect()->route('admin.acara.index')->with('success', 'Acara berhasil di buat ');
     }
+
     public function edit(Acara $acara)
     {
         $categories = Category::all();

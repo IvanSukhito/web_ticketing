@@ -1,6 +1,19 @@
 @extends('layouts.master')
 
 @section('content')
+    @if ($errors->any())
+    @foreach ($errors->all() as $error)
+            <div class="alert alert-danger alert-dismissible fade show  text-white " role="alert">
+                
+                        <span class="alert-icon"><i class="ni ni-time-alarm"></i></span>
+                        <span class="alert-text"><strong>Danger!</strong> {{ $error }}</span>
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                  
+            </div>
+    @endforeach                
+        
+    @endif
 <form action = "{{ route('admin.acara.store') }}" method="POST" enctype="multipart/form-data">
 @csrf
     <div class="row">
@@ -53,9 +66,9 @@
              
                 <div class="card-body px-2 pt-0 pb-2">
               
-                <div class="form-group">
+                        <div class="form-group">
                             <label for="exampleInputEmail1">Lokasi</label>
-                            <input name="lokasi" type="text" class="form-control" id="inputLokasi" required="" oninvalid="this.setCustomValidity('Masukkan Lokasi Disini')" oninput="this.setCustomValidity('')" aria-describedby="emailHelp" placeholder="Lokasi Acara">
+                            <input name="lokasi" type="text" class="form-control" id="inputLokasi" required="" aria-describedby="lokasi" placeholder="Lokasi Acara">
 
                         </div>
                         <div class="row">
@@ -77,14 +90,14 @@
                                 
                         <div class="form-group">
                             <label>Image Content (1120 x 400)</label> 
-                            <input name ="image_content"multiple type="file" accept="image/jpeg, image/png, image/jpg, image/gif" class="form-control" id="p" required
+                            <input name ="image_content"multiple type="file" accept="image/jpeg, image/png, image/jpg" class="form-control" id="p" required
                                 aria-describedby="emailHelp" placeholder="Enter Height">
                         </div>
                        
                         <div class="form-group">
                             <label for="description">Description</label>
-                            <input name="description" type="text" class="texteditor" id="editor"> </input>
-
+                       
+                            <textarea name="description" class="form-control" id="editor"> </textarea>
                         </div>
                         <div class="form-group">
                             <label for="pelaksana">Penanggung Jawab /Pelaksana </label>
@@ -100,12 +113,17 @@
                 </div>
             </div>
         </div>
-        </form>
+    </div>
+</form>
           
 @endsection
 @section('script-bottom')
     @parent
     <script type="text/javascript">
+    // setTimeout(function() {
+    // $('.alert').fadeOut('slow');
+    // }, 3000); //
+
         $(document).ready(function() {
             $("#category").select2();
 
