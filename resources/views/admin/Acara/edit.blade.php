@@ -99,7 +99,7 @@
                         <div class="form-group">
                            
                             <label for="description">Description</label>
-                            <input name="description" type="text" class="texteditor" id="editor" value="{{ $acara->description }}"> </input>
+                            <textarea name="description" type="text" class="texteditor" id="editor" >{{ old('description', $acara->description  ) }}</textarea>
 
                         </div>
                         <div class="form-group">
@@ -122,6 +122,7 @@
 @section('script-bottom')
     @parent
     <script type="text/javascript">
+      
         $(document).ready(function() {
             $("#category").select2();
 
