@@ -119,7 +119,7 @@ class AcaraController extends Controller
     {
         $validated = $request->validate([
             'name' => 'required|string|max:255',
-            'description' => 'required|string|max:255',
+            'description' => 'required|string',
             'namaPelaksana' => 'required|string|max:50',
             'lokasi' => 'required|string|max:255',
             'latitude' => '',
@@ -150,7 +150,7 @@ class AcaraController extends Controller
 
             $validated['photos'] = $photos; // Set foto baru
 
-            dd($validated);
+            //dd($validated);
             $acara->update($validated);
 
             DB::commit();

@@ -1,6 +1,19 @@
 @extends('layouts.master')
 
 @section('content')
+@if ($errors->any())
+@foreach ($errors->all() as $error)
+        <div class="alert alert-danger alert-dismissible fade show  text-white " role="alert">
+            
+                    <span class="alert-icon"><i class="ni ni-time-alarm"></i></span>
+                    <span class="alert-text"><strong>Danger!</strong> {{ $error }}</span>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+              
+        </div>
+@endforeach                
+    
+@endif
 <form action="{{ route('admin.acara.update', $acara->id) }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         @method('PUT')
@@ -8,7 +21,7 @@
         <div class="col-12">
             <div class="card mb-4">
                 <div class="card-header pb-0">
-                    <h6>Add Acara</h6>
+                    <h6>Edit Acara</h6>
                 </div>
                 <div class="card-body px-2 pt-0 pb-2">
                 <div class="form-group">
