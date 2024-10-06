@@ -129,7 +129,8 @@
                 </div>
             </div>
         </div>
-        </form>
+    </div>   
+</form>
           
 @endsection
 @section('script-bottom')

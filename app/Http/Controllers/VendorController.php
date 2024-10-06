@@ -43,6 +43,16 @@ class VendorController extends Controller
 
         // dd($request->all());
 
+        $request->validate([
+            'files' => 'required',
+            'description' => 'required',
+            'name' => 'required',
+            'namaPelaksana' => 'required',
+            'lokasi' => 'required',
+            'waktu' => 'required',
+            'category_id' => 'required',
+            'image_content' => 'required',
+        ]);
         $slug = $request->slug ?? Str::slug($request->name);
 
         $request->merge([
@@ -62,9 +72,25 @@ class VendorController extends Controller
             ]);
         }
 
+        if ($request->hasFile('image_content')) {
+            $imgPath = str_replace('/', '\\', $request->file('image_content')->store('acaras/image_content', 'public'));
+            $imgPath = preg_replace('/\\\\+/', '\\', $imgPath); // Hapus backslash ganda
+        }
+        $saveData = [
+            'name' => $request->name,
+            'description' => $request->description,
+            'latitude' => $request->latitude,
+            'longitude' => $request->longitude,
+            'photos' => $request->photos,
+            'slug' => $request->slug,
+            'image_content' => $imgPath,
+            'namaPelaksana' => $request->namaPelaksana,
+            'lokasi' => $request->lokasi,
+            'waktu' => $request->waktu,
+            'category_id' => $request->category_id
+        ];
 
-
-        $acara = Acara::create($request->except('files'));
+        $acara = Acara::create($saveData);
         $user = Auth::user();
         $user->acara()->attach($acara->id);
 
@@ -83,14 +109,22 @@ class VendorController extends Controller
 
     public function update(Request $request, Acara $acara)
     {
+        //dd($acara);
         if (!Auth::user()->acara->contains($acara->id)) {
             return redirect()->route('vendor-client.acara.index')->with('error', 'Anda tidak memiliki izin untuk mengedit acara ini.');
         }
-        $request->validate([
-            'name' => 'required',
-            'description' => 'required',
-
-            // Sesuaikan aturan validasi sesuai kebutuhan Anda
+        $validated = $request->validate([
+            'name' => 'required|string|max:255',
+            'description' => 'required|string',
+            'files' => '',
+            'image_content' => '',
+            'namaPelaksana' => 'required|string|max:50',
+            'lokasi' => 'required|string|max:255',
+            'latitude' => '',
+            'longitude' => '',
+            'waktu' => 'required|date',
+            'category_id' => 'required|integer',
+            // 'files.*' => 'image|mimes:png,jpg,jpeg|max:2048' // Validasi untuk file gambar
         ]);
         $slug = $request->slug ?? Str::slug($request->name);
 
@@ -99,19 +133,51 @@ class VendorController extends Controller
 
         ]);
 
+        $dataAcara = Acara::findOrFail($acara->id);
+
         if ($request->hasFile('files')) {
-            $photos = [];
-            foreach ($request->file('files') as $file) {
-                $photos[] = $file->store('acaras', 'public');
+            $getNewPhoto = [];
+            foreach ($request->file('files') as $photo) {
+                $getNewPhoto[] = str_replace('/', '\\', $photo->store('acaras', 'public'));
             }
-            $request->merge([
-                'photos' => $photos
-            ]);
+            $photos = $getNewPhoto;
+        } else {
+            $photos = $dataAcara->photos ?? []; 
         }
+        
+        //dd($request->file('image_content'));
+        //image content
+        if ($request->hasFile('image_content')) {
+            //dd($request->hasFile('image_content'));
+            $imgPath = str_replace('/', '\\', $request->file('image_content')->store('acaras/image_content', 'public'));
+            $imgPath = preg_replace('/\\\\+/', '\\', $imgPath); // Hapus backslash ganda
 
+            $imageContent = $imgPath;
+        } 
+         else{
+            $imageContent = $dataAcara->image_content;
+         }
+        //dd($validated['files']);   
+        
+        $saveData = [
+            'name' => $request->name,
+            'description' => $request->description,
+            'latitude' => $request->latitude,
+            'longitude' => $request->longitude,
+            'photos' => $photos,
+            'slug' => $request->slug,
+            'image_content' => $imageContent,
+            'namaPelaksana' => $request->namaPelaksana,
+            'lokasi' => $request->lokasi,
+            'waktu' => $request->waktu,
+            'category_id' => $request->category_id
+        ];
+        
+        //dd($saveData);
+  
 
-        //update Acara
-        $acara->update($request->except('files'));
+        // update Acara
+        $acara->update($saveData);
         return redirect()->route('vendor.acara.index')->with('success', 'Acara berhasil di buat ');
     }
     public function destroy(Acara $acara)

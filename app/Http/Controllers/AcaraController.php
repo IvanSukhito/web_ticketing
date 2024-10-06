@@ -124,6 +124,7 @@ class AcaraController extends Controller
             'lokasi' => 'required|string|max:255',
             'latitude' => '',
             'longitude' => '',
+            'files' => '',
             'waktu' => 'required|date',
             'category_id' => 'required|integer',
             // 'files.*' => 'image|mimes:png,jpg,jpeg|max:2048' // Validasi untuk file gambar
