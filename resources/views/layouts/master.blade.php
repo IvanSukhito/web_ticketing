@@ -79,9 +79,9 @@
                             @if (Auth::user()->role == 'admin')
                                 <a class="nav-link {{ Request::routeIs('admin.dashboard') ? 'active' : '' }}"
                                     href="{{ route('admin.dashboard') }}">
-                                @elseif(Auth::user()->role == 'vendor')
+                            @elseif(Auth::user()->role == 'vendor')
                                     <a class="nav-link {{ Request::routeIs('vendor.dashboards') ? 'active' : '' }}"
-                                        href="{{ route('admin.dashboard') }}">
+                                        href="{{ route('vendor.dashboards') }}">
                             @endif
                         @endif
                         <div
@@ -121,7 +121,7 @@
                                         href="{{ route('vendor.acara.index') }}">
                                     @elseif(Auth::user()->role == 'vendor')
                                         <a class="nav-link {{ Request::routeIs('acara.*') ? 'active' : '' }}"
-                                            href="{{ route('admin.dashboard') }}">
+                                            href="{{ route('vendor.dashboard') }}">
                             @endif
                         @endif
                         <div
