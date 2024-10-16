@@ -9,6 +9,7 @@ use App\Http\Controllers\GoogleAuthController;
 use App\Http\Controllers\TicketController;
 use App\Http\Controllers\TransactionController;
 use App\Http\Controllers\VendorController;
+use App\Http\Controllers\VendorPasswordController;
 use App\Http\Controllers\VendorDashboardController;
 use App\Http\Controllers\VendorClientController;
 use Illuminate\Support\Facades\Auth;
@@ -69,6 +70,8 @@ Route::prefix('vendor')->middleware(['auth', 'auth.vendor'])->group(function () 
     Route::resource('/acara', VendorController::class)->names('vendor.acara');
     Route::resource('/acara.tickets', TicketController::class)->names('vendor.acara.tickets');
     Route::get('/transactions/{id}', [TransactionController::class, 'show'])->name('vendor.transactions');
+    Route::get('/change-password', [VendorPasswordController::class, 'edit'])->name('vendor.change-password');
+    Route::put('/change-password/{id}/update', [VendorPasswordController::class, 'update'])->name('vendor.change-password.update');
     //Route::get('/dashboard', [App\Http\Controllers\DashboardController::class, 'index'])->name('admin.dashboard');
 });
 
