@@ -1,6 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
+    
 <head>
+    <style>
+        @media (max-width: 768px) {
+          .alert {
+            margin-right: 0 !important; /* Menghilangkan margin kiri di perangkat mobile */
+            width: auto;
+          }
+        }
+      </style>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ticoz</title>
@@ -26,11 +35,23 @@
             </a>
         </div>
     </header>
-
+    @if (session('success'))
+    <div class="alert alert-success alert-dismissible fade show" role="alert" style="max-width: 400px; margin: 0 auto; margin-right: 200px; font-size: 0.9rem;">
+        <strong>Success!</strong> {{ session('success') }}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>    
+    @endif
+    
+      
     @yield('content')
     <script>
         feather.replace();
-      </script>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+
+    </script>
 
 </body>
 </html>

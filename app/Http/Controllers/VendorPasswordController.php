@@ -38,7 +38,8 @@ class VendorPasswordController extends Controller
             User::whereId(auth()->user()->id)->update([
                 'password' => Hash::make($request->new_password)
             ]);
-            return back()->with("status", "Password changed successfully!");
+            Auth::logout();
+            return redirect()->route('login')->with("success", "Silahkan Login Kembali!");
 
         }else{
             return back()->with("error", "Old Password Doesn't match!");

@@ -1,12 +1,20 @@
 @extends('layouts.auth')
 
 @section('content')
+
+
 <section class="hero">
+{{-- @if (session('success')) --}}
+
+
+{{-- @endif --}}
         <img class= "background" src="{{ asset('img/auth/Background.png') }}" alt="background">
         <form method="POST" action="{{ route('login') }}">
         @csrf
+        
         <div class="content">
             <h1>{{ __('Login') }}</h1>
+          
             <div class="input-1">
                 <label for="email" >{{ __('Email Address') }}</label>
                
