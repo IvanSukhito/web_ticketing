@@ -52,7 +52,7 @@ class CategoryController extends Controller
             $newCategory = Category::create($validated);
 
             DB::commit();
-            return redirect()->route('admin.kategori.index');
+            return redirect()->route('admin.kategori.index')->with('success', 'Kategori berhasil dihapus.');
         } catch (\Exception $e) {
             DB::rollBack();
             $error = ValidationException::withMessages([
@@ -115,7 +115,7 @@ class CategoryController extends Controller
             $updateCategory->update($validated);
 
             DB::commit();
-            return redirect()->route('admin.kategori.index');
+            return redirect()->route('admin.kategori.index')->with('success', 'Kategori berhasil diupdate.');
         } catch (\Exception $e) {
             DB::rollBack();
             $error = ValidationException::withMessages([

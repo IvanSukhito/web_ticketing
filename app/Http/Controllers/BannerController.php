@@ -54,7 +54,7 @@ class BannerController extends Controller
             $newCategory = Banner::create($validated);
 
             DB::commit();
-            return redirect()->route('admin.banners.index');
+            return redirect()->route('admin.banners.index')->with('success', 'Banner berhasil dibuat.');
         } catch (\Exception $e) {
             DB::rollBack();
             $error = ValidationException::withMessages([
@@ -121,7 +121,7 @@ class BannerController extends Controller
             $updateBanner->update($validated);
 
             DB::commit();
-            return redirect()->route('admin.banners.index');
+            return redirect()->route('admin.banners.index')->with('success', 'Banner berhasil diupdate.');
         } catch (\Exception $e) {
             DB::rollBack();
             $error = ValidationException::withMessages([

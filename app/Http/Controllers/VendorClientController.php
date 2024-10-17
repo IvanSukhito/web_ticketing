@@ -54,7 +54,7 @@ class VendorClientController extends Controller
             User::create($validated);
             //dd($db);
 
-            return redirect()->route('admin.vendor-client.index');
+            return redirect()->route('admin.vendor-client.index')->with('success', 'Vendor berhasil dihapus.');
         } catch (\Exception $e) {
 
             $error = ValidationException::withMessages([
@@ -110,7 +110,7 @@ class VendorClientController extends Controller
             'email' => $request->email,
         ]);
 
-        return redirect()->route('admin.vendor-client.index');
+        return redirect()->route('admin.vendor-client.index')->with('success', 'Vendor berhasil diupdate.');
     }
 
     /**
@@ -126,6 +126,6 @@ class VendorClientController extends Controller
 
         // Redirect ke index kategori dengan pesan sukses
         // dd($banner);
-        return redirect()->route('admin.vendor-client.index')->with('success', 'Banner berhasil dihapus.');
+        return redirect()->route('admin.vendor-client.index')->with('success', 'Vendor berhasil dihapus.');
     }
 }

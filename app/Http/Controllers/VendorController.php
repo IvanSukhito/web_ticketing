@@ -178,7 +178,7 @@ class VendorController extends Controller
 
         // update Acara
         $acara->update($saveData);
-        return redirect()->route('vendor.acara.index')->with('success', 'Acara berhasil di buat ');
+        return redirect()->route('vendor.acara.index')->with('success', 'Acara berhasil di update ');
     }
     public function destroy(Acara $acara)
     {
