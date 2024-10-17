@@ -39,7 +39,7 @@ class VendorPasswordController extends Controller
                 'password' => Hash::make($request->new_password)
             ]);
             Auth::logout();
-            return redirect()->route('login')->with("success", "Silahkan Login Kembali!");
+            return redirect()->route('login')->with("success", "Ubah Password, Silahkan Login Kembali!");
 
         }else{
             return back()->with("error", "Old Password Doesn't match!");

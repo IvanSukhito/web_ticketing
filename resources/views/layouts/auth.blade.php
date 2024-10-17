@@ -36,7 +36,7 @@
         </div>
     </header>
     @if (session('success'))
-    <div class="alert alert-success alert-dismissible fade show" role="alert" style="max-width: 400px; margin: 0 auto; margin-right: 200px; font-size: 0.9rem;">
+    <div class="alert alert-success alert-dismissible fade show"  id="autoDismissAlert"  role="alert" style="max-width: 400px; margin: 0 auto; margin-right: 200px; font-size: 0.9rem;">
         <strong>Success!</strong> {{ session('success') }}
         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
           <span aria-hidden="true">&times;</span>
@@ -48,10 +48,14 @@
     @yield('content')
     <script>
         feather.replace();
-        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
-
+        setTimeout(function() {
+        $('#autoDismissAlert').alert('close');
+        }, 5000);
     </script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+
+    
 
 </body>
 </html>
