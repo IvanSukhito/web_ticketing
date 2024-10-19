@@ -8,6 +8,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\GoogleAuthController;
 use App\Http\Controllers\TicketController;
 use App\Http\Controllers\TransactionController;
+use App\Http\Controllers\UserDashboardController;
 use App\Http\Controllers\VendorController;
 use App\Http\Controllers\VendorPasswordController;
 use App\Http\Controllers\VendorDashboardController;
@@ -61,8 +62,7 @@ Route::prefix('user')->middleware(['auth', 'auth.user'])->group(function () {
     Route::get('/transaction', [AcaraUserController::class, 'myTransaction'])->name('myTransaction');
     Route::get('/checkout/event/{slug}', [AcaraUserController::class, 'checkout'])->name('checkout');
     Route::post('/checkout/pay', [AcaraUserController::class, 'checkoutPay'])->name('checkout-pay');
-
-
+    Route::get('/dashboard', [UserDashboardController::class, 'index'])->name('user.dashboard.index');
     Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 });
 Route::prefix('vendor')->middleware(['auth', 'auth.vendor'])->group(function () {

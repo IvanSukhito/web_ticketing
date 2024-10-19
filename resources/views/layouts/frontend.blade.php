@@ -115,8 +115,7 @@
                                 
                                 <img src="{{ asset('img/profile.png') }}" alt="casey">
 
-                                    <a class="btn btn-outline-primary me-2" href="{{ route('logout') }}"
-                                    onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                    <a class="btn btn-outline-primary me-2" href="{{ route('user.dashboard.index') }}">
                                     Dashboard
                                     </a>
                                     <a class="btn btn-outline-danger me-2" href="{{ route('logout') }}"
