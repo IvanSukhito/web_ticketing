@@ -11,7 +11,7 @@
 
 body {
   font-family: 'Poppins', sans-serif; /* Menggunakan font modern */
-  background: linear-gradient(135deg, #4c83ff, #3d5e95);
+  background: linear-gradient(135deg, #f2f5f9, #3d5e95);
   height: 100vh;
   display: flex;
   justify-content: center;
@@ -159,16 +159,7 @@ h2 {
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 @stop
 @section('content')
-<div class="login-container">
-    <div class="login-box">
-        @if(session('success'))
-        <div class="alert alert-success alert-dismissible fade show" id="autoDismissAlert" role="alert" style="max-width: 400px; margin: 0 auto; margin-right: 200px; font-size: 0.9rem;">
-            <strong>Success!</strong> {{ session('success') }}
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          @endif
+
         <h2>{{ __('Login') }}</h2>
       <form method="POST" action="{{ route('login') }}">
         @csrf
@@ -181,21 +172,23 @@ h2 {
           <input type="password" name="password" required>
           <label>Password</label>
         </div>
-        <button type="submit" class="login-btn">Login</button>
-       
-            <hr />
-            <p>Or Continue</p>
-            <hr />
-        
-        <a href="{{ route('google-auth') }}"  class="button pill2">
-        <div class="button-google">
-            <img src="{{ asset('img/auth/google.png') }}" alt="google"> 
-            <div style="vertical-align: middle;"> Google</div>
-           
+        <div class="cta">
+            <button class="pill">Log In</button>
+            <div class="or">
+                <hr />
+                <p>atau masuk dengan</p>
+                <hr />
+            </div>
+            <a href="{{ route('google-auth') }}"  class="button pill2">
+            <div class="button-google">
+                <img src="{{ asset('img/auth/google.png') }}" alt="google"> 
+                <div style="vertical-align: middle;"> Google</div>
+               
+            </div>
+            </a>
+            <p>Belum memiliki akun Ticoz? <a href="{{ route('register') }}" id="login">&nbsp;Daftar</a></p>
         </div>
-        </a>
         <p class="signup-link">Don't have an account? <a href="{{ route('register') }}">Sign up</a></p>
       </form>
-    </div>
-  </div>
+  
 @endsection

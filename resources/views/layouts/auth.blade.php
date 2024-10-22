@@ -29,8 +29,20 @@
       @show
 </head>
 <body>
+  <div class="login-container">
+    <div class="login-box">
+        @if(session('success'))
+        <div class="alert alert-success alert-dismissible fade show" id="autoDismissAlert" role="alert" style="max-width: 400px; margin: 0 auto; margin-right: 200px; font-size: 0.9rem;">
+            <strong>Success!</strong> {{ session('success') }}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          @endif
+          @yield('content')
+    </div>
+  </div> 
  
-  @yield('content')
 
  
            

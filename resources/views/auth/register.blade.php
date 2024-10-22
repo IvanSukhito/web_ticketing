@@ -15,7 +15,7 @@
 
 body {
   font-family: 'Poppins', sans-serif; /* Menggunakan font modern */
-  background: linear-gradient(135deg, #4c83ff, #3d5e95);
+  background: linear-gradient(135deg, #f2f5f9, #3d5e95);
   height: 100vh;
   display: flex;
   justify-content: center;
@@ -53,7 +53,7 @@ h2 {
 
 .input-group {
   position: relative;
-  margin-bottom: 35px;
+  margin-bottom: 20px;
 }
 
 .input-group input {
@@ -88,7 +88,7 @@ h2 {
   left: 35px;
   font-size: 12px;
   background-color: #fff;
-  padding: 0 5px;
+  padding: 0px;
   color: #4c83ff;
 }
 
@@ -157,62 +157,12 @@ h2 {
 }
 
 
-.input-group input {
-  width: 100%;
-  padding: 15px 15px 15px 40px; /* Menyesuaikan dengan padding input yang lebih besar */
-  font-size: 16px;
-  border: 2px solid #ddd;
-  border-radius: 30px;
-  outline: none;
-  transition: border-color 0.3s, box-shadow 0.3s;
-}
-
-.input-group input:focus {
-  border-color: #4c83ff;
-  box-shadow: 0 0 8px rgba(76, 131, 255, 0.5);
-}
-
-.input-group label {
-  position: absolute;
-  left: 40px;
-  top: 50%;
-  transform: translateY(-50%);
-  color: #aaa;
-  font-size: 16px;
-  pointer-events: none;
-  transition: 0.3s;
-}
-
-.input-group input:focus ~ label,
-.input-group input:valid ~ label {
-  top: -10px;
-  left: 35px;
-  font-size: 12px;
-  background-color: #fff;
-  padding: 0 5px;
-  color: #4c83ff;
-}
-
 /* Tidak ada perubahan besar lainnya diperlukan */
 
     </style>    
 @stop
 @section('content')
 
-            
- 
-<div class="login-container">
-    <div class="login-box">
-        
-        @if(session('success'))
-        <div class="alert alert-success alert-dismissible fade show" id="autoDismissAlert" role="alert" style="max-width: 400px; margin: 0 auto; margin-right: 200px; font-size: 0.9rem;">
-            <strong>Success!</strong> {{ session('success') }}
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          @endif
-          
       <h2>{{ _('Sign Up') }}</h2>
       
       <form method="POST" action="{{ route('register') }}">
@@ -251,6 +201,5 @@ h2 {
             <p>Sudah memiliki akun Ticoz? <a href="{{ route('login') }}" id="login">&nbsp;Masuk</a></p>
         </div>
       </form>
-    </div>
-  </div>
+  
 @endsection
