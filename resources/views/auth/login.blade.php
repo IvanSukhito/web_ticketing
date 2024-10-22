@@ -11,7 +11,7 @@
 
 body {
   font-family: 'Poppins', sans-serif; /* Menggunakan font modern */
-  background: linear-gradient(135deg, #f2f5f9, #3d5e95);
+  background: linear-gradient(135deg, #f2f5f9);
   height: 100vh;
   display: flex;
   justify-content: center;
@@ -188,7 +188,7 @@ h2 {
             </a>
             <p>Belum memiliki akun Ticoz? <a href="{{ route('register') }}" id="login">&nbsp;Daftar</a></p>
         </div>
-        <p class="signup-link">Don't have an account? <a href="{{ route('register') }}">Sign up</a></p>
+       
       </form>
   
 @endsection

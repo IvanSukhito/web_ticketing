@@ -15,7 +15,7 @@
 
 body {
   font-family: 'Poppins', sans-serif; /* Menggunakan font modern */
-  background: linear-gradient(135deg, #f2f5f9, #3d5e95);
+  background: linear-gradient(135deg, #f2f5f9);
   height: 100vh;
   display: flex;
   justify-content: center;
