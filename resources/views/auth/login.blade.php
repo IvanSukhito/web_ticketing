@@ -8,7 +8,18 @@
         <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.webp"
           class="img-fluid" alt="Sample image">
       </div>
+   
       <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
+        @if(session("success"))
+        <div class="alert alert-success alert-dismissible fade show" id="autoDismissAlert" role="alert" >
+          <strong>Success!</strong> {{ session('success') }}
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        @endif
+        
+    
         <form method="POST" action="{{ route('login') }}">
           @csrf
           <div class="d-flex flex-row align-items-center justify-content-center justify-content-lg-start">

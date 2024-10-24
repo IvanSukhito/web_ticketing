@@ -78,7 +78,7 @@ class RegisterController extends Controller
      
         Auth::logout();
         
-        return redirect()->route('login')->with('flash','Silahkan Login');
+        return redirect()->route('login')->with('success','Sukses Register, Silahkan Login');
        
 
     }
