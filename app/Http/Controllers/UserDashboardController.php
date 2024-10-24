@@ -30,8 +30,13 @@ class UserDashboardController extends Controller
         $validate = $request->validate([
            
             'old_password' => 'required',
-            'new_password' => 'required',
-            'confirm_password' => 'required',
+            'new_password' => 'required|string|min:8|regex:/[a-z]/|regex:/[A-Z]/|regex:/[0-9]/|regex:/[@$!%*#?&]/',
+            'confirm_password' => 'required|same:new_password',
+        ],
+         [
+         
+            'new_password.regex' => 'New password must contain at least 1 lowercase letter, 1 uppercase letter, 1 digit, and 1 special character (@$!%*#?&).',
+            'confirm_password.same' => 'The confirm password must match the new password.',
         ]);
 
         $user = User::whereId($userId)->first();
