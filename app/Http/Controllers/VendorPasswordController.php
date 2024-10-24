@@ -23,9 +23,15 @@ class VendorPasswordController extends Controller
         $validate = $request->validate([
             'name' => 'required',
             'old_password' => 'required',
-            'new_password' => 'required',
-            'confirm_password' => 'required',
+            'new_password' => 'required|string|min:8|regex:/[a-z]/|regex:/[A-Z]/|regex:/[0-9]/|regex:/[@$!%*#?&]/',
+            'confirm_password' => 'required|same:new_password',
+        ],
+         [
+            'new_password.min' => 'Password baru minimal 8 huruf',
+            'new_password.regex' => 'Password baru harus berisi hurufkecil, 1 huruf besar, 1 angka, and 1 special karakter (@$!%*#?&).',
+            'confirm_password.same' => 'Password konfirmasi tidak sama dengan password',
         ]);
+
 
         $user = User::where('id', $user)->first();
         #kasih notifikasi

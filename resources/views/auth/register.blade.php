@@ -9,6 +9,23 @@
           class="img-fluid" alt="Sample image">
       </div>
       <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
+        @if(session("error") || $errors->any())
+        <div class="alert alert-danger alert-dismissible fade show" id="autoDismissAlert" role="alert" >
+          <strong>Warning!</strong> 
+            @if (session('error'))
+            {{ session('error') }}
+             @else
+                 <ul>
+                     @foreach ($errors->all() as $error)
+                         <li>{{ $error }}</li>
+                     @endforeach
+                 </ul>
+             @endif
+             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        @endif
         <form method="POST" action="{{ route('register') }}">
           @csrf
           <div class="d-flex flex-row align-items-center justify-content-center justify-content-lg-start">

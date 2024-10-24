@@ -170,20 +170,20 @@
             </div>
           </div>
         @elseif ($activeMenu == "change-password")
-        @if(session("error") || $errors->any())
-        <div class="alert alert-danger alert-dismissible fade show" id="autoDismissAlert" role="alert" >
-          <strong>Warning!</strong> 
-            @if (session('error'))
-            {{ session('error') }}
-             @else
-                 <ul>
-                     @foreach ($errors->all() as $error)
-                         <li>{{ $error }}</li>
-                     @endforeach
-                 </ul>
-             @endif
-        </div>
-        @endif
+            @if(session("error") || $errors->any())
+            <div class="alert alert-danger alert-dismissible fade show" id="autoDismissAlert" role="alert" >
+              <strong>Warning!</strong> 
+                @if (session('error'))
+                {{ session('error') }}
+                 @else
+                     <ul>
+                         @foreach ($errors->all() as $error)
+                             <li>{{ $error }}</li>
+                         @endforeach
+                     </ul>
+                 @endif
+            </div>
+            @endif
         <div class="event-details-content">
             <div class="card-details-content">
                 <h2>Change Password</h2>

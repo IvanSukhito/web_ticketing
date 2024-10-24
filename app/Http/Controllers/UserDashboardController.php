@@ -34,9 +34,9 @@ class UserDashboardController extends Controller
             'confirm_password' => 'required|same:new_password',
         ],
          [
-         
-            'new_password.regex' => 'New password must contain at least 1 lowercase letter, 1 uppercase letter, 1 digit, and 1 special character (@$!%*#?&).',
-            'confirm_password.same' => 'The confirm password must match the new password.',
+            'new_password.min' => 'Password baru minimal 8 huruf',
+            'new_password.regex' => 'Password baru harus berisi hurufkecil, 1 huruf besar, 1 angka, and 1 special karakter (@$!%*#?&).',
+            'confirm_password.same' => 'Password konfirmasi tidak sesuai.',
         ]);
 
         $user = User::whereId($userId)->first();

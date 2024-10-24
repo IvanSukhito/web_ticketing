@@ -45,9 +45,15 @@ class VendorClientController extends Controller
             'no_telp' => 'required',
             'nik' => 'required|unique:users',
             'email' => 'required|unique:users',
-            'password' => 'required|confirmed|string|min:6',
+            'password' => 'required|string|min:8|regex:/[a-z]/|regex:/[A-Z]/|regex:/[0-9]/|regex:/[@$!%*#?&]/',
+            'password_confirmation' => 'required|same:password',
+        ],
+        [
+           'password.min' => 'Password baru minimal 8 huruf',
+           'password.regex' => 'Password baru harus berisi hurufkecil, 1 huruf besar, 1 angka, and 1 special karakter (@$!%*#?&).',
+            'password_confirmation.same' => 'Password konfirmasi tidak sesuai.'
+       ]);
 
-        ]);
         //dd($validated);
         try {
 

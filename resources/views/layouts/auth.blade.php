@@ -60,7 +60,7 @@
 
 </body>
 <script>
-  feather.replace();
+  
   setTimeout(function() {
   $('#autoDismissAlert').alert('close');
   }, 5000);
