@@ -19,7 +19,7 @@
         /* Sidebar styling */
         .user-sidebar {
             width: 250px;
-            background-color: #0b3a6f;
+            background-color: #16243D;
             padding: 20px;
             height: 100vh;
             color: white;
@@ -100,13 +100,22 @@
 
             .event-details-content {
                 padding: 20px;
+                width: 100%;
+              
+              
             }
 
             .card-details-content {
                 padding: 20px;
+                width: 100%;
+                justify-content: space-around;
+                display: contents; 
+                /* hapus aja display contents */
+              
             }
 
             .card-details-content .edit-profile {
+                width: 100%;
                 float: none;
                 display: block;
                 text-align: center;
@@ -136,29 +145,95 @@
 @stop
 @section('content')
 
-<div class="container">
-  <div class="row">
+<div class="container" style="margin-left: 0; margin-right: 0;">
+  
       <div class="col-lg-3">
           <div class="user-sidebar">
-            <a href="#" class="active">Akun Saya</a>
+            
+            <a href="{{ route('user.dashboard.index') }}" class="{{ $activeMenu == 'my-account' ? 'active' : ''}}">Akun Saya</a>
             <a href="#">Tiket Saya</a>
             <a href="#">Pengaduan Tiket</a>
-            <a href="#">Ubah Kata Sandi</a>
-            <a href="#">Keluar</a>
+            <a href="{{ route('user.dashboard.change-password') }}" class="{{ $activeMenu == 'change-password' ? 'active' : ''}}">Ubah Kata Sandi</a>
+           
         </div>
       </div>
       <div class="col-lg-9">
+        @if($activeMenu == "my-account")
         <div class="event-details-content">
-          <div class="card-details-content">
-              <h2>Informasi Akun</h2>
-              <a href="#" class="edit-profile">Edit Profile</a>
-              <hr>
-              <p><strong>{{ Auth::user()->name }}</strong></p>
-              <p>Email: {{ Auth::user()->email }}</p>
+            <div class="card-details-content">
+                <h2>Informasi Akun</h2>
+                <a href="#" class="edit-profile">Edit Profile</a>
+                <hr>
+                <p><strong>{{ Auth::user()->name }}</strong></p>
+                <p>Email: {{ Auth::user()->email }}</p>
+            </div>
           </div>
+        @elseif ($activeMenu == "change-password")
+        <div class="event-details-content">
+            <div class="card-details-content">
+                <h2>Change Password</h2>
+                <form>
+                    @csrf
+                <div data-mdb-input-init class="form-outline mb-3">
+                    <label for="form3Example4">Old Password</label>
+                    <div style="position: relative;">
+                      <input type="password" id="password_confirmation" name="password_confirmation" class="form-control"
+                        placeholder="Enter your old password" style="outline: 2px solid #f5f5f5;" required />
+                      <span onclick="togglePasswordVisibility('password_confirmation')" style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); cursor: pointer;">
+                        <i class="fas fa-eye"></i>
+                      </span>
+                    </div>
+                  </div>
+
+                  <div data-mdb-input-init class="form-outline mb-3">
+                    <label for="form3Example4">Your Password</label>
+                    <div style="position: relative;">
+                      <input type="password" id="password" name="password" class="form-control"
+                        placeholder="Enter your password" style="outline: 2px solid #f5f5f5;" required />
+                      <span onclick="togglePasswordVisibility('password')" style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); cursor: pointer;">
+                        <i class="fas fa-eye"></i>
+                      </span>
+                    </div>
+                  </div>
+               
+                <div data-mdb-input-init class="form-outline mb-3">
+                    <label for="form3Example4">Your Confirm Password</label>
+                    <div style="position: relative;">
+                      <input type="password" id="password_confirmation" name="password_confirmation" class="form-control"
+                        placeholder="Enter your confirm password" style="outline: 2px solid #f5f5f5;" required />
+                      <span onclick="togglePasswordVisibility('password_confirmation')" style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); cursor: pointer;">
+                        <i class="fas fa-eye"></i>
+                      </span>
+                    </div>
+                  </div>
+
+                  <div>
+                    <button type="submit" data-mdb-ripple-init class="btn btn-outline-primary"
+                      style="padding-left: 2.5rem; padding-right: 2.5rem;">Save</button>
+                      <button type="reset" data-mdb-ripple-init class="btn btn-outline-danger"
+                      style="padding-left: 2.5rem; padding-right: 2.5rem;">Cancel</button>
+        
+                   
+                  </div>
+                </form>
+            </div>
+          </div>
+        @endif
       </div>
-      </div>
-  </div>
+
 </div>
 
 @endsection
+@section('script-top')
+@parent
+<script>
+  function togglePasswordVisibility(inputId) {
+    const input = document.getElementById(inputId);
+    if (input.type === "password") {
+      input.type = "text"; // Show password
+    } else {
+      input.type = "password"; // Hide password
+    }
+  }
+</script>
+@stop
