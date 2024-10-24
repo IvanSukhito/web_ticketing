@@ -49,7 +49,7 @@ class UserDashboardController extends Controller
             return redirect()->route('login')->with("success", "Ubah Password, Silahkan Login Kembali!");
 
         }else{
-            return back()->with("error", "Old Password Doesn't match!");
+            return back()->with("error", "Password and Confirm Password Doesn't match!");
 
         }
         dd($validate);

@@ -2,6 +2,7 @@
 
 @section('head')
 
+@parent
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>User Dashboard</title>
@@ -152,7 +153,7 @@
             
             <a href="{{ route('user.dashboard.index') }}" class="{{ $activeMenu == 'my-account' ? 'active' : ''}}">Akun Saya</a>
             <a href="#">Tiket Saya</a>
-            <a href="#">Pengaduan Tiket</a>
+            <a href="#">Ubah Profile</a>
             <a href="{{ route('user.dashboard.change-password') }}" class="{{ $activeMenu == 'change-password' ? 'active' : ''}}">Ubah Kata Sandi</a>
            
         </div>
@@ -169,7 +170,11 @@
             </div>
           </div>
         @elseif ($activeMenu == "change-password")
-         
+        @if(session("error"))
+        <div class="alert alert-danger alert-dismissible fade show" id="autoDismissAlert" role="alert" >
+          <strong>Warning!</strong> {{ session('error') }}
+        </div>
+        @endif
         <div class="event-details-content">
             <div class="card-details-content">
                 <h2>Change Password</h2>
@@ -236,5 +241,8 @@
       input.type = "password"; // Hide password
     }
   }
+
+  setTimeout(() => document.getElementById('autoDismissAlert')?.remove(), 5000);
+
 </script>
 @stop
