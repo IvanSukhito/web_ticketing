@@ -169,27 +169,28 @@
             </div>
           </div>
         @elseif ($activeMenu == "change-password")
+         
         <div class="event-details-content">
             <div class="card-details-content">
                 <h2>Change Password</h2>
-                <form>
+                <form action="{{ route('user.dashboard.update-password') }}" method="POST">
                     @csrf
                 <div data-mdb-input-init class="form-outline mb-3">
                     <label for="form3Example4">Old Password</label>
                     <div style="position: relative;">
-                      <input type="password" id="password_confirmation" name="password_confirmation" class="form-control"
+                      <input type="password" id="old_password" name="old_password" class="form-control"
                         placeholder="Enter your old password" style="outline: 2px solid #f5f5f5;" required />
-                      <span onclick="togglePasswordVisibility('password_confirmation')" style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); cursor: pointer;">
+                      <span onclick="togglePasswordVisibility('old_password')" style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); cursor: pointer;">
                         <i class="fas fa-eye"></i>
                       </span>
                     </div>
                   </div>
 
                   <div data-mdb-input-init class="form-outline mb-3">
-                    <label for="form3Example4">Your Password</label>
+                    <label for="form3Example4">Your New Password</label>
                     <div style="position: relative;">
-                      <input type="password" id="password" name="password" class="form-control"
-                        placeholder="Enter your password" style="outline: 2px solid #f5f5f5;" required />
+                      <input type="password" id="password" name="new_password" class="form-control"
+                        placeholder="Enter new password" style="outline: 2px solid #f5f5f5;" required />
                       <span onclick="togglePasswordVisibility('password')" style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); cursor: pointer;">
                         <i class="fas fa-eye"></i>
                       </span>
@@ -199,9 +200,9 @@
                 <div data-mdb-input-init class="form-outline mb-3">
                     <label for="form3Example4">Your Confirm Password</label>
                     <div style="position: relative;">
-                      <input type="password" id="password_confirmation" name="password_confirmation" class="form-control"
+                      <input type="password" id="confirm_password" name="confirm_password" class="form-control"
                         placeholder="Enter your confirm password" style="outline: 2px solid #f5f5f5;" required />
-                      <span onclick="togglePasswordVisibility('password_confirmation')" style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); cursor: pointer;">
+                      <span onclick="togglePasswordVisibility('confirm_password')" style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); cursor: pointer;">
                         <i class="fas fa-eye"></i>
                       </span>
                     </div>

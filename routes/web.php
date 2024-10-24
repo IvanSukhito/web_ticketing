@@ -64,6 +64,7 @@ Route::prefix('user')->middleware(['auth', 'auth.user'])->group(function () {
     Route::post('/checkout/pay', [AcaraUserController::class, 'checkoutPay'])->name('checkout-pay');
     Route::get('/dashboard', [UserDashboardController::class, 'index'])->name('user.dashboard.index');
     Route::get('/change-password', [UserDashboardController::class, 'changePass'])->name('user.dashboard.change-password');
+    Route::post('/update-password', [UserDashboardController::class, 'updatePass'])->name('user.dashboard.update-password');
     Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 });
 Route::prefix('vendor')->middleware(['auth', 'auth.vendor'])->group(function () {
